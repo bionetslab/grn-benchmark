@@ -1,7 +1,7 @@
 This README.md file was generated on 26/3/2024 by Nicolai Meyerhoefer (nicolai.meyerhoefer@fau.de)
 # Zscore
 
-Z-score method (10.1093/bioinformatics/btm482 ) implemented via dcanr (https://www.bioconductor.org/packages/release/bioc/html/dcanr.html) is a method for inference of differential gene regulatory networks between two conditions.
+Z-score method (https://doi.org/10.1093/bioinformatics/btm482) implemented via dcanr (https://www.bioconductor.org/packages/release/bioc/html/dcanr.html) is a method for inference of differential gene regulatory networks between two conditions.
 
 ## Description
 The z-score differential gene regulatory network inference tool computes Pearson's or Spearman's correlations for each pair of genes for both conditions and applies Fisher z-transformation afterwards. The resulting z-scores are modeled as a normal distribution and a z-test is used to detect significant pairwise edges.
