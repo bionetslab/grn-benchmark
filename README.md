@@ -61,3 +61,39 @@ For every tool there should be a README with
 11. Other necessary information
 
 In general, the more difficult it was to install, execute or interpret the results of the tool, the more information needs to be supplied in the README.md file.
+
+
+## Input/Output Specifications
+
+Below are the input and output specifications that every tool **MUST** use in the submitted script for the reference data. **If you do not use these specifications, we will mark it as an error.** 
+
+### Input specifications
+**All tools must allow for the following inputs:** 
+
+1. Input file 1: Path to a tab-separated file that contains the normalized gene expression for condition 1
+    * First column is named 'Gene' and contains the gene names
+    * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
+2. Input file 2: Path to a tab-separated file that contains the normalized gene expression for condition 2
+    * First column is named 'Gene' and contains the gene names
+    * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
+3. Output path: String of the output directory. The directory must exist **prior** to execution of the script!
+
+**Note:**
+* If your tool requires additional inputs other than the ones listed above: Document what is needed and how you obtain it. If it's additional data dependent information, talk to us! 
+
+
+### Output specifications
+
+**All tools must produce the following outputs in the given output path directory:**
+* `network.tsv`: tab-separated file that contains all edges (row-wise) with the following columns:
+     * First column `target`: Target of the edge
+     * Second column `regulator`: Source of the edge
+     * Third column `condition`: Condition that the edge belongs to
+     * Fourth column `weight`: Weight of the edge
+
+**Note:**
+* If your tool produces additional node weights: Store them into a second tab-separated file named `nodes_weights.tsv` with the following columns:
+     * First column `id`: Name of the node (must match the names in the `network.tsv` file)
+     * Second column `weight`: Weight of the node
+* If your tool produces additional information except for edge/node weights: Save them in another tab-separated file and document how you name them!
+* If your tool produces more than one weight per edge: Add them as fifth, sixth, ..., nth column and change the name of the weight columns to weight_1, weight_2, ..., weight_n
