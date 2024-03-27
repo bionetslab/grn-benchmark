@@ -1,0 +1,11 @@
+name: zscore
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - r-base=4.2
+  - r-essentials
+  - r-optparse
+  - r-data.table
+  - bioconductor-dcanr
