@@ -31,6 +31,13 @@ This wiki may eventually be made public.
 12. Wiki page with methodology, rationale, parameters, etc.
 13. Update secondary evaluation criteria list
 
+## Downstream analyis:
+1. Indentify a suitable downstream analysis which helps users identify relevant information in the network and apply it to your networks.
+2. The input to the downstream analysis should be the output of the GRN tool (or a subset of the files, if not all are relevant)
+3. Add your downstream analysis to the downstream analysis file.
+4. Document input and output of your programs.
+
+
 ## A note on the scripts.
 1. Follow the supplied specifications regarding parameters, output folder strucutre, etc. 
 2. A script should allow you to execute a tool using one dataset with one parameter setting
