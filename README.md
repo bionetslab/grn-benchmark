@@ -21,15 +21,15 @@ This wiki may eventually be made public.
 1. Install software and create log file according to this file: https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-019-09406-4/MediaObjects/41467_2019_9406_MOESM1_ESM.pdf
 2. Check if Minimal working example exists and run if available
 3. Check if code exists for creating the figures in the article
-4. Attempt to replicate the examples/figures shown in the if not available using the data set(s) supplied in the study.
-5. Create script allowing the execution of the tool using all reference data sets.
-7. Document method parameters, inputs and outputs.
-8. Create Docker container
-9. Supply yaml file for a conda environment.
-10. Push code to github repo
-11. Create markdown README in project folder
-12. Wiki page with methodology, rationale, parameters, etc.
-13. Update secondary evaluation criteria list
+4. Create script allowing the execution of the tool using all reference data sets.
+5. Document method parameters, inputs and outputs.
+6. Create Docker container
+7. Supply yaml file for a conda environment.
+8. Push code to github repo
+9. Create markdown README in project folder
+10. Wiki page with methodology, rationale, parameters, etc.
+11. Update secondary evaluation criteria list
+
 
 ## Downstream analyis:
 1. Indentify a suitable downstream analysis which helps users identify relevant information in the network and apply it to your networks.
@@ -37,6 +37,8 @@ This wiki may eventually be made public.
 3. Add your downstream analysis to the downstream analysis file.
 4. Document input and output of your programs.
 
+## Reproduction
+Attempt to replicate the examples/figures shown in the if not available using the data set(s) supplied in the study.
 
 ## A note on the scripts.
 1. Follow the supplied specifications regarding parameters, output folder strucutre, etc. 
