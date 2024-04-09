@@ -38,7 +38,8 @@ This wiki may eventually be made public.
 4. Document input and output of your programs.
 
 ## Reproduction
-Attempt to replicate the examples/figures shown in the if not available using the data set(s) supplied in the study.
+1. Attempt to replicate the examples/figures shown in the if not available using the data set(s) supplied in the study.
+2. Make a script which can be run on multiple data sets, similar to the files in the Implementation section.
 
 ## A note on the scripts.
 1. Follow the supplied specifications regarding parameters, output folder strucutre, etc. 
