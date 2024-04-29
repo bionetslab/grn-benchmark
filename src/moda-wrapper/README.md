@@ -2,6 +2,7 @@
 #### MODA - Module Differential Analysis
 >for weighted gene co-expression network analysis
 
+## Description
 MODA can be used to estimate and construct condition-specific gene co-expression networks, and identify differentially expressed subnetworks as conserved or condition specific modules which are potentially associated with relevant biological processes
 
 ## Features
@@ -13,10 +14,10 @@ With MODA wrapper, you can perform the following functions on gene expression da
 4. Network comparison
 
 
-## Installation
+## Installation Instructions
 
 MODA wrapper is a set of R scripts that wrap the functionality of MODA. Therefore, there are two options available to quickly set up and run MODA wrapper.
-#### Directly on R Console 
+#### Alternative 1) R Console:
 ##### Dependencies
 > - R version >= **4.3**
 > - BiocManager
@@ -52,7 +53,7 @@ git clone https://github.com/bionetslab/grn-benchmark
 cd src/moda-wrapper/R/
 ```
 
-#### Using Docker
+#### Alternative 2) Docker:
 By using Docker, all dependencies have been bundled with the Docker image. Therefore, we first clone the repository and navigate to the docker sub-directory.
 
 ```shell
@@ -131,8 +132,8 @@ Description: Indicator or name for condition 2. The choosen name will form part 
 
 
 
-##### Example (Rscript):
-##### Commands
+##### Exemplery Execution Instructions (Rscript):
+
 ```shell
 git clone https://github.com/bionetslab/grn-benchmark
 cd src/moda-wrapper/R/
@@ -147,8 +148,8 @@ Rscript hierarchical-clustering.R ./dataset/Macrophages/ ./dataset/TCells/ outpu
 ```
 
 
-##### Example (Docker):
-##### Commands
+##### Exemplery Execution Instructions (Docker):
+
 ```bash
 git clone https://github.com/bionetslab/grn-benchmark
 cd src/moda-wrapper/docker/
@@ -163,7 +164,7 @@ docker build -t moda-wrapper .
 docker run -v ./:/tool moda-wrapper Rscript hierarchical-clustering.R ./dataset/Macrophages/ ./dataset/TCells/ output/ -i1 Macrophages -i2 TCells -c 2 -s 0.1 -t 0.1
 ```
 
-##### Output
+##### Interpretation of the output
 
 After the script runs successfully, it produces a directory named `output-hierarchical`. Assuming the specified output directory for the script in the script arguments is `output`, the resulting directory structure would appear as:
 
@@ -222,17 +223,17 @@ Type: `String`<br>
 Description: Indicator or name for gene data profile. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 Macrophages ```
 
-##### Example (Rscript):
+##### Exemplery Execution Instructions (Rscript):
 ```bash
 Rscript community-detection.R ./dataset/Macrophages/  output/ -i1 Macrophages
 ```
 
 
-##### Example (Docker):
+##### Exemplery Execution Instructions (Docker):
 ```bash
 docker run -v ./:/tool moda-wrapper  Rscript community-detection.R ./dataset/Macrophages/  output/ -i1 Macrophages
 ```
-##### Output
+##### Interpretation of the output
 
 ```
 output
@@ -280,16 +281,16 @@ Description: k number of desired clusters
 
 
 
-##### Example (Rscript):
+##### Exemplery Execution Instructions (Rscript):
 ```bash
 Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages k 6
 ```
 
-##### Example (Docker):
+##### Exemplery Execution Instructions (Docker):
 ```bash
 docker run -v ./:/tool moda-wrapper  Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages k 6
 ```
-##### Output
+##### Interpretation of the output
 ```
 output
    └── output-spectral
@@ -358,14 +359,14 @@ Description: Indicator or name for condition 2. The choosen name will form part 
   ```e.g: -t 0.1 ```
 
 
-##### Example (Rscript):
+##### Exemplery Execution Instructions (Rscript):
 
 
 ```bash
 Rscript network-comparison.R ./dataset/Macrophages/ ./dataset/TCells/ output/ -i1 Macrophages -i2 TCells -c 1 -s 0.1 -t 0.1
 ```
 
-##### Example (Docker):
+##### Exemplery Execution Instructions (Docker):
 
 
 ```bash
@@ -374,7 +375,7 @@ docker run -v ./:/tool moda-wrapper Rscript network-comparison.R ./dataset/Macro
 
 
 
-##### Output
+##### Interpretation of the output
 ```
  output
    └── output-hierarchical
