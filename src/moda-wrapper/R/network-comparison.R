@@ -241,7 +241,7 @@ suppressWarnings({
   }
   
   sorted_data <- module_data[order(ModuleID)]
-  fwrite(sorted_data, file = paste0(ResultFolder, "network.tsv"), sep = "\t")
+  fwrite(sorted_data, file = paste0(output_path, "network.tsv"), sep = "\t")
   
   print("..done.")
 })
