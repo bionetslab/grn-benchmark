@@ -3,7 +3,7 @@
 >for weighted gene co-expression network analysis
 
 ## Description
-MODA can be used to estimate and construct condition-specific gene co-expression networks, and identify differentially expressed subnetworks as conserved or condition specific modules which are potentially associated with relevant biological processes
+MODA-Wrapper can be used to construct condition-specific gene co-expression network, and identify differentially expressed subnetworks as conserved or condition specific modules which are potentially associated with relevant biological processes
 
 ## Features
 
@@ -187,7 +187,7 @@ After the script runs successfully, it produces a directory named `output-hierar
 
 Additionally, it generates images such as dendrogan, as shown below.
 
-![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/Partitions_Macrophages.png)
+<!-- ![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/Partitions_Macrophages.png) -->
 
 ![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/heatdata_TCells.png)
 
