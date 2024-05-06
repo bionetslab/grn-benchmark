@@ -244,6 +244,26 @@ suppressWarnings({
   fwrite(sorted_data, file = paste0(output_path, "network.tsv"), sep = "\t")
   
   print("..done.")
+  
+  
+  
+  
+  #extract LIST for possible Functional Annotation
+  network <-fread(file=paste0(output_path, "network.tsv"))
+  
+  
+  print("NETWORK:")
+  print(network)
+  
+  unique_IDs <- unique(network$Condition)
+  
+  for (condition in unique_IDs) {
+    print("Testing file....")
+    gene_list <- network$Gene[network$Condition == condition]
+    file_name = gsub(' ', '_', paste0(condition, "_gene_list.txt"))
+    write.table(gene_list, file = paste0(output_path, file_name), quote = FALSE, row.names = FALSE, col.names = FALSE)
+  }
+  
 })
 
 
