@@ -1,0 +1,4 @@
+Category	Term	Count	%	PValue	Genes	List Total	Pop Hits	Pop Total	Fold Enrichment	Bonferroni	Benjamini	FDR
+ENTREZ_GENE_SUMMARY	Enables RNA binding activity. [provided by Alliance of Genome Resources, Apr 2022]	3	0.14619883040935672	0.02397504191061016	FAM133B, RSRC2, RBM33	2029	18	150813	12.388122227698373	1.0	1.0	1.0
+ENTREZ_GENE_SUMMARY	Involved in constitutive secretory pathway. Located in Golgi apparatus. [provided by Alliance of Genome Resources, Apr 2022]	2	0.09746588693957114	0.026713496278923284	TMEM167B, TMEM167A	2029	2	150813	74.32873336619025	1.0	1.0	1.0
+ENTREZ_GENE_SUMMARY	Predicted to enable nucleic acid binding activity. Predicted to be located in nucleus. [provided by Alliance of Genome Resources, Apr 2022]	2	0.09746588693957114	0.026713496278923284	SPAG7, R3HDM4	2029	2	150813	74.32873336619025	1.0	1.0	1.0
