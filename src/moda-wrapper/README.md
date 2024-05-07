@@ -402,7 +402,9 @@ Additionally the script produces a sub-directory containing IDs of  modules cate
 MODA-Wrapper further post-processes the output files generated after the network comparison and creates a <font color="#f0ad4e">network.tsv</font> file.
 This file contains the following columns `ModuleID`, `Gene`, `Condition`, `ClusterMethod`. It does this by using the module IDs in the secondary condition (TCell) and loads the corresponding genes in the given module. 
 
-Additionally, MODA-Wrapper produces two files (<font color="#f0ad4e">condition_specific_gene_list.txt</font> and <font color="#f0ad4e">conserved_gene_list.txt</font>) containing the list of gene symbols which were identified as condition-specific genes and conserved genes respectively, which can further be used for Functional Annotation Analysis with tools such as [DAVID](https://david.ncifcrf.gov/summary.jsp). </br>Example Functional annotation analysis of list of genes in the <font color="#f0ad4e">condition_specific_gene_list.txt</font> file, using [DAVID](https://david.ncifcrf.gov/summary.jsp) can be found in `downstream` sub-directory within MODA-Wrapper root directory.
+Additionally, MODA-Wrapper produces two files (<font color="#f0ad4e">condition_specific_gene_list.txt</font> and <font color="#f0ad4e">conserved_gene_list.txt</font>) containing the list of gene symbols which were identified as condition-specific genes and conserved genes respectively, and can further be used for Enrichment Analysis with tools such like [DAVID](https://david.ncifcrf.gov/summary.jsp). </br> 
+
+For further details see  `downstream` [(click here)](./downstream/README.md) sub-directory within MODA-Wrapper root directory.
 
 
 ## :bulb: Additional resources
