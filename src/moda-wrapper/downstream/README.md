@@ -94,7 +94,7 @@ After a successful upload, [DAVID](https://david.ncifcrf.gov/summary.jsp) analyz
    ![DISGNET records](../img_assets/DISGENET_records.png)</br></br></br>
 
 `GAD Gene-Disease Associations` gene overlap:
-![GAD records](../img_assets/DISGENET_records.png)</br></br></br>
+![GAD records](../img_assets/GAD_records.png)</br></br></br>
 
 
 etc...
