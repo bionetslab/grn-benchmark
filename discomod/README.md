@@ -39,6 +39,17 @@ For the dataset that the paper used from the BiocManager, need to write the foll
 ```r
 data(golub.cl)
 ```
+As we are using reference data of CD8 and Microphages, data need to be pre-processed first. 
+Data pre processing:
+- first row and column deletation 
+- Row added to rownames
+- String need to convert to numeric 
+
+We have 3 functions in the GitHub library such as 
+1. find modules: among the data, it finds modules (where gene >= 3) and it also considers clustering 
+2. Test modules: for DCM, it tested all modules which found via find modules and gave the specific modules ( which Modules are performed DCM)
+3. now we have all analysis data. For the better understanding, we use different visualisation representation such as ggplot, correlation heatmap. 
+
 
  ## technology used
 
