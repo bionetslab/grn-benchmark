@@ -1,10 +1,8 @@
-## Downstream Analysis
-
-### Enrichment Analysis
+<h2 style="color:#369;"> Enrichment Analysis</h2>
 
 >This directory contains the output of enrichment analysis facilitated by [DAVID](https://david.ncifcrf.gov/summary.jsp).
 
-#### Directory Structure
+<h3 style="color:#369;"> Directory Structure</h3>
 
 This directory has the following structure
 
@@ -71,7 +69,7 @@ This directory has the following structure
 
 Each sub-directory contains the enrichment analysis output, as the name suggests.
 
-#### Reproducibility
+<h4 style="color:#369;">Reproducibility</h4>
  After performing `Network Comparison` MODA-Wrapper produces list of genes that are conserved anad differntially expressed in two files conserved_gene_list.txt and condition_specific_gene_list.txt respectively.</br> 
 
  Visit [Functional Enrichment Tool](https://david.ncifcrf.gov/summary.jsp).
@@ -82,7 +80,7 @@ Select Gene list and finally submit the gene list as shown below:
 
  ![functional enrichment step 1 annotated](../img_assets/fea_step_1_annotated.jpg)
 
- #### Enrichment Analysis Results
+ <h4 style="color:#369;"> Enrichment Analysis Results</h4>
 After a successful upload, [DAVID](https://david.ncifcrf.gov/summary.jsp) analyzes the gene list and generates a detailed enrichment analysis result as shown below:
 
   ![functional enrichment results](../img_assets/fea_results.png)

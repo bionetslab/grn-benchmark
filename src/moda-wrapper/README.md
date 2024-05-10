@@ -1,35 +1,38 @@
-# MODA-Wrapper
-#### MODA <small>-</small> Module Differential Analysis
+<h1 style="color:#369;"> MODA-Wrapper </h1>
+
+##### MODA <small>-</small> Module Differential Analysis
 >for weighted gene co-expression network analysis
 
-## Description
+<h2 style="color:#369;"> Description</h2>
 MODA-Wrapper can be used to construct condition-specific gene co-expression network, and identify differentially expressed subnetworks as conserved or condition specific modules which are potentially associated with relevant biological processes
 
-## Features
+<h2 style="color:#369;"> Features</h2>
 
 With __MODA-Wrapper__, you can perform the following: 
-1. Hierarchical clustering
-2. Community detection
-3. Spectral clustering
-4. **Network comparison**
+1. [Hierarchical clustering](#s-1)
+2. [Community detection](#s-2)
+3. [Spectral clustering](#s-3)
+4. [Network comparison (Recommended)](#s-4)
 
 
-## Installation Instructions
+<h2 style="color:#369;"> Installation Instructions</h2>
 
 There are two ways to quickly set up MODA-Wrapper.
-#### Alternative 1) R Console:
+<h4 style="color:#369;"> Alternative 1) R Console:</h4>
+
 ##### Dependencies
+
 > - R version >= **4.3**
 > - BiocManager
 
-Step 1:
+###### Step 1:
 * MODA dependencies</br>
 Installation of MODA requires prior installation of BiocManager:
 ```R
 if (!require("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 ```
-Step 2:
+###### Step 2:
 - Install MODA:
 ```R
 BiocManager::install("MODA")
@@ -45,7 +48,7 @@ install.packages(data.table)
 library(MODA)
 ```
 
-Step 3:
+###### Step 3:
 * Get **MODA-Wrapper** repository:
 
 ```shell
@@ -53,7 +56,7 @@ git clone https://github.com/bionetslab/grn-benchmark
 cd src/moda-wrapper/R/
 ```
 
-#### Alternative 2) Docker:
+<h4 style="color:#369;"> Alternative 2) Docker:</h4>
 By using Docker, all necessary dependencies comes with the Docker image. Therefore, first clone the repository and navigate to the `docker` sub-directory:
 
 ```shell
@@ -61,7 +64,7 @@ git clone https://github.com/bionetslab/grn-benchmark
 cd src/moda-wrapper/docker/
 ```
 
-##### Build Image
+<h5 style="color:#369;"> Build Image</h5>
 A <font color="#f0ad4e"> dockerfile</font> which contains all the needed build instructions is located in the MODA-Wrapper repo's docker (<font color="#f0ad4e">moda-wrapper/docker</font>) directory. Execute the docker command below to build the docker image:
 
 
@@ -78,17 +81,17 @@ docker run -v /host_path:/tool moda-wrapper Rscript script-name.R options
 - `script-name` is the corresponding MODA functionality you want to execute. `e.g: hierarchical-clustering.R`
  
 - `options` represent the parameters available for the respective MODA-Wrapper script, as detailed below.
-## 1.  Hierarchical Clustering
+<h2 style="color:#369;"><a name="s-1"> 1.  Hierarchical Clustering</a></h2>
 
 Detection of Modules (group of genes that co-express) by hierarchical clustering
 
-#### Usage 
+<h4 style="color:#369;"> Usage </h4>
 
 ```shell
 Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ output_path/ options 
 ```
 
-#### Required Arguments
+<h4 style="color:#369;"> Required Arguments</h4>
 
 
 1. **Input file 1**:<font color="#d9534f">String:required</font><br>Path to a tab-separated file that contains the normalized gene expression for condition 1
@@ -103,7 +106,8 @@ Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ outp
 
 
 
-#### Parameters (options)
+<h5 style="color:#369;">Parameters (options)</h5>
+
 Hierarchical clustering script accepts optional parameters as detailed below
 * **-i1**
 Type: `String`<br>
@@ -132,7 +136,7 @@ Description: Indicator or name for condition 2. The choosen name will form part 
 
 
 
-##### Exemplery Execution Instructions (Rscript):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Rscript):</h5>
 
 ```shell
 git clone https://github.com/bionetslab/grn-benchmark
@@ -148,7 +152,7 @@ Rscript hierarchical-clustering.R ./dataset/Macrophages/ ./dataset/TCells/ outpu
 ```
 
 
-##### Exemplery Execution Instructions (Docker):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Docker):</h5>
 
 ```bash
 git clone https://github.com/bionetslab/grn-benchmark
@@ -164,7 +168,7 @@ docker build -t moda-wrapper .
 docker run -v ./:/tool moda-wrapper Rscript hierarchical-clustering.R ./dataset/Macrophages/ ./dataset/TCells/ output/ -i1 Macrophages -i2 TCells -c 2 -s 0.1 -t 0.1
 ```
 
-##### Interpretation of the output
+<h5 style="color:#369;"> Interpretation of the output</h5>
 
 After the script runs successfully, it produces a directory named `output-hierarchical`. Assuming the specified output directory for the script in the script arguments is `output`, the resulting directory structure would appear as:
 
@@ -192,17 +196,17 @@ Additionally, it generates images such as dendrogan, as shown below.
 ![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/heatdata_TCells.png)
 
 
-## 2. Community Detection
+<h2 style="color:#369;"><a name="s-2"> 2. Community Detection</a></h2>
 
 Community detection using Louvain algorithm.
 
-#### Usage 
+<h4 style="color:#369;"> Usage </h4>
 
 ```Shell
 Rscript community-detection.R ./input_path/ output_path/
 ```
 
-#### Required Arguments
+<h4 style="color:#369;"> Required Arguments</h4>
 
 
 1. **Input file 1**:<font color="#d9534f">String:required</font><br>
@@ -216,24 +220,27 @@ Rscript community-detection.R ./input_path/ output_path/
 
 
 
-#### Parameters (options)
+<h4 style="color:#369;"> Parameters (options)</h4>
+
 These are the  optional parameters for the script.
 * **-i1**
 Type: `String`<br>
 Description: Indicator or name for gene data profile. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 Macrophages ```
 
-##### Exemplery Execution Instructions (Rscript):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Rscript):</h5>
+
 ```bash
 Rscript community-detection.R ./dataset/Macrophages/  output/ -i1 Macrophages
 ```
 
 
-##### Exemplery Execution Instructions (Docker):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Docker):</h5>
+
 ```bash
 docker run -v ./:/tool moda-wrapper  Rscript community-detection.R ./dataset/Macrophages/  output/ -i1 Macrophages
 ```
-##### Interpretation of the output
+<h5 style="color:#369;"> Interpretation of the output</h5>
 
 ```
 output
@@ -244,16 +251,16 @@ This directory contains text files of identified communities (groups of densely 
 `e.g: DenseModuleGene_Macrophages_1.txt`
 
 
-## 3. Spectral Clustering
+<h2 style="color:#369;"><a name="s-3"> 3. Spectral Clustering</a></h2>
 
 
-#### Usage 
+<h4 style="color:#369;"> Usage </h4>
 
 ```Shell
 Rscript hierarchical-clustering.R ./input_path/ output_path/
 ```
 
-#### Required Arguments
+<h4 style="color:#369;"> Required Arguments</h4>
 
 
 1. **Input file 1**:<font color="#d9534f">String:required</font><br>
@@ -267,8 +274,9 @@ Rscript hierarchical-clustering.R ./input_path/ output_path/
 
 
 
-#### Parameters (options)
+<h4 style="color:#369;"> Parameters (options)</h4>
 These are the  optional parameters for the script.
+
 * **-i1**
 Type: `String`<br>
 Description: Indicator or name for gene data profile. The choosen name will form part of the gene module files generated as output 
@@ -281,16 +289,19 @@ Description: k number of desired clusters
 
 
 
-##### Exemplery Execution Instructions (Rscript):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Rscript):</h5>
+
 ```bash
 Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages k 6
 ```
 
-##### Exemplery Execution Instructions (Docker):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Docker):</h5>
+
 ```bash
 docker run -v ./:/tool moda-wrapper  Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages k 6
 ```
-##### Interpretation of the output
+<h5 style="color:#369;"> Interpretation of the output</h5>
+
 ```
 output
    └── output-spectral
@@ -303,16 +314,16 @@ This directory contains text files of identified modules.
 
 
 
-## 4.  Network Comparison
+<h2 style="color:#369;"> <a name="s-4">4.  Network Comparison</a></h2>
 
  Can identify differentially expressed subnetworks as conserved or condition-specific modules.
-#### Usage 
+<h4 style="color:#369;"> Usage </h4>
 
 ```Shell
 Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ output_path/ 
 ```
 
-#### Required Arguments
+<h4 style="color:#369;"> Required Arguments</h4>
 
 
 1. **Input file 1**:<font color="#d9534f">String:required</font><br>
@@ -332,8 +343,9 @@ Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ outp
 
 
 
-#### Parameters (options)
+<h4 style="color:#369;"> Parameters (options)</h4>
 These are the  optional parameters for the script.
+
 * **-i1**
 Type: `String`<br>
 Description: Indicator or name for condition 1. The choosen name will form part of the gene module files generated as output 
@@ -359,14 +371,14 @@ Description: Indicator or name for condition 2. The choosen name will form part 
   ```e.g: -t 0.1 ```
 
 
-##### Exemplery Execution Instructions (Rscript):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Rscript):</h5>
 
 
 ```bash
 Rscript network-comparison.R ./dataset/Macrophages/ ./dataset/TCells/ output/ -i1 Macrophages -i2 TCells -c 1 -s 0.1 -t 0.1
 ```
 
-##### Exemplery Execution Instructions (Docker):
+<h5 style="color:#369;"> Exemplery Execution Instructions (Docker):</h5>
 
 
 ```bash
@@ -375,7 +387,8 @@ docker run -v ./:/tool moda-wrapper Rscript network-comparison.R ./dataset/Macro
 
 
 
-##### Interpretation of the output
+<h5 style="color:#369;"> Interpretation of the output</h5>
+
 ```
  output
    └── output-network
