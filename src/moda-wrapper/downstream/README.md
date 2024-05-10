@@ -1,10 +1,50 @@
 <h2 style="color:#369;"> Enrichment Analysis</h2>
 
->This directory contains the output of enrichment analysis facilitated by [DAVID](https://david.ncifcrf.gov/summary.jsp).
 
-<h3 style="color:#369;"> Directory Structure</h3>
+<!-- <h4 style="color:#369;">Reproducibility</h4> -->
 
-This directory has the following structure
+ After performing [Network Comparison](../README.md#s-4), MODA-Wrapper produces list of genes that are conserved and differentially expressed in two files `conserved_gene_list.txt` and `condition_specific_gene_list.txt` respectively, which can be used to  perform enrichment analysis, specifically on the differentially expressed genes (<font color="#f0ad4e">condition_specific_gene_list.txt</font>).</br>
+This can be done as outlined below:
+###### Step 1: 
+- Visit  [Functional Enrichment Tool](https://david.ncifcrf.gov/summary.jsp)</br>
+ ![functional enrichment step 1](../img_assets/fea_step_1.png) </br>
+ ###### Step 2: 
+- In the `Upload` tab, upload the gene list (`condition_specific_gene_list.txt`) and 
+choose `OFFICIAL_GENE_SYMBOL` in  <span style="text-decoration:underline;">Select Identifier</span> section.</br> 
+Choose `Homo sapians` as the species name and select `Gene list`. Finally submit the gene list.
+</br> These steps are summarized in the figure below:
+
+
+ ![functional enrichment step 1 annotated](../img_assets/fea_step_1_annotated.jpg)
+
+</br>
+
+###### Step 3: 
+ <h6 style="color:#369;"> Enrichment Analysis Results</h6>
+
+- After a successful upload, [DAVID](https://david.ncifcrf.gov/summary.jsp) analyzes the gene list and generates a detailed enrichment analysis result as shown below:
+
+  ![functional enrichment results](../img_assets/fea_results.png)
+
+  The different parts of the analysis can be expanded to get insights into overlapping genes from our list to different genetic databases such as 
+  `DISGENET`, `GAD Gene-Disease Associations`, `UniProt knowledgebase Disease` etc. 
+  Hence, revealing some of the biological interpretations of our differentially co-expressed genes. 
+  ![functional enrichment results](../img_assets/fea_expanded.png)
+###### Step 4: 
+<h6 style="color:#369;"> Detailed Analysis</h6>
+
+  - Figure below  shows overlap of `condition_specific_gene_list.txt` genes with `DISGENET` database, significantly enriched genes, susceptibility to diseases and their p-values:
+   ![DISGNET records](../img_assets/DISGENET_records.png)</br></br></br>
+
+- The following list shows our gene overlap with `GAD Gene-Disease Associations` database and the corresponding list of significantly enriched genes and its associated p-values:
+![GAD records](../img_assets/GAD_records.png)
+
+etc... </br>
+Further detailed output data can be seen by exploring `downstream` sub-directories.
+</br>
+<h3 style="color:#369;">Downstream Directory</h3>
+
+&nbsp;&nbsp;&nbsp;The `downstream` directory has the following structure:
 
 ```Bash
 
@@ -66,33 +106,10 @@ This directory has the following structure
     └── UP_TISSUE.pdf
 
 ```
-
-Each sub-directory contains the enrichment analysis output, as the name suggests.
-
-<h4 style="color:#369;">Reproducibility</h4>
- After performing `Network Comparison` MODA-Wrapper produces list of genes that are conserved anad differntially expressed in two files conserved_gene_list.txt and condition_specific_gene_list.txt respectively.</br> 
-
- Visit [Functional Enrichment Tool](https://david.ncifcrf.gov/summary.jsp).
- ![functional enrichment step 1](../img_assets/fea_step_1.png) </br>
-In the `Upload` tab, upload the gene list <font color="#f0ad4e">condition_specific_gene_list.txt</font> and choose `OFFICIAL_GENE_SYMBOL` in  `Select Identifier` section.</br>
-Choose `Homo sapians` as the species name.</br>
-Select Gene list and finally submit the gene list as shown below:
-
- ![functional enrichment step 1 annotated](../img_assets/fea_step_1_annotated.jpg)
-
- <h4 style="color:#369;"> Enrichment Analysis Results</h4>
-After a successful upload, [DAVID](https://david.ncifcrf.gov/summary.jsp) analyzes the gene list and generates a detailed enrichment analysis result as shown below:
-
-  ![functional enrichment results](../img_assets/fea_results.png)
-
-  The different parts of the analysis can be expanded to get insights into overlapping genes from our list to different genetic databases such as `DISGENET`, `GAD Gene-Disease Associations`, `UniProt knowledgebase Disease` etc
-  ![functional enrichment results](../img_assets/fea_expanded.png)
-
-  Figure below  shows overlap of `condition_specific_gene_list.txt` genes with `DISGENET` database and the list of significantly enriched genes and the associated disease with their p-values:
-   ![DISGNET records](../img_assets/DISGENET_records.png)</br></br></br>
-
-`GAD Gene-Disease Associations` gene overlap:
-![GAD records](../img_assets/GAD_records.png)</br></br></br>
+which contains the enrichment analysis facilitated by [DAVID](https://david.ncifcrf.gov/summary.jsp) and each sub-directory contains screenshots, converted PDF of webpage or 
+the actual data (in `.txt` format) of the enrichment output, 
+as the directory name suggests. </br>
+Example: `disease`, `protein_domains` etc.
 
 
-etc...
+
