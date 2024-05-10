@@ -94,41 +94,41 @@ Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ outp
 <h4 style="color:#369;"> Required Arguments</h4>
 
 
-1. **Input file 1**:<font color="#d9534f">String:required</font><br>Path to a tab-separated file that contains the normalized gene expression for condition 1
+1. **Input file 1**:</br><font color="#d9534f">String:required</font><br>Path to a tab-separated file that contains the normalized gene expression for condition 1
     * First column is named 'Gene' and contains the gene names
     * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
 
-2. **Input file 2**:<font color="#d9534f">String:required</font><br>Path to a tab-separated file that contains the normalized gene expression for condition 2
+2. **Input file 2**:</br><font color="#d9534f">String:required</font><br>Path to a tab-separated file that contains the normalized gene expression for condition 2
     * First column is named 'Gene' and contains the gene names
     * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
 
-3. **Output path**:<font color="#d9534f">String:required</font><br>String of the output directory. The directory must exist **prior** to execution of the script!
+3. **Output path**:</br><font color="#d9534f">String:required</font><br>String of the output directory. The directory must exist **prior** to execution of the script!
 
 
 
 <h5 style="color:#369;">Parameters (options)</h5>
 
 Hierarchical clustering script accepts optional parameters as detailed below
-* **-i1**
-Type: `String`<br>
+* **-i1**: </br>
+Type: `String`</br>
 Description: Indicator or name for condition 1. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 Macrophages ```
 
-* **-i2**
-Type: `String`<br>
+* **-i2**: </br>
+Type: `String`</br>
 Description: Indicator or name for condition 2. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 TCells ```
 
-* **-c**
-  Type: `Integer`<br>
+* **-c**: </br>
+  Type: `Integer`</br>
   Description: Specify the desired cutting method for modules. Accepts an integer value of either 1 or 2. Use 1 for `Density` and 2 for `Modularity`.
   Example: `-c 2`
 
-* **-s**
-  Type: `Numeric`<br>
+* **-s**: </br>
+  Type: `Numeric`</br>
   >Description: Threshold to define $min(s) + \theta_1$, less than which is considered as condition specific module. ```s``` is the sums of rows in Jaccard index matrix. [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf)
   ```e.g: -s 0.1 ```  
-* **-t**
+* **-t**: </br>
   Type: `Numeric`<br>
   >Description: Threshold to define $max(s)-\theta_2$, greater than which is considered as condition conserved module. ```s``` is the sums of rows in Jaccard index matrix. [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf)
   ```e.g: -t 0.1 ```
@@ -209,13 +209,13 @@ Rscript community-detection.R ./input_path/ output_path/
 <h4 style="color:#369;"> Required Arguments</h4>
 
 
-1. **Input file 1**:<font color="#d9534f">String:required</font><br>
+1. **Input file 1**:</br><font color="#d9534f">String:required</font><br>
  Path to a tab-separated file that contains the normalized gene expression for condition 1
     * First column is named 'Gene' and contains the gene names
     * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
 
 
-3. **Output path**:<font color="#d9534f">String:required</font><br>
+3. **Output path**:</br><font color="#d9534f">String:required</font><br>
  String of the output directory. The directory must exist **prior** to execution of the script!
 
 
@@ -223,8 +223,8 @@ Rscript community-detection.R ./input_path/ output_path/
 <h4 style="color:#369;"> Parameters (options)</h4>
 
 These are the  optional parameters for the script.
-* **-i1**
-Type: `String`<br>
+* **-i1**:</br>
+Type: `String`</br>
 Description: Indicator or name for gene data profile. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 Macrophages ```
 
@@ -263,13 +263,13 @@ Rscript hierarchical-clustering.R ./input_path/ output_path/
 <h4 style="color:#369;"> Required Arguments</h4>
 
 
-1. **Input file 1**:<font color="#d9534f">String:required</font><br>
+1. **Input file 1**:</br><font color="#d9534f">String:required</font><br>
  Path to a tab-separated file that contains the normalized gene expression for condition 1
     * First column is named 'Gene' and contains the gene names
     * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
 
 
-3. **Output path**:<font color="#d9534f">String:required</font><br>
+3. **Output path**:</br><font color="#d9534f">String:required</font><br>
  String of the output directory. The directory must exist **prior** to execution of the script!
 
 
@@ -277,12 +277,12 @@ Rscript hierarchical-clustering.R ./input_path/ output_path/
 <h4 style="color:#369;"> Parameters (options)</h4>
 These are the  optional parameters for the script.
 
-* **-i1**
+* **-i1**:</br>
 Type: `String`<br>
 Description: Indicator or name for gene data profile. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 Macrophages ```
 
-* **-k**
+* **-k**:</br>
 Type: `Integer`<br>
 Description: k number of desired clusters 
  ```e.g: -k 5 ``` for five clusters
@@ -326,19 +326,19 @@ Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ outp
 <h4 style="color:#369;"> Required Arguments</h4>
 
 
-1. **Input file 1**:<font color="#d9534f">String:required</font><br>
+1. **Input file 1**:</br><font color="#d9534f">String:required</font><br>
  Path to a tab-separated file that contains the normalized gene expression for condition 1
     * First column is named 'Gene' and contains the gene names
     * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
 
 
 
-2. **Input file 2**:<font color="#d9534f">String:required</font><br>
+2. **Input file 2**:</br><font color="#d9534f">String:required</font><br>
  Path to a tab-separated file that contains the normalized gene expression for condition 2
     * First column is named 'Gene' and contains the gene names
     * All following columns are named after a sample/cell and contain the normalized gene expression for each respective gene for the given sample/cell
 
-3. **Output path**:<font color="#d9534f">String:required</font><br>
+3. **Output path**:</br><font color="#d9534f">String:required</font><br>
  String of the output directory. The directory must exist **prior** to execution of the script!
 
 
@@ -346,26 +346,26 @@ Rscript hierarchical-clustering.R ./input_file_1_path/ ./input_file_2_path/ outp
 <h4 style="color:#369;"> Parameters (options)</h4>
 These are the  optional parameters for the script.
 
-* **-i1**
-Type: `String`<br>
+* **-i1**:</br>
+Type: `String`</br>
 Description: Indicator or name for condition 1. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 Macrophages ```
 
-* **-i2**
-Type: `String`<br>
+* **-i2**:</br>
+Type: `String`</br>
 Description: Indicator or name for condition 2. The choosen name will form part of the gene module files generated as output 
  ```e.g: -i1 TCells ```
 
-* **-c**
-  Type: `Integer`<br>
+* **-c**:</br>
+  Type: `Integer`</br>
   Description: Specify the desired cutting method for modules. Accepts an integer value of either 1 or 2. Use 1 for `Density` and 2 for `Modularity`.
   Example: `-c 2`
 
-* **-s**
-  Type: `Numeric`<br>
+* **-s**:</br>
+  Type: `Numeric`</br>
   >Description: Threshold to define $min(s) + \theta_1$, less than which is considered as condition specific module. ```s``` is the sums of rows in Jaccard index matrix [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf).
   ```e.g: -s 0.1 ```
-* **-t**
+* **-t**:</br>
   Type: `Numeric`<br>
   >Description: Threshold to define $max(s)-\theta_2$, greater than which is considered as condition conserved module. ```s``` is the sums of rows in Jaccard index matrix [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf).
   ```e.g: -t 0.1 ```
