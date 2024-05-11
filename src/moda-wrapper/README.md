@@ -305,13 +305,13 @@ Description: k number of desired clusters
 <h5 style="color:#369;"> Exemplery Execution Instructions (Rscript):</h5>
 
 ```bash
-Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages k 6
+Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages -k 6
 ```
 
 <h5 style="color:#369;"> Exemplery Execution Instructions (Docker):</h5>
 
 ```bash
-docker run -v ./:/tool moda-wrapper  Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages k 6
+docker run -v ./:/tool moda-wrapper  Rscript spectral_clustering.R ./dataset/Macrophages/  output/ -i1 Macrophages -k 6
 ```
 <h5 style="color:#369;"> Interpretation of the output</h5>
 
@@ -441,7 +441,7 @@ For further details see  `downstream` [(click here)](./downstream/README.md) sub
 
 ___
 
-## :bulb: Additional resources
+## :bulb: Additional resources/References
 
 -    [MODA Paper](https://www.biorxiv.org/content/10.1101/053496v4)
 -    [MODA Manual](https://bioconductor.org/packages/release/bioc/manuals/MODA/man/MODA.pdf)
