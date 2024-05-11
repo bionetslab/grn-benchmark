@@ -199,7 +199,7 @@ Additionally, it generates images such as dendrogan, as shown in [Figure 1](#fig
          alt="Hierarchical clustering"></br>
     <figcaption style="color:#566;">Fig. 1. Macrophages: Dendrogram-Heatmap Visualization</figcaption>
 </figure></a>
-
+</br></br>
 <a name="fig-2">
 <figure>
     <img src="./img_assets/heatdata_TCells.png"
