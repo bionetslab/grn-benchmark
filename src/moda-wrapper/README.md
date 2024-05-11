@@ -196,14 +196,14 @@ Additionally, it generates images such as dendrogan, as shown in [Figure 1](#fig
 <a name="fig-1">
 <figure>
     <img src="./img_assets/heatdata_Macrophages.png"
-         alt="Hierarchical clustering">
+         alt="Hierarchical clustering"></br>
     <figcaption style="color:#566;">Fig. 1. Macrophages: Dendrogram-Heatmap Visualization</figcaption>
 </figure></a>
 
 <a name="fig-2">
 <figure>
     <img src="./img_assets/heatdata_TCells.png"
-         alt="Hierarchical clustering">
+         alt="Hierarchical clustering"></br>
     <figcaption style="color:#566;">Fig. 2. TCells: Dendrogram-Heatmap Visualization</figcaption>
 </figure></a>
 
@@ -427,7 +427,7 @@ Additionally the script produces a sub-directory containing IDs of  modules cate
 <a name="fig-3">
 <figure>
     <img src="./img_assets/module_overlap_removeTCells.png"
-         alt="Hierarchical clustering">
+         alt="Hierarchical clustering"></br>
     <figcaption style="color:#566;">Fig. 3. Visualization of the network analysis</figcaption>
 </figure></a>
 
