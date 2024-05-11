@@ -74,8 +74,10 @@ Choose `Homo sapians` as the <span style="text-decoration:underline;">Species Na
     <figcaption style="color:#566;">Fig. 6: Overlapping genes with GAD and susceptibility to diseases</figcaption>
 </figure></a>
 
-etc... </br>
-Further detailed output data can be seen by exploring `downstream` sub-directories.
+___
+See more detailed output data in `downstream` sub-directories.
+___
+
 </br>
 <h3 style="color:#369;">Downstream Directory</h3>
 

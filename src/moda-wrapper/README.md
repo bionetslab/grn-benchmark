@@ -126,11 +126,11 @@ Description: Indicator or name for condition 2. The choosen name will form part 
 
 * **-s**: </br>
   Type: `Numeric`</br>
-  >Description: Threshold to define $min(s) + \theta_1$, less than which is considered as condition specific module. ```s``` is the sums of rows in Jaccard index matrix. [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf)
+  >Description: Threshold to define <img src="./img_assets/min.png" alt="max" height="25px">, less than which is considered as condition specific module. ```s``` is the sums of rows in Jaccard index matrix. [See MODA Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf)
   ```e.g: -s 0.1 ```  
 * **-t**: </br>
   Type: `Numeric`<br>
-  >Description: Threshold to define $max(s)-\theta_2$, greater than which is considered as condition conserved module. ```s``` is the sums of rows in Jaccard index matrix. [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf)
+  >Description: Threshold to define <img src="./img_assets/max.png" alt="max" height="25px">, greater than which is considered as condition conserved module. ```s``` is the sums of rows in Jaccard index matrix. [See MODA Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf)
   ```e.g: -t 0.1 ```
 
 
@@ -189,11 +189,16 @@ After the script runs successfully, it produces a directory named `output-hierar
  This directory contains text files, one for each identified module, containing gene names and gene ids in the identified module.
 `e.g: DenseModuleGene_Macrophages_1.txt, DenseModuleGeneID_Macrophages_1.txt`
 
-Additionally, it generates images such as dendrogan, as shown below.
+Additionally, it generates images such as dendrogan, as shown in [Figure 1](#fig-1).
 
 <!-- ![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/Partitions_Macrophages.png) -->
 
-![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/heatdata_TCells.png)
+<a name="fig-1">
+<figure>
+    <img src="https://raw.githubusercontent.com/Turnyur/image-hub/main/heatdata_TCells.png"
+         alt="Hierarchical clustering">
+    <figcaption style="color:#566;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig. 1: Dendrogram-Heatmap Visualization</figcaption>
+</figure></a>
 
 
 <h2 style="color:#369;"><a name="s-2"> 2. Community Detection</a></h2>
@@ -363,11 +368,11 @@ Description: Indicator or name for condition 2. The choosen name will form part 
 
 * **-s**:</br>
   Type: `Numeric`</br>
-  >Description: Threshold to define $min(s) + \theta_1$, less than which is considered as condition specific module. ```s``` is the sums of rows in Jaccard index matrix [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf).
+  >Description: Threshold to define <img src="./img_assets/min.png" alt="max" height="25px">, less than which is considered as condition specific module. ```s``` is the sums of rows in Jaccard index matrix [See MODA Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf).
   ```e.g: -s 0.1 ```
 * **-t**:</br>
   Type: `Numeric`<br>
-  >Description: Threshold to define $max(s)-\theta_2$, greater than which is considered as condition conserved module. ```s``` is the sums of rows in Jaccard index matrix [See Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf).
+  >Description: Threshold to define <img src="./img_assets/max.png" alt="max" height="25px">, greater than which is considered as condition conserved module. ```s``` is the sums of rows in Jaccard index matrix [See MODA Supplementary file](https://www.biorxiv.org/content/biorxiv/suppl/2016/05/16/053496.DC1/053496-1.pdf).
   ```e.g: -t 0.1 ```
 
 
@@ -419,6 +424,7 @@ Additionally, MODA-Wrapper produces two files (<font color="#f0ad4e">condition_s
 
 For further details see  `downstream` [(click here)](./downstream/README.md) sub-directory within MODA-Wrapper root directory.
 
+___
 
 ## :bulb: Additional resources
 
