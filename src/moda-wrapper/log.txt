@@ -1,0 +1,302 @@
+
+Tool name: MODA - MOdule Differential Analysis 
+package url:  https://bioconductor.org/packages/release/bioc/html/MODA.html
+
+
+	1.Installations (Ubuntu)
+	2.Installation (Successful) 
+	
+
+Section 2 (Ubuntu):
+
+	Input:
+		Operating system: Ubuntu (22.04.1) with the followoing configuration -> 16 GiB RAM, 512 GiB Main Memory
+		R version -> 4.3.3
+		initially non-'sudo' priviledge
+
+
+
+
+	Output:
+		#	The downloaded source packages are in
+		#		‘/tmp/Rtmp2uDswI/downloaded_packages’
+
+
+		#Update all/some/none? [a/s/n]: n
+
+		#Warning messages:
+		#1: In install.packages(...) :
+		#  installation of package ‘impute’ had non-zero exit status
+		#2: In install.packages(...) :
+		#  installation of package ‘preprocessCore’ had non-zero exit status
+		#3: In install.packages(...) :
+		#  installation of package ‘igraph’ had non-zero exit status
+		#4: In install.packages(...) :
+		#  installation of package ‘AMOUNTAIN’ had non-zero exit status
+		#5: In install.packages(...) :
+		#  installation of package ‘Hmisc’ had non-zero exit status
+		#6: In install.packages(...) :
+		#  installation of package ‘WGCNA’ had non-zero exit status
+		#7: In install.packages(...) :
+		#  installation of package ‘MODA’ had non-zero exit status
+	  
+	  	#Update all/some/none? [a/s/n]: a
+	  	
+	  	
+
+		The downloaded source packages are in
+		‘/tmp/Rtmp2uDswI/downloaded_packages’
+		#	Warning messages:
+		#	1: In install.packages(...) :
+		#	  installation of package ‘Hmisc’ had non-zero exit status
+		#	2: In install.packages(...) :
+		#	  installation of package ‘impute’ had non-zero exit status
+		#	3: In install.packages(...) :
+		#	  installation of package ‘preprocessCore’ had non-zero exit status
+		#	4: In install.packages(...) :
+		#	  installation of package ‘igraph’ had non-zero exit status
+		#	5: In install.packages(...) :
+		#	  installation of package ‘AMOUNTAIN’ had non-zero exit status
+		#	6: In install.packages(...) :
+		#	  installation of package ‘WGCNA’ had non-zero exit status
+		#	7: In install.packages(...) :
+		#	  installation of package ‘MODA’ had non-zero exit status
+
+
+
+
+		#The downloaded source packages are in
+		#	‘/tmp/Rtmp2uDswI/downloaded_packages’
+		#Installation paths not writeable, unable to update packages
+		#  path: /usr/lib/R/library
+		#  packages:
+		#    codetools, lattice, MASS, nlme, spatial
+		#Warning messages:
+		#1: In install.packages(...) :
+		#  installation of package ‘Hmisc’ had non-zero exit status
+		#2: In install.packages(...) :
+		#  installation of package ‘impute’ had non-zero exit status
+		#3: In install.packages(...) :
+		#  installation of package ‘preprocessCore’ had non-zero exit status
+		#4: In install.packages(...) :
+		#  installation of package ‘igraph’ had non-zero exit status
+		#5: In install.packages(...) :
+		#  installation of package ‘AMOUNTAIN’ had non-zero exit status
+		#6: In install.packages(...) :
+		#  installation of package ‘WGCNA’ had non-zero exit status
+		#7: In install.packages(...) :
+		#  installation of package ‘MODA’ had non-zero exit status
+		
+		
+		#/bin/bash: line 1: gsl-config: command not found
+		#AMOUNTAIN.c:5:10: fatal error: gsl/gsl_cblas.h: No such file or directory
+	    	#5 | #include <gsl/gsl_cblas.h>
+	      	#|          ^~~~~~~~~~~~~~~~~
+		#compilation terminated.
+		#make: *** [/usr/lib/R/etc/Makeconf:191: AMOUNTAIN.o] Error 1
+		#ERROR: compilation failed for package ‘AMOUNTAIN’
+		#* removing ‘/home/turnyur/R/x86_64-pc-linux-gnu-library/4.3/AMOUNTAIN’
+		#ERROR: dependencies ‘Hmisc’, ‘impute’, ‘preprocessCore’ are not available for package ‘WGCNA’
+		#* removing ‘/home/turnyur/R/x86_64-pc-linux-gnu-library/4.3/WGCNA’
+		#ERROR: dependencies ‘WGCNA’, ‘igraph’, ‘AMOUNTAIN’ are not available for package ‘MODA’
+		#* removing ‘/home/turnyur/R/x86_64-pc-linux-gnu-library/4.3/MODA’
+
+		#The downloaded source packages are in
+			‘/tmp/RtmpFMP5rb/downloaded_packages’
+		#Installation paths not writeable, unable to update packages
+		#  path: /usr/lib/R/library
+		#  packages:
+		#    codetools, lattice, MASS, nlme, spatial
+		#Warning messages:
+		#1: In install.packages(...) :
+		#  installation of package ‘Hmisc’ had non-zero exit status
+		#2: In install.packages(...) :
+		#  installation of package ‘impute’ had non-zero exit status
+		#3: In install.packages(...) :
+		#  installation of package ‘preprocessCore’ had non-zero exit status
+		#4: In install.packages(...) :
+		#  installation of package ‘igraph’ had non-zero exit status
+		#5: In install.packages(...) :
+		#  installation of package ‘AMOUNTAIN’ had non-zero exit status
+		#6: In install.packages(...) :
+		#  installation of package ‘WGCNA’ had non-zero exit status
+		#7: In install.packages(...) :
+		  installation of package ‘MODA’ had non-zero exit status
+		  
+	  
+		#ERROR: dependencies ‘Hmisc’, ‘impute’, ‘preprocessCore’ are not available for package ‘WGCNA’
+		#* removing ‘/usr/local/lib/R/site-library/WGCNA’
+		#ERROR: dependencies ‘WGCNA’, ‘igraph’, ‘AMOUNTAIN’ are not available for package ‘MODA’
+		#* removing ‘/usr/local/lib/R/site-library/MODA’
+		#
+		#The downloaded source packages are in
+		#	‘/tmp/Rtmp3l5K09/downloaded_packages’
+		#Old packages: 'codetools', 'lattice', 'MASS', 'nlme', 'spatial'
+		#Warning messages:
+		#1: In install.packages(...) :
+		#  installation of package ‘impute’ had non-zero exit status
+		#2: In install.packages(...) :
+		#  installation of package ‘preprocessCore’ had non-zero exit status
+		#3: In install.packages(...) :
+		#  installation of package ‘AMOUNTAIN’ had non-zero exit status
+		#4: In install.packages(...) :
+		#  installation of package ‘igraph’ had non-zero exit status
+		#5: In install.packages(...) :
+		#  installation of package ‘Hmisc’ had non-zero exit status
+		#6: In install.packages(...) :
+		#  installation of package ‘WGCNA’ had non-zero exit status
+		#7: In install.packages(...) :
+		#	 installation of package ‘MODA’ had non-zero exit status
+
+
+
+		#* installing *source* package ‘nlme’ ...
+		#** package ‘nlme’ successfully unpacked and MD5 sums checked
+		#** using staged installation
+		#** libs
+		#using C compiler: ‘gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0’
+		#sh: 1: gfortran: not found
+		#gfortran  -fpic  -g -O2 -ffile-prefix-map=/build/r-base-14Q6vq/r-base-4.3.3=. -fstack-protector-strong  -c chol.f -o chol.o
+		#/bin/bash: line 1: gfortran: command not found
+		#make: *** [/usr/lib/R/etc/Makeconf:214: chol.o] Error 127
+		#ERROR: compilation failed for package ‘nlme’
+		#* removing ‘/usr/lib/R/library/nlme’
+		#* restoring previous ‘/usr/lib/R/library/nlme’
+
+		#The downloaded source packages are in
+		#	‘/tmp/RtmpaW2QiY/downloaded_packages’
+		#Updating HTML index of packages in '.Library'
+		#Making 'packages.html' ... done
+		#Warning messages:
+		#1: In install.packages(...) :
+		#  installation of package ‘Hmisc’ had non-zero exit status
+		#2: In install.packages(...) :
+		#  installation of package ‘impute’ had non-zero exit status
+		#3: In install.packages(...) :
+		#  installation of package ‘preprocessCore’ had non-zero exit status
+		#4: In install.packages(...) :
+		#  installation of package ‘igraph’ had non-zero exit status
+		#5: In install.packages(...) :
+		#  installation of package ‘AMOUNTAIN’ had non-zero exit status
+		#6: In install.packages(...) :
+		#  installation of package ‘WGCNA’ had non-zero exit status
+		#7: In install.packages(...) :
+		#  installation of package ‘MODA’ had non-zero exit status
+		#8: In install.packages(update[instlib == l, "Package"], l, contriburl = contriburl,  :
+		  installation of package ‘nlme’ had non-zero exit status
+
+
+
+	Dependencies:
+		R 4.3
+		BiocManager
+
+	Installation Commands:
+		
+		if (!require("BiocManager", quietly = TRUE))
+		  install.packages("BiocManager")
+		  
+		BiocManager::install("MODA")
+
+		BiocManager::install("MODA", lib = "~/R_libs")
+		
+		sudo chmod -R 777 /usr/lib/R
+		
+		sudo chown -R turnyur /usr/lib/R
+	 
+		
+		
+		install.packages("WGCNA")
+		install.packages("igraph")
+		install.packages("AMOUNTAIN")
+		
+		
+		
+		Rscript installation.R
+		
+		
+		sudo chown -R turnyur /usr/share/R/
+
+
+
+
+
+
+	Run Commands:
+		- 
+
+
+	Reason the tool is impossible to install
+
+	  
+	# * installing *source* package ‘nlme’ ...
+	#** package ‘nlme’ successfully unpacked and MD5 sums checked
+	#** using staged installation
+	#** libs
+	#using C compiler: ‘gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0’
+	#sh: 1: gfortran: not found
+	#gfortran  -fpic  -g -O2 -ffile-prefix-map=/build/r-base-14Q6vq/r-base-4.3.3=. -fstack-protector-strong  -c chol.f -o chol.o
+	#/bin/bash: line 1: gfortran: command not found
+	#make: *** [/usr/lib/R/etc/Makeconf:214: chol.o] Error 127
+	#ERROR: compilation failed for package ‘nlme’
+	#* removing ‘/usr/lib/R/library/nlme’
+	#* restoring previous ‘/usr/lib/R/library/nlme’
+	#
+	#The downloaded source packages are in
+	#	‘/tmp/RtmpaW2QiY/downloaded_packages’
+	#Updating HTML index of packages in '.Library'
+	#Making 'packages.html' ... done
+	#Warning messages:
+	#1: In install.packages(...) :
+	#  installation of package ‘Hmisc’ had non-zero exit status
+	#2: In install.packages(...) :
+	#  installation of package ‘impute’ had non-zero exit status
+	#3: In install.packages(...) :
+	#  installation of package ‘preprocessCore’ had non-zero exit status
+	#4: In install.packages(...) :
+	#  installation of package ‘igraph’ had non-zero exit status
+	#5: In install.packages(...) :
+	#  installation of package ‘AMOUNTAIN’ had non-zero exit status
+	#6: In install.packages(...) :
+	#  installation of package ‘WGCNA’ had non-zero exit status
+	#7: In install.packages(...) :
+	# installation of package ‘MODA’ had non-zero exit status
+	#8: In install.packages(update[instlib == l, "Package"], l, contriburl = contriburl,  :
+	#  installation of package ‘nlme’ had non-zero exit status
+		 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Section 2 (Mac OS):
+ 	Input:
+ 		Operating system: Mac OS (Sonoma 14.4.1) with the followoing configuration -> 32 GiB RAM, 512 GiB Main Memory
+		R version -> 4.3.3
+		initially non-'sudo' priviledge
+ 		
+ 	Output:
+ 		
+		The downloaded binary packages are in
+			/var/folders/t8/0_3t6yvn0dq40n73trm_zych0000gp/T//RtmpXtSsyw/downloaded_packages
+
+ 	Dependencies:
+ 		R 4.3
+		BiocManager
+ 	
+ 	Installation Commands:
+ 	
+ 		if (!require("BiocManager", quietly = TRUE))
+  		   install.packages("BiocManager")
+  		   
+  		BiocManager::install("MODA")
+
+ 	Run Commands:
+ 		library(MODA)
+ 	
+  
+
