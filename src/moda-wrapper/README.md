@@ -189,16 +189,24 @@ After the script runs successfully, it produces a directory named `output-hierar
  This directory contains text files, one for each identified module, containing gene names and gene ids in the identified module.
 `e.g: DenseModuleGene_Macrophages_1.txt, DenseModuleGeneID_Macrophages_1.txt`
 
-Additionally, it generates images such as dendrogan, as shown in [Figure 1](#fig-1).
+Additionally, it generates images such as dendrogan, as shown in [Figure 1](#fig-1) and [Figure 2](#fig-2).
 
 <!-- ![Hierarchical clustering](https://raw.githubusercontent.com/Turnyur/image-hub/main/Partitions_Macrophages.png) -->
 
 <a name="fig-1">
 <figure>
-    <img src="https://raw.githubusercontent.com/Turnyur/image-hub/main/heatdata_TCells.png"
+    <img src="./img_assets/heatdata_Macrophages.png"
          alt="Hierarchical clustering">
-    <figcaption style="color:#566;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fig. 1: Dendrogram-Heatmap Visualization</figcaption>
+    <figcaption style="color:#566;">Fig. 1. Macrophages: Dendrogram-Heatmap Visualization</figcaption>
 </figure></a>
+
+<a name="fig-2">
+<figure>
+    <img src="./img_assets/heatdata_TCells.png"
+         alt="Hierarchical clustering">
+    <figcaption style="color:#566;">Fig. 2. TCells: Dendrogram-Heatmap Visualization</figcaption>
+</figure></a>
+
 
 
 <h2 style="color:#369;"><a name="s-2"> 2. Community Detection</a></h2>
@@ -413,8 +421,15 @@ docker run -v ./:/tool moda-wrapper Rscript network-comparison.R ./dataset/Macro
 The script generates a `output-network` directory that includes output files such as module clusters containing module IDs and separate files with corresponding gene names. Each identified module is represented by a text file within this directory
 
 
-Additionally the script produces a sub-directory containing IDs of  modules categorized as `conservedModules` or `conditionSpecificModules`
+Additionally the script produces a sub-directory containing IDs of  modules categorized as `conservedModules` or `conditionSpecificModules` as shown in [Figure 3](#fig-3).</br>
 `e.g: DenseModuleGene_Macrophages_1.txt, DenseModuleGeneID_Macrophages_1.txt`
+
+<a name="fig-3">
+<figure>
+    <img src="./img_assets/module_overlap_removeTCells.png"
+         alt="Hierarchical clustering">
+    <figcaption style="color:#566;">Fig. 3. Visualization of the network analysis</figcaption>
+</figure></a>
 
 
 MODA-Wrapper further post-processes the output files generated after the network comparison and creates a <font color="#f0ad4e">network.tsv</font> file.
