@@ -117,9 +117,6 @@ venv.bak/
 .vscode/
 
 # Datasets (if they are large and not supposed to be tracked)
-*.csv
-*.xls
-*.xlsx
 
 # Output files (might include logs, CSVs from output, etc.)
 logs/
