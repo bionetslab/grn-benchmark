@@ -169,7 +169,7 @@ if __name__ == "__main__":
     parser.add_argument('--d', type=str, help='Path to input file macrophages')
     parser.add_argument('--o', type=str, help='Path to output directory')
     parser.add_argument('--n', type=int, default=75, help='Number of representative cells (default: 75)')
-    parser.add_argument('--t', type=float, default=0.85, help='correlation_cutoff (default: 0.85)')
+    parser.add_argument('--t', type=float, default=0.8, help='correlation_cutoff (default: 0.8)')
 
     # Parse the command-line arguments
     args = parser.parse_args()

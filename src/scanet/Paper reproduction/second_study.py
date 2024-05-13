@@ -22,7 +22,6 @@ if __name__ == "__main__":
     adata = sn.pp.extract_highly_variable_genes(adata, n_top_genes=4000, plot=True)
     adata = adata[:, adata.var.highly_variable]
 
-    # Convert 'diet' and 'louvain' columns to strings
     adata.obs['diet'] = adata.obs['diet'].astype(str)
     adata.obs['louvain_anno'] = adata.obs['louvain_anno'].astype(str)
     # Create a new column by combining 'diet' and 'louvain'

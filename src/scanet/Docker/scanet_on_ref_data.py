@@ -106,7 +106,7 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
     df_modules = sn.co.plot_modules(net, figsize=(8,4))
 
     # Identify hub genes
-    #hub_genes_df = sn.co.hub_genes(adata=adata_r, net=net, figsize=(6,4))
+    hub_genes_df = sn.co.hub_genes(adata=adata_r, net=net, figsize=(6,4))
 
     # Compute correlation matrix
     cor = sn.co.modules_to_annotation_cor(adata_r, net, figsize=(12,6), cor_method="pearson")
@@ -122,8 +122,8 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
     # Get the network of the first module of interest
     network_ = get_gcn_network(net, module = M1)
 
-    #plot_gcn_network(network_,hub_genes_df,"gcn_network_macrophage")
-    #plot_gcn_network_with_drugs(network_,hub_genes_df,"gcn+drugs_macrophage")
+    plot_gcn_network(network_,hub_genes_df,"gcn_network_macrophage")
+    plot_gcn_network_with_drugs(network_,hub_genes_df,"gcn+drugs_macrophage")
 
     # Count the TFs in each module
     specie_ = 'human'
@@ -141,8 +141,8 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
     # Get the network of the second module of interest
     network_ = get_gcn_network(net, module = M2)
 
-    #plot_gcn_network(network_,hub_genes_df,"gcn_network_exhausted")
-    #plot_gcn_network_with_drugs(network_,hub_genes_df,"gcn+drugs_exhausted")
+    plot_gcn_network(network_,hub_genes_df,"gcn_network_exhausted")
+    plot_gcn_network_with_drugs(network_,hub_genes_df,"gcn+drugs_exhausted")
 
     # TFs of the second module of interest
     tfs = get_tfs(adata,df_modules,M2,specie_)

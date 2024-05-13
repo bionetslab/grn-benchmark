@@ -23,9 +23,9 @@ Dependencies:
 
 Commands Used to Install the Tool:
 
-- pip install scanet : Ran successfully but I faced some problems when following the tutorial jupyter notebook :
+- pip install scanet : Ran successfully but I encountered some problems when following the tutorial jupyter notebook :
 
-1) I had to install the follwoing libraries : rpy2, pyvis and drugstone with the command : pip install rpy2 pyvis drugstone
+1) I had to install the follwoing python libraries : rpy2, pyvis and drugstone with the command : pip install rpy2 pyvis drugstone
 2) I had to install the following R packages : DESeq2, Bionero, R.utils, testthat, tibble and ddpcr using the following command :
 if (!require("BiocManager", quietly = TRUE))
 	install.packages("BiocManager")

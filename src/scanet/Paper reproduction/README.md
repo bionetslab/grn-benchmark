@@ -1,12 +1,12 @@
-# SCANeT Paper results Reproduction
+# SCANet Paper results Reproduction
 
-This repository contains scripts for reproducing results of the two studies of the [SCANeT](https://academic.oup.com/bioinformatics/article/39/11/btad644/7325353) paper.
-The author didn't puplish the parmeters used to generate the results of the paper. The inferred modules were published instead but this is not enough to reproduce the results. I contacted him to ask for the parmeters but got no reply. So it wasn't possible to reproduce exactly the same results. 
-I got the same data that was used in the paper, followed the same methodology and workflow of SCANeT, used the defult parameters and generated the results.
+This repository contains scripts for reproducing results of the two studies of the [SCANet](https://academic.oup.com/bioinformatics/article/39/11/btad644/7325353) paper.
+The author hasn't puplished the parmeters used to generate the results of the paper. The inferred modules were published instead but this is not enough to reproduce the results. I contacted him to ask for the parmeters but got no reply. So it wasn't possible to reproduce exactly the same results. 
+I worked on the same data that was used in the paper, followed the same methodology and workflow of SCANet, used the defult parameters and generated the results.
 
 ## Dependencies
 
-- Python 3.8 or higher
+- Python 3.6 or higher
 - scanet
 - pandas
 - matplotlib
@@ -15,8 +15,7 @@ I got the same data that was used in the paper, followed the same methodology an
 
 ## Setup
 
-- To run these scripts, ensure that the necessary Python packages are installed.
-- Download the `Supplementary file 3.csv` file.
+- To run both scripts, ensure that the necessary Python packages are installed.
 - Download the data used for both studies.
 
 ## Data
@@ -29,7 +28,7 @@ I got the same data that was used in the paper, followed the same methodology an
 
 ### First Study (`first_study.py`)
 
-This script processes `Cillo covid19 processed data`. It requires three input files: an h5ad data file, a CSV file containing modules data provided by the author and an output directory where the output will be saved.
+This script processes `Cillo covid19 processed data`. It requires three input files: an h5ad data file, a CSV file containing modules data provided by the author, which can be find in this repo with the name `Supplementary file 3`, and an output directory where the output will be saved.
 
 - **Usage**:
   ```bash

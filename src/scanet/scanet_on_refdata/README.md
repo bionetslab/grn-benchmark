@@ -1,6 +1,6 @@
-# SCANeT on the reference datasets
+# SCANet on the reference datasets
 
-This Python script offers features for inferring gene co-expression networks (GCNs) and gene regulatory networks (GRNs), as well as identifying potential drug candidates using the provided reference datasets. Initially, the script reads the data, converts it to the h5ad format, and visualizes it. Subsequently, representative samples are obtained by averaging neighboring samples. Based on the correlation between genes, modules of genes are generated. The most two intriguing modules, exhibiting the highest correlation with the two conditions, are selected. The GRNs for these selected modules are inferred. Finally, potential drug candidates are identified.
+In this Python script, gene co-expression networks (GCNs) and gene regulatory networks (GRNs) are inferred, in addition, potential drug candidates are identified using the provided reference datasets. Initially, it reads the data, converts it to the h5ad format, and visualizes it. Subsequently, representative samples are obtained by averaging neighboring samples. Based on the correlation between genes, modules of genes are generated. The most two modules, exhibiting the highest correlation with the two conditions, are selected. The GRNs for these selected modules are inferred. Finally, potential drug candidates are identified.
 
 
 ## Requirements
@@ -38,8 +38,7 @@ python scanet_on_ref_data.py --c <input_file_exhausted> --d <input_file_macropha
 
 In the provided directory, you will find the following :
 
-- `network_exhausted` : A tsv file which represents the GRN of the module, which has the highest correlation to exhausted condition
-- `network_macrophages` : A tsv file which represents the GRN of the module, which has the highest correlation to macrophages condition
+- `network.tsv` : A tsv file which represents the two GRNs of the two module, which have the highest correlation to macrophages pretreatment and exhausted conditions.
 - `outs_scan` : A folder which has the plots of gcn and grn with/without drug candidates for the two conditions. This is not required, but I added them. 
 
 ## Example
@@ -47,9 +46,9 @@ In the provided directory, you will find the following :
 To run the script with example data:
 
 ```bash
-python scanet_on_ref_data.py --c "data\out_CD8_exhausted.tsv" --d "data\out_Macrophages.tsv" --o "output/" --n 75 --t 0.85
+python scanet_on_ref_data.py --c "data\out_CD8_exhausted.tsv" --d "data\out_Macrophages.tsv" --o "output/" --n 75 --t 0.8
 ```
 
-Replace `data\out_CD8_exhausted.tsv`, `data\out_Macrophages.tsv`, and `output/` with your actual file paths and desired output location.
+Replace `data\out_CD8_exhausted.tsv`, `data\out_Macrophages.tsv`, and `output/` with your actual input file paths and desired output location.
 
-The last two arguments `--num_rep_cells` and `--correlation_cutoff` are not required.
+The last two arguments `--n` and `--t` are not required as they have the defult values 75 and 0.8 respectively.

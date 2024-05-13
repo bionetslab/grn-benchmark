@@ -131,7 +131,3 @@ sn.grn.grn_inference(adata_processed=adata_processed,modules_df=modules_df, modu
 - I have created an issue on the SCANet GitHub repository, accessible [here](https://github.com/oubounyt/SCANet/issues/8), and am waiting for assistance. I will contact you as soon as the matter is resolved, even if the response comes after submission.
 
 - To deal with this problem, I created the grn_df my self. Since grn_inference identifies without any issues the transcription factors within a given module, I modified the script slightly to return these transcription factors. Then, utilizing the GCN of the same module, I could get the target genes for each transcription factor. This approach allowed me to construct the grn dataframe. The modified grn.py file is uplaoded on this repo with the name `grn.py` and can be found in the `Docker` folder.
-
-
-
-
