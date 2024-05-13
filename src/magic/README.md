@@ -114,7 +114,7 @@ or
 <a id="magic_visualization"></a>
 ## General Implementation: magic_visualization
 
-This script can be used to obtain the visualizations used in the paper by Hsiao, T.-H. et al. for any dataset.
+This script can be used to obtain the visualizations used in the paper by Hsiao, T.-H. et al.[5] for any dataset.
 
 magic_visualization can be run with default parameters as well as user-defined parameters:
 
