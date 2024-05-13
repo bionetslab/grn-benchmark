@@ -1,0 +1,21 @@
+Tool name: MATLAB Tool for Modulated Gene/Gene Set Interaction (MAGIC) Analysis
+function url:  https://github.com/chenlabgccri/MAGIC/tree/master
+
+Input: 
+	- DATA:
+	- GROUP:
+	- BONF:
+	- EQU_SAM_SIZE:
+	- P_CUTOFF:
+	- MOD_SCORE_CUTOFF:
+	- OUTPUT_FILENAME:
+Output: 
+	- P1
+	- P0
+	- MOD_SCORE
+	- ADJ_MAT
+	
+Dependencies: -
+Installation commands: -
+Run commands: matlab -r "magic data group bonf equ_sam_size p_cutoff mod_score_cutoff output_filename"
+Reason tool is impossible to install: none
