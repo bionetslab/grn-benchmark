@@ -1,0 +1,37 @@
+
+Tool name : SCANet
+Version : 0.1.11
+Package url: https://pypi.org/project/scanet/
+
+Input:
+
+- Operating system: Windows 11 pro
+- Python 3.11.9
+- R 4.3.3
+
+Output:
+
+- The downloaded package at C:\..\AppData\Roaming\Python\Python311\site-packages\scanet
+
+Dependencies:
+
+- Python >=3.6
+- pyscenic >=0.11.2
+- scanpy >=1.9.1
+- setuptools >=42
+- wheel
+
+Commands Used to Install the Tool:
+
+- pip install scanet : Ran successfully but I faced some problems when following the tutorial jupyter notebook :
+
+1) I had to install the follwoing libraries : rpy2, pyvis and drugstone with the command : pip install rpy2 pyvis drugstone
+2) I had to install the following R packages : DESeq2, Bionero, R.utils, testthat, tibble and ddpcr using the following command :
+if (!require("BiocManager", quietly = TRUE))
+	install.packages("BiocManager")
+BiocManager::install(c('DESeq2', 'Bionero', 'R.utils', 'testthat', 'tibble', 'ddpcr'))
+3) AttributeError: module 'numpy' has no attribute 'object'. Solved by the following command : pip install numpy==1.23.4
+4) AttributeError: 'NoneType' object has no attribute 'split'. Solved by the following command : pip install threadpoolctl==3.1.0
+
+Commands Used to Run the Tool:
+- import scanet as sn
