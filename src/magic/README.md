@@ -16,7 +16,7 @@ For a more detailed explanation of the algorithm, please check the Wiki: [Wiki]
 - [MATLAB (preferrably r2023a)](https://de.mathworks.com/help/install/ug/install-products-with-internet-connection.html)[1]
 - [Bioinformatics Toolbox](https://de.mathworks.com/products/bioinfo.html)[2]
 - [Statistics and Machine Learning Toolbox](https://de.mathworks.com/products/statistics.html)[3]
-- [Community Detection Toolbox](https://de.mathworks.com/matlabcentral/fileexchange/45867-community-detection-toolbox)
+- [Community Detection Toolbox](https://de.mathworks.com/matlabcentral/fileexchange/45867-community-detection-toolbox)[4]
 
 ## Installation Instructions:
 Once you have MATLAB installed, the easiest way to install Toolboxes in MATLAB is through the Add-On Explorer. 
