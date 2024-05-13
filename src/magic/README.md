@@ -1,4 +1,4 @@
-
+This README.md file was generated on 13/5/2024 by Anisa Llukacaj (anis.llukacaj@fau.de)
 # MAGIC: Modulated Gene/Gene Set Interaction Analysis
 
 MAGIC is a MATLAB tool used for the identification of differentially regulated gene pairs which are modulated by the state of a modulator protein, which influences the activity of transcription factors. Each pair that is identified is correlated (positively or negatively) in one of the modulation states. 
