@@ -32,7 +32,7 @@ The CLI includes commands for:
 - Copula based differential co-expression calculation (`codc`)
 - [GO enrichment analysis (`go-enrichment`)](downstream-analysis/go-enrichment.md)
 - [Performance measurement of Python script (`python-performance`)](downstream-analysis/performance-measure.md)
-- [Performance measurement of R script (`r-performance`)]((downstream-analysis/performance-measure.md))
+- [Performance measurement of R script (`r-performance`)](downstream-analysis/performance-measure.md)
 
 This readme, explains Copula based differential co-expression calculation (`codc`).
 
