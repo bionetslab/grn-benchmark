@@ -38,7 +38,7 @@ docker build -t codc-tool .
 To run the GO enrichment analysis using Docker, use the following command:
 
 ```bash
-docker run --rm -v ./tests/data:/data codc-tool go-enrichment --input_file=/data/network.tsv --output_path=/data --threshold=0.5 --key_type=SYMBOL --ontology=BP --p_adjust_method=BH --qvalue_cutoff=0.05 --show_category=10
+docker run --rm -v ./tests/data:/data codc-tool go-enrichment --input_file=/data/network.tsv --output_path=/data --ontology=BP
 ```
 
 Replace `./test/data` with the path to your data directory where network.tsv exists if it is different than `./test/data`, and adjust the command-line arguments as needed.
