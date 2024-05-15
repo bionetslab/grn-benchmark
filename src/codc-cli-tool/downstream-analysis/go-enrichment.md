@@ -6,7 +6,6 @@ This document provides instructions for running the Gene Ontology (GO) enrichmen
 <summary> Table of Contents </summary>
 
 - [Installation](#installation)
-  - [Using Docker](#using-docker)
 - [Usage](#usage)
   - [Running with Docker](#running-with-docker)
   - [Command Line Arguments](#command-line-arguments)
@@ -25,8 +24,6 @@ to the project's root directory.
 ```bash
 git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/codc-cli-tool
 ```
-
-### Using Docker
 
 To use the script with Docker, first build the Docker image if not done already:
 
