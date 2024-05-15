@@ -49,7 +49,7 @@ $$
 
 where $g_i$ and $g_j$ are genes being compared, and $DC_{Copula}(g_i, g_j)$ is the differential coexpression score for the gene pair $(g_i, g_j)$.
 
-### Computational Steps
+## Computational Steps
 
 #### Copula Based Differential Co-Expression
 
