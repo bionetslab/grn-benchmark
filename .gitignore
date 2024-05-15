@@ -129,3 +129,4 @@ secret.json
 *.DS_Store
 
 /src/codc-cli-tool/tests/data/network.tsv
+*.pdm-python
