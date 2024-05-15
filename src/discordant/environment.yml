@@ -1,0 +1,13 @@
+name: discordant
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.3
+  - r-essentials
+  - r-optparse
+  - r-data.table
+  - bioconductor-discordant
+  - bioconductor-clusterprofiler
+  - bioconductor-org.hs.eg.db
