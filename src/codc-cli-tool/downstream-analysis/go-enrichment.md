@@ -18,6 +18,15 @@ This document provides instructions for running the Gene Ontology (GO) enrichmen
 
 ## Installation
 
+### Clone the repository and go to the project root dir
+
+Before installing and running the CLI tool, you have to clone the repo and navigate
+to the project's root directory.
+
+```bash
+git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/codc-cli-tool
+```
+
 ### Using Docker
 
 To use the script with Docker, first build the Docker image if not done already:

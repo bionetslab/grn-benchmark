@@ -8,6 +8,15 @@ Two command has been provided to perform the measurements:
 
 ## Installation
 
+### Clone the repository and go to the project root dir
+
+Before installing and running the CLI tool, you have to clone the repo and navigate
+to the project's root directory.
+
+```bash
+git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/codc-cli-tool
+```
+
 ### Using Docker
 
 Build the Docker container from the Dockerfile at the root of the project if not done already. This will set up the necessary environment for both Python and R scripts.
