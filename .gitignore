@@ -116,12 +116,6 @@ venv.bak/
 # VSCode
 .vscode/
 
-# Datasets (if they are large and not supposed to be tracked)
-
-# Output files (might include logs, CSVs from output, etc.)
-logs/
-output/
-
 # Config files
 config.ini
 secret.json
