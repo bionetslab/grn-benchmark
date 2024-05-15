@@ -1,4 +1,4 @@
-# CODC CLI: Command-line interface to identify copula based differential gene co-expression
+# CODC CLI: Command-line interface to calculate copula-based differential gene co-expression
 
 ![Cover Image](data/images/cover.png)
 
@@ -24,11 +24,11 @@
 </details>
 
 ## Brief Description
-CODC is a Command-Line Interface (CLI) designed for analyzing gene expression data to identify differential coexpression between two conditions using a copula-based approach. 
-This tool is reimplemented in python based on the [author's R implementation](https://github.com/Snehalikalall/CODC/blob/master/distance_mat_calculation.R) due to calculation complexoty issue. This version also utilizes parallel processing for better performance. Beside the coexpression calculation, the CLI provides downstream and performace measurement commands.
+CODC is a Command-Line Interface (CLI) designed for analyzing gene expression data to calculate differential co-expression between two conditions using a copula-based approach. 
+This tool is re-implemented in python based on the [R implementation](https://github.com/Snehalikalall/CODC/blob/master/distance_mat_calculation.R) Ray et al. due to calculation complexity. This tool also utilizes parallel processing for better performance. Beside the co-expression calculation, the CLI provides downstream and performace measurement commands.
 
 ## Reference to the Publication
-This tool implements the method proposed by Ray, S., Lall, S., & Bandyopadhyay, S. in "CODC: a Copula-based model to identify differential coexpression." You can read the study here: [npj Systems Biology and Applications (2020)](https://doi.org/10.1038/s41540-020-0137-9).
+This tool implements the method proposed by Ray, S., Lall, S., & Bandyopadhyay, S. in ["CODC: a Copula-based model to identify differential co-expression."](https://doi.org/10.1038/s41540-020-0137-9).
 
 ## Methodology
 The methodology to compute the copula based differential co-expression and mathematical explaination is detailed [here](downstream-analysis/methodology.md)
@@ -95,10 +95,10 @@ pdm run cli codc --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRC
 - **Example**: `--inputfile_2 /path/to/condition2.tsv`
 
 #### `--output_path`
-- **Description**: The directory where the output TSV file will be saved. This file will contain the computed differential coexpression network based on copula approach.
+- **Description**: The directory where the output TSV file will be saved. This file will contain the computed differential co-expression network based on copula approach.
 - **Required**: Yes
 - **Example**: `--output_path /path/to/output`
-- **Output Details**: The output is a TSV file named `network.tsv`, which includes columns for target gene, regulator gene, condition, and the weight as the coexpression difference.
+- **Output Details**: The output is a TSV file named `network.tsv`, which includes columns for target gene, regulator gene, condition, and the weight as the co-expression difference.
 
 #### `--ties_method`
 - **Description**: Method to handle ties in data ranking within the pseudo-observations calculation.
@@ -118,7 +118,7 @@ pdm run cli codc --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRC
 - **Example**: `--smoothing beta`
 
 #### `--ks_stat_method`
-- **Description**: Determines the method used for computing the Kolmogorov-Smirnov statistic, which quantifies the differential coexpression.
+- **Description**: Determines the method used for computing the Kolmogorov-Smirnov statistic, which quantifies the differential co-expression.
 - **Required**: No (default is "asymp")
 - **Options**:
   - `asymp`: Use asymptotic properties of the KS statistic.
