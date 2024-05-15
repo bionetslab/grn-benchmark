@@ -1,5 +1,7 @@
 # CODC CLI: Command-line interface to identify copula based differential gene co-expression
 
+![Cover Image](data/images/cover.png)
+
 <details>
 <summary> Table of Contents </summary>
 
