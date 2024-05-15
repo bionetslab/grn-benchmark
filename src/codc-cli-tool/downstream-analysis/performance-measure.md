@@ -19,13 +19,13 @@ git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/co
 
 ### Using Docker
 
-Build the Docker container from the Dockerfile at the root of the project if not done already. This will set up the necessary environment for both Python and R scripts.
+Build the Docker container from the Dockerfile if not done already. This will set up the necessary environment for both Python and R scripts.
 
 ```bash
 docker build -t codc-tool .
 ```
 
-### Using Locally
+### OR Using Locally
 
 #### Python Dependencies
 ```bash
@@ -45,13 +45,13 @@ Rscript dependencies.R
 #### Using Docker
 
 ```bash
-docker run --rm -v /tests/data:/data codc-tool python-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data/
+docker run --rm -v ./tests/data:/data codc-tool python-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data/
 ```
 
-#### Using Locally
+#### OR Using Locally
 
 ```bash
-pdm run cli python-performance --input_file_1 /tests/data/BRCA_normal.tsv --input_file_2 /tests/data/BRCA_tumor.tsv --iterations 10 --output_path .
+pdm run cli python-performance --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --iterations 10 --output_path ./tests/data
 ```
 
 ### R Performance Measurement
@@ -59,15 +59,15 @@ pdm run cli python-performance --input_file_1 /tests/data/BRCA_normal.tsv --inpu
 #### Using Docker
 
 ```bash
-docker run --rm -v /tests/data:/data codc-tool r-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data/
+docker run --rm -v ./tests/data:/data codc-tool r-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data/
 ```
 
-#### Using Locally
+#### OR Using Locally
 
 ```bash
-pdm run cli r-performance --input_file_1 /tests/data/BRCA_normal.tsv --input_file_2 /tests/data/BRCA_tumor.tsv --iterations 10 --output_path .
+pdm run cli r-performance --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --iterations 10 --output_path ./tests/data
 ```
 
 ## Output
 
-Both scripts generate CSV files detailing the execution times for each iteration, helping to analyze and compare the performance of Python and R implementations.
+Both scripts generate CSV files detailing the execution times for corresponding environment, helping to analyze and compare the performance of Python and R implementations.

@@ -7,7 +7,7 @@ This document provides instructions for running the Gene Ontology (GO) enrichmen
 
 - [Installation](#installation)
   - [Using Docker](#using-docker)
-  - [Using Locally](#using-locally)
+  - [Using Locally](#or-using-locally)
 - [Usage](#usage)
   - [Command Line Arguments](#command-line-arguments)
   - [Running with Docker](#running-with-docker)
@@ -66,7 +66,7 @@ To run the GO enrichment analysis using Docker, use the following command:
 docker run --rm -v /path/to/data:/data codc-tool go-enrichment --input_file=/data/network.tsv --output_path=/data --threshold=0.5 --key_type=SYMBOL --ontology=BP --p_adjust_method=BH --qvalue_cutoff=0.05 --show_category=20
 ```
 
-Replace `/path/to/data` with the actual path to your data directory, and adjust the command-line arguments as needed.
+Replace `/path/to/data` with the actual path to your data directory where network.tsv exists, and adjust the command-line arguments as needed.
 
 ## Output Description
 
