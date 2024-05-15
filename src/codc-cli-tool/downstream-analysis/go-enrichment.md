@@ -10,7 +10,6 @@ This document provides instructions for running the Gene Ontology (GO) enrichmen
   - [Running with Docker](#running-with-docker)
   - [Command Line Arguments](#command-line-arguments)
 - [Output Description](#output-description)
-- [Contributing](#contributing)
 
 </details>
 
