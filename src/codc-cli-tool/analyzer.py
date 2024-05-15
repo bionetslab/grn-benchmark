@@ -29,41 +29,18 @@ class GeneExpressionAnalyzer:
         ties_method: str = "average",
         smoothing: str = "none",
         ks_stat_method: str = "asymp",
-    ) -> np.ndarray:
+    ) -> pd.DataFrame:
         """
         Computes a network of differential coexpression scores for gene pairs across two conditions.
         The score for each gene pair is calculated using the Kolmogorov-Smirnov distance between their empirical
         copulas, representing the degree of differential coexpression. This network is used to assess the similarity
         in gene expression distributions between 'tumor' and 'normal' phenotypes for example.
-
-        Args:
-            df1 (pd.DataFrame): Gene expression data for the first phenotype (e.g., tumor),
-                                where rows are genes and columns are samples. Expects the first column
-                                to contain non-numeric identifiers which will be ignored.
-            df2 (pd.DataFrame): Gene expression data for the second phenotype (e.g., normal),
-                                structured like df1.
-            ties_method (str): Specifies the method for ranking ties within the pseudo-observations.
-                            Options are 'average', 'min', 'max', 'dense', 'ordinal'. Default is 'average'.
-            smoothing (str): Specifies the type of smoothing to apply to the empirical copula.
-                            Options are 'none', 'beta', 'checkerboard'. Default is 'none'.
-            ks_stat_method (str): method parameter for the ks_2samp function, determining how the
-                                Kolmogorov-Smirnov statistic is computed. Default is 'asymp'.
-
-        Returns:
-            np.ndarray: A network where:
-                        First column target: Target of the edge
-                        Second column regulator: Source of the edge
-                        Third column condition: Condition that the edge belongs to
-                        Fourth column weight: Weight of the edge
         """
         # Extract gene names from the first column
         gene_names = df1.iloc[:, 0].values
         assert np.array_equal(
             gene_names, df2.iloc[:, 0].values
         ), "Gene lists must match!"
-
-        # Initialize an empty List for the network
-        rows_list = []
 
         # Extracting numeric data from the dataframes, assuming the first column is the header
         data1 = df1.iloc[:, 1:].values
@@ -72,7 +49,7 @@ class GeneExpressionAnalyzer:
 
         # Print dataset summary
         print(f"Starting DC Copula coexpression calculation:")
-        print(f" - Number of gene pairs to be analyzed: {n_genes*n_genes}")
+        print(f" - Number of gene pairs to be analyzed: {n_genes * (n_genes - 1) // 2}")
         print(f" - Ties method: {ties_method}")
         print(f" - Smoothing technique: {smoothing}")
         print(f" - KS statistic mode: {ks_stat_method}")
@@ -84,38 +61,59 @@ class GeneExpressionAnalyzer:
             unit="pair",
         )
 
-        for i in range(n_genes - 1):
-            for j in range(i + 1, n_genes):
-                gene_pair_data1 = np.vstack((data1[i, :], data1[j, :])).T
-                gene_pair_data2 = np.vstack((data2[i, :], data2[j, :])).T
+        # Initialize an empty list for the network
+        rows_list = []
 
-                u1 = self.empirical_copula.pseudo_observations(
-                    gene_pair_data1, ties_method
-                )
-                u2 = self.empirical_copula.pseudo_observations(
-                    gene_pair_data2, ties_method
-                )
+        # Loop over all unique pairs of genes, calculated as the number of combinations of n_genes taken 2 at a time
+        for k in range(n_genes * (n_genes - 1) // 2):
+            # Calculate the first index 'i' of the gene pair
+            # This formula ensures 'i' progresses through each gene until the second to last gene
+            i = int((2 * n_genes - 1 - np.sqrt((2 * n_genes - 1) ** 2 - 8 * k)) / 2)
+            # Calculate the second index 'j' of the gene pair
+            # This formula ensures 'j' is always greater than 'i', thus avoiding duplicate pairs and self-pairs
+            j = (
+                k
+                + i
+                + 1
+                - n_genes * (n_genes - 1) // 2
+                + (n_genes - i) * ((n_genes - i) - 1) // 2
+            )
 
-                ec1 = self.empirical_copula.empirical_copula(
-                    u1, gene_pair_data1, ties_method, smoothing
-                )
-                ec2 = self.empirical_copula.empirical_copula(
-                    u2, gene_pair_data2, ties_method, smoothing
-                )
+            # Stack the gene expression data for genes i and j from the first dataset, transposed to match samples by rows
+            gene_pair_data1 = np.vstack((data1[i, :], data1[j, :])).T
+            # Repeat the stacking for the second dataset
+            gene_pair_data2 = np.vstack((data2[i, :], data2[j, :])).T
 
-                ks_stat, _ = ks_2samp(ec1, ec2, method=ks_stat_method)
+            # Calculate pseudo-observations for the gene pair in the first condition
+            u1 = self.empirical_copula.pseudo_observations(gene_pair_data1, ties_method)
+            # Calculate pseudo-observations for the gene pair in the second condition
+            u2 = self.empirical_copula.pseudo_observations(gene_pair_data2, ties_method)
 
-                # Append each pair as a separate row in the List
-                rows_list.append(
-                    {
-                        "Target": gene_names[j],
-                        "Regulator": gene_names[i],
-                        "Condition": "Diff Co-Exp between both Condition",
-                        "Weight": ks_stat,
-                    }
-                )
+            # Compute the empirical copula for the first condition
+            ec1 = self.empirical_copula.empirical_copula(
+                u1, gene_pair_data1, ties_method, smoothing
+            )
+            # Compute the empirical copula for the second condition
+            ec2 = self.empirical_copula.empirical_copula(
+                u2, gene_pair_data2, ties_method, smoothing
+            )
 
-                pbar.update(1)  # Update the progress bar after each iteration
+            # Calculate the Kolmogorov-Smirnov statistic between the two empirical copulas
+            # This statistic quantifies the difference in joint distribution of expression levels between two conditions
+            ks_stat, _ = ks_2samp(ec1, ec2, method=ks_stat_method)
+
+            # Append the computed data as a dictionary to a list; each dictionary represents a connection (edge)
+            # in the network, labeled with the indices of the genes, the condition, and the weight (KS statistic)
+            rows_list.append(
+                {
+                    "Target": gene_names[j],
+                    "Regulator": gene_names[i],
+                    "Condition": "Diff Co-Exp between both Condition",
+                    "Weight": ks_stat,
+                }
+            )
+
+            pbar.update(1)  # Update the progress bar after each iteration
 
         pbar.close()  # Close the progress bar when done
         # Creating a DataFrame from the list of rows
