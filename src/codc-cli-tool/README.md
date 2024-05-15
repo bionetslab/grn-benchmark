@@ -5,6 +5,7 @@
 
 - [Brief Description](#brief-description)
 - [Reference to the Publication](#reference-to-the-publication)
+- [Methodology](#methodology)
 - [Available Commands](#available-commands)
 - [Installation Instructions](#installation-instructions)
   - [Using Docker](#using-docker)
