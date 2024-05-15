@@ -9,7 +9,7 @@
 - [Installation Instructions](#installation-instructions)
   - [Using Docker](#using-docker)
   - [Using Locally](#or-using-locally)
-- [Execution Instructions Using Example Data](#execution-instructions-using-example-data)
+- [Execution Of CODC Using BRCA Data](#execution-of-codc-using-brca-data)
   - [Using Docker](#using-docker-1)
   - [Using Locally](#or-using-locally-1)
 - [Explanation of the Relevant Parameters](#explanation-of-the-relevant-parameters)
