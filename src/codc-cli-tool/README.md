@@ -23,7 +23,7 @@
 
 ## Brief Description
 CODC is a Command-Line Interface (CLI) designed for analyzing gene expression data to identify differential coexpression between two conditions using a copula-based approach. 
-This tool is reimplemented in python based on the [author's R implementation](https://github.com/Snehalikalall/CODC/blob/master/distance_mat_calculation.R) due to calculation complexoty issue. Besides the coexpression calculation scripts, it also provides downstream and performace measurement scripts.
+This tool is reimplemented in python based on the [author's R implementation](https://github.com/Snehalikalall/CODC/blob/master/distance_mat_calculation.R) due to calculation complexoty issue. This version also utilizes parallel processing for better performance. Beside the coexpression calculation, the CLI provides downstream and performace measurement commands.
 
 ## Reference to the Publication
 This tool implements the method proposed by Ray, S., Lall, S., & Bandyopadhyay, S. in "CODC: a Copula-based model to identify differential coexpression." You can read the study here: [npj Systems Biology and Applications (2020)](https://doi.org/10.1038/s41540-020-0137-9).
