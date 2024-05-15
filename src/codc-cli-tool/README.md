@@ -27,6 +27,9 @@ This tool is reimplemented in python based on the [author's R implementation](ht
 ## Reference to the Publication
 This tool implements the method proposed by Ray, S., Lall, S., & Bandyopadhyay, S. in "CODC: a Copula-based model to identify differential coexpression." You can read the study here: [npj Systems Biology and Applications (2020)](https://doi.org/10.1038/s41540-020-0137-9).
 
+## Methodology
+The methodology to compute the copula based differential co-expression and mathematical explaination is detailed [here](downstream-analysis/methodology.md)
+
 ## Available Commands
 The CLI includes commands for:
 - Copula based differential co-expression calculation (`codc`)
