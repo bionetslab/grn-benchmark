@@ -45,13 +45,13 @@ Rscript dependencies.R
 #### Using Docker
 
 ```bash
-docker run --rm -v ./tests/data:/data codc-tool python-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data/ --batch_size 100
+docker run --rm -v ./data:/data codc-tool python-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data --batch_size 100
 ```
 
 #### OR Using Locally
 
 ```bash
-pdm run cli python-performance --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --iterations 10 --output_path ./tests/data --batch_size 100
+pdm run cli python-performance --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRCA_tumor.tsv --iterations 10 --output_path ./data --batch_size 100
 ```
 
 ### R Performance Measurement
@@ -59,13 +59,13 @@ pdm run cli python-performance --input_file_1 ./tests/data/BRCA_normal.tsv --inp
 #### Using Docker
 
 ```bash
-docker run --rm -v ./tests/data:/data codc-tool r-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data/
+docker run --rm -v ./data:/data codc-tool r-performance --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --iterations 10 --output_path /data
 ```
 
 #### OR Using Locally
 
 ```bash
-pdm run cli r-performance --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --iterations 10 --output_path ./tests/data
+pdm run cli r-performance --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRCA_tumor.tsv --iterations 10 --output_path ./data
 ```
 
 ## Output

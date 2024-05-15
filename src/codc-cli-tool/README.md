@@ -68,16 +68,16 @@ pdm install
 
 ## Execution of codc Using BRCA Data
 
-The commands below will output the `network.tsv`in `/tests/data/` directory
+The commands below will output the `network.tsv`in `./data/` directory
 
 ### Using Docker
 ```bash
-docker run --rm -v ./tests/data:/data codc-tool codc --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --output_path /data --batch_size 100
+docker run --rm -v ./data:/data codc-tool codc --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --output_path /data --batch_size 100
 ```
 
 ### OR Using Locally
 ```bash
-pdm run cli codc --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --output_path ./tests/data/ --batch_size 100
+pdm run cli codc --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRCA_tumor.tsv --output_path ./data --batch_size 100
 ```
 
 ## Explanation of the Relevant Parameters
@@ -85,12 +85,12 @@ pdm run cli codc --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./te
 #### `--input_file_1`
 - **Description**: Path to the TSV file containing gene expression data for the first condition.
 - **Required**: Yes
-- **Example**: `--inputfile_1 /path/to/tumor_data.tsv`
+- **Example**: `--inputfile_1 /path/to/condition1.tsv`
 
 #### `--input_file_2`
 - **Description**: Path to the TSV file containing gene expression data for the second condition.
 - **Required**: Yes
-- **Example**: `--inputfile_2 /path/to/normal_data.tsv`
+- **Example**: `--inputfile_2 /path/to/condition2.tsv`
 
 #### `--output_path`
 - **Description**: The directory where the output TSV file will be saved. This file will contain the computed differential coexpression network based on copula approach.
