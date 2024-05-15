@@ -110,7 +110,7 @@ class GeneExpressionAnalyzer:
                     {
                         "Target": gene_names[j],
                         "Regulator": gene_names[i],
-                        "Condition": "Diff Co-Exp of both Condition",
+                        "Condition": "Diff Co-Exp between both Condition",
                         "Weight": ks_stat,
                     }
                 )
