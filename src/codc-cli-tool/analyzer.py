@@ -122,12 +122,12 @@ class GeneExpressionAnalyzer:
         print(f" - Ties method: {ties_method}")
         print(f" - Smoothing technique: {smoothing}")
         print(f" - KS statistic mode: {ks_stat_method}")
-        print(f"-------------------------\n")
+        print(f"-------------------------")
 
         with ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
             futures = []
 
-            print("Queueing tasks...")
+            print("\nQueueing tasks...")
             submission_progress = tqdm(
                 total=len(batches), desc="Queueing gene pairs", unit="batch"
             )
@@ -151,7 +151,7 @@ class GeneExpressionAnalyzer:
                 submission_progress.update(1)
             submission_progress.close()
 
-            print("Processing gene pairs...")
+            print("\nProcessing gene pairs...")
             completion_progress = tqdm(
                 as_completed(futures),
                 total=len(futures),
