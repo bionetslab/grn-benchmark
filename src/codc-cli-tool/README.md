@@ -37,6 +37,16 @@ The CLI includes commands for:
 This readme, explains Copula based differential co-expression calculation (`codc`).
 
 ## Installation Instructions
+
+### Clone the repository and go to the project root dir
+
+Before installing and running the CLI tool, you have to clone the repo and navigate
+to the project's root directory.
+
+```bash
+git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/codc-cli-tool
+```
+
 ### Using Docker
 ```bash
 docker build -t codc-tool .
