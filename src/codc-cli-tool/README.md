@@ -62,7 +62,7 @@ Then, install the packages using PDM:
 pdm install
 ```
 
-## Execution of codc Using Example Data
+## Execution of codc Using BRCA Data
 Before executing the commands below, go to the root directory of the CODC project. Outwise, you may have directory path mismatch.
 The commands will output the `network.tsv`in `/tests/data/` directory
 ### Using Docker
