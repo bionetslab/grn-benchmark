@@ -1,7 +1,10 @@
+from concurrent.futures import ProcessPoolExecutor, as_completed
+from multiprocessing import shared_memory
+import os
+
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-
 from scipy.stats import ks_2samp
 
 
@@ -22,100 +25,152 @@ class GeneExpressionAnalyzer:
         """
         self.empirical_copula = empirical_copula
 
-    def compute_dc_copula_network(
+    def compute_pairs(
         self,
-        df1: pd.DataFrame,
-        df2: pd.DataFrame,
-        ties_method: str = "average",
-        smoothing: str = "none",
-        ks_stat_method: str = "asymp",
-    ) -> pd.DataFrame:
-        """
-        Computes a network of differential coexpression scores for gene pairs across two conditions.
-        The score for each gene pair is calculated using the Kolmogorov-Smirnov distance between their empirical
-        copulas, representing the degree of differential coexpression. This network is used to assess the similarity
-        in gene expression distributions between 'tumor' and 'normal' phenotypes for example.
-        """
-        # Extract gene names from the first column
+        indices,
+        shm_name_data1,
+        shm_name_data2,
+        gene_names,
+        ties_method,
+        smoothing,
+        ks_stat_method,
+        data1_shape,
+        data2_shape,
+        dtype,
+    ):
+        # Access shared memory
+        existing_shm_data1 = shared_memory.SharedMemory(name=shm_name_data1)
+        existing_shm_data2 = shared_memory.SharedMemory(name=shm_name_data2)
+
+        # Create numpy arrays from the buffers of the shared memory
+        np_data1 = np.ndarray(data1_shape, dtype=dtype, buffer=existing_shm_data1.buf)
+        np_data2 = np.ndarray(data2_shape, dtype=dtype, buffer=existing_shm_data2.buf)
+
+        results = []
+        for i, j in indices:
+            try:
+                gene_pair_data1 = np.vstack((np_data1[:, i], np_data1[:, j])).T
+                gene_pair_data2 = np.vstack((np_data2[:, i], np_data2[:, j])).T
+                u1 = self.empirical_copula.pseudo_observations(
+                    gene_pair_data1, ties_method
+                )
+                u2 = self.empirical_copula.pseudo_observations(
+                    gene_pair_data2, ties_method
+                )
+                ec1 = self.empirical_copula.empirical_copula(
+                    u1, gene_pair_data1, ties_method, smoothing
+                )
+                ec2 = self.empirical_copula.empirical_copula(
+                    u2, gene_pair_data2, ties_method, smoothing
+                )
+                ks_stat, _ = ks_2samp(ec1, ec2, method=ks_stat_method)
+                results.append(
+                    {
+                        "Target": gene_names[j],
+                        "Regulator": gene_names[i],
+                        "Condition": "Diff Co-Exp of both Condition",
+                        "Weight": ks_stat,
+                    }
+                )
+            except Exception as e:
+                print(f"Error processing pair ({i}, {j}): {e}")
+
+        # Clean up shared memory
+        existing_shm_data1.close()
+        existing_shm_data2.close()
+
+        return results
+
+    def compute_dc_copula_network_parallel(
+        self,
+        df1,
+        df2,
+        ties_method="average",
+        smoothing="none",
+        ks_stat_method="asymp",
+        batch_size=100,
+    ):
         gene_names = df1.iloc[:, 0].values
         assert np.array_equal(
             gene_names, df2.iloc[:, 0].values
         ), "Gene lists must match!"
 
-        # Extracting numeric data from the dataframes, assuming the first column is the header
-        data1 = df1.iloc[:, 1:].values
-        data2 = df2.iloc[:, 1:].values
-        n_genes = min(data1.shape[0], data2.shape[0])
+        data1 = df1.iloc[:, 1:].values.T
+        data2 = df2.iloc[:, 1:].values.T
+
+        # Create shared memory
+        shm_data1 = shared_memory.SharedMemory(create=True, size=data1.nbytes)
+        shm_data2 = shared_memory.SharedMemory(create=True, size=data2.nbytes)
+        # Create numpy arrays on the buffer of the shared memory
+        np_data1 = np.ndarray(data1.shape, dtype=data1.dtype, buffer=shm_data1.buf)
+        np_data2 = np.ndarray(data2.shape, dtype=data2.dtype, buffer=shm_data2.buf)
+        np.copyto(np_data1, data1)
+        np.copyto(np_data2, data2)
+
+        n_genes = min(len(data1[0]), len(data2[0]))
+        pairs = [(i, j) for i in range(n_genes - 1) for j in range(i + 1, n_genes)]
+        batches = [pairs[i : i + batch_size] for i in range(0, len(pairs), batch_size)]
+
+        results = pd.DataFrame()
 
         # Print dataset summary
         print(f"Starting DC Copula coexpression calculation:")
+        print(f"-------------------------")
         print(f" - Number of gene pairs to be analyzed: {n_genes * (n_genes - 1) // 2}")
+        print(f" - Batch size: {batch_size}")
+        print(f" - Number of batches: {len(batches)}")
         print(f" - Ties method: {ties_method}")
         print(f" - Smoothing technique: {smoothing}")
         print(f" - KS statistic mode: {ks_stat_method}")
+        print(f"-------------------------\n")
 
-        # Create a tqdm progress bar
-        pbar = tqdm(
-            total=(n_genes * (n_genes - 1)) // 2,
-            desc="Computing distances",
-            unit="pair",
-        )
+        with ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
+            futures = []
 
-        # Initialize an empty list for the network
-        rows_list = []
-
-        # Loop over all unique pairs of genes, calculated as the number of combinations of n_genes taken 2 at a time
-        for k in range(n_genes * (n_genes - 1) // 2):
-            # Calculate the first index 'i' of the gene pair
-            # This formula ensures 'i' progresses through each gene until the second to last gene
-            i = int((2 * n_genes - 1 - np.sqrt((2 * n_genes - 1) ** 2 - 8 * k)) / 2)
-            # Calculate the second index 'j' of the gene pair
-            # This formula ensures 'j' is always greater than 'i', thus avoiding duplicate pairs and self-pairs
-            j = (
-                k
-                + i
-                + 1
-                - n_genes * (n_genes - 1) // 2
-                + (n_genes - i) * ((n_genes - i) - 1) // 2
+            print("Queueing tasks...")
+            submission_progress = tqdm(
+                total=len(batches), desc="Queueing gene pairs", unit="batch"
             )
 
-            # Stack the gene expression data for genes i and j from the first dataset, transposed to match samples by rows
-            gene_pair_data1 = np.vstack((data1[i, :], data1[j, :])).T
-            # Repeat the stacking for the second dataset
-            gene_pair_data2 = np.vstack((data2[i, :], data2[j, :])).T
+            for batch in batches:
+                futures.append(
+                    executor.submit(
+                        self.compute_pairs,
+                        batch,
+                        shm_data1.name,
+                        shm_data2.name,
+                        gene_names,
+                        ties_method,
+                        smoothing,
+                        ks_stat_method,
+                        data1.shape,
+                        data2.shape,
+                        data1.dtype,
+                    )
+                )
+                submission_progress.update(1)
+            submission_progress.close()
 
-            # Calculate pseudo-observations for the gene pair in the first condition
-            u1 = self.empirical_copula.pseudo_observations(gene_pair_data1, ties_method)
-            # Calculate pseudo-observations for the gene pair in the second condition
-            u2 = self.empirical_copula.pseudo_observations(gene_pair_data2, ties_method)
-
-            # Compute the empirical copula for the first condition
-            ec1 = self.empirical_copula.empirical_copula(
-                u1, gene_pair_data1, ties_method, smoothing
-            )
-            # Compute the empirical copula for the second condition
-            ec2 = self.empirical_copula.empirical_copula(
-                u2, gene_pair_data2, ties_method, smoothing
-            )
-
-            # Calculate the Kolmogorov-Smirnov statistic between the two empirical copulas
-            # This statistic quantifies the difference in joint distribution of expression levels between two conditions
-            ks_stat, _ = ks_2samp(ec1, ec2, method=ks_stat_method)
-
-            # Append the computed data as a dictionary to a list; each dictionary represents a connection (edge)
-            # in the network, labeled with the indices of the genes, the condition, and the weight (KS statistic)
-            rows_list.append(
-                {
-                    "Target": gene_names[j],
-                    "Regulator": gene_names[i],
-                    "Condition": "Diff Co-Exp between both Condition",
-                    "Weight": ks_stat,
-                }
+            print("Processing gene pairs...")
+            completion_progress = tqdm(
+                as_completed(futures),
+                total=len(futures),
+                desc="Computing distances",
+                unit="batch",
             )
 
-            pbar.update(1)  # Update the progress bar after each iteration
+            for future in completion_progress:
+                batch_results = future.result()
+                results = pd.concat(
+                    [results, pd.DataFrame(batch_results)], ignore_index=True
+                )
+                completion_progress.update(1)
+            completion_progress.close()
 
-        pbar.close()  # Close the progress bar when done
-        # Creating a DataFrame from the list of rows
-        network_df = pd.DataFrame(rows_list)
-        return network_df
+        # Clean up shared memory
+        shm_data1.close()
+        shm_data1.unlink()
+        shm_data2.close()
+        shm_data2.unlink()
+
+        return results

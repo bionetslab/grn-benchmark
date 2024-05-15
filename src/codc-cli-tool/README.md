@@ -68,12 +68,12 @@ The commands below will output the `network.tsv`in `/tests/data/` directory
 
 ### Using Docker
 ```bash
-docker run --rm -v ./tests/data:/data codc-tool codc --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --output_path /data
+docker run --rm -v ./tests/data:/data codc-tool codc --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --output_path /data --batch_size 100
 ```
 
 ### OR Using Locally
 ```bash
-pdm run cli codc --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --output_path ./tests/data/
+pdm run cli codc --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./tests/data/BRCA_tumor.tsv --output_path ./tests/data/ --batch_size 100
 ```
 
 ## Explanation of the Relevant Parameters
@@ -119,6 +119,11 @@ pdm run cli codc --input_file_1 ./tests/data/BRCA_normal.tsv --input_file_2 ./te
   - `auto`: Automatically determine the best method based on data characteristics.
   - `exact`: Compute an exact KS statistic.
 - **Example**: `--ks_stat_method exact`
+
+#### `--batch_size`
+- **Description**: Determines how many pair of genes will be executed in each batch in parallel execution.
+- **Required**: No (default is 100)
+- **Example**: `--batch_size 100`
 
 ## Input File Format Specification
 Input files must be in a tab-separated format with gene names in rows and sample IDs in columns. Example:
