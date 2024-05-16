@@ -422,10 +422,10 @@ The default value of `p_cutoff` reflects the null hypothesis.
 However, the `mod_score_cutoff` relies on a subjective threshold for what is considered biologically significant, and can be adjusted according to the dataset that is being used. A more relaxed threshold can be used to aid in identifying more gene pairs. 
 
 # References
-- [1]The MathWorks, Inc. (2023). MATLAB version: 9.14.0.2254940 (R2023a). 
-- [2]The MathWorks, Inc. (2023). Bioinformatics Toolbox version: 4.17 (R2023a). 
-- [3]The MathWorks, Inc. (2023). Statistics and Machine Learning Toolbox version: 12.5 (R2023a).
-- [4]Athanasios Kehagias (2024). Community Detection Toolbox (https://www.mathworks.com/matlabcentral/fileexchange/45867-community-detection-toolbox), MATLAB Central File Exchange. Retrieved 13 May 2024.
-- [5]T.-H. Hsiao et al., “Differential network analysis reveals the genome-wide landscape of estrogen receptor modulation in hormonal cancers,” Scientific reports, vol. 6, no. 1, Mar. 2016, doi: https://doi.org/10.1038/srep23035.
-- [6]Aertslab.org, 2024. https://resources.aertslab.org/cistarget/tf_lists/allTFs_hg38.txt (accessed May 13, 2024).
+[1] The MathWorks, Inc. (2023). MATLAB version: 9.14.0.2254940 (R2023a).  
+[2] The MathWorks, Inc. (2023). Bioinformatics Toolbox version: 4.17 (R2023a).   
+[3] The MathWorks, Inc. (2023). Statistics and Machine Learning Toolbox version: 12.5 (R2023a).  
+[4] Athanasios Kehagias (2024). Community Detection Toolbox (https://www.mathworks.com/matlabcentral/fileexchange/45867-community-detection-toolbox), MATLAB Central File Exchange. Retrieved 13 May 2024.   
+[5] T.-H. Hsiao et al., “Differential network analysis reveals the genome-wide landscape of estrogen receptor modulation in hormonal cancers,” Scientific reports, vol. 6, no. 1, Mar. 2016, doi: https://doi.org/10.1038/srep23035.  
+[6] Aertslab.org, 2024. https://resources.aertslab.org/cistarget/tf_lists/allTFs_hg38.txt (accessed May 13, 2024).  
 ‌
