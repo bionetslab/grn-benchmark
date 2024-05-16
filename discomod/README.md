@@ -244,6 +244,14 @@ plot1 <- plot  + ylim(-10, 3)
 plot
 
 ```
+Reference Dataset:
+![full-cluster2-53modules](https://github.com/NaziaUrmi/grn-benchmark/assets/46952253/256d1de4-a170-450a-835f-358177bac1e2)
+    
+GEO Dataset:
+
+![new-5mod 23genes](https://github.com/NaziaUrmi/grn-benchmark/assets/46952253/36188c8b-7a0d-4608-9fc2-026521019e45)
+
+
 ## Result 
 
 The analysis using the Golub dataset demonstrated that the PND method significantly outperformed traditional statistical approaches in identifying Differentially Co-expressed Modules (DCMs). This was particularly notable in the accuracy of detecting true positive changes in gene network structures, making PND a robust choice for datasets with similar characteristics.  
