@@ -165,4 +165,4 @@ There were no specific hyperparameters recommended by the authors. The default p
 
 -------------------------------------------------------
 
-Md Badiuzzaman Pranto, Friedrich-Alexander-Universität Erlangen-Nürnberg, Erlangen, Nürnberg
+Md Badiuzzaman Pranto, Friedrich-Alexander-Universität, Erlangen-Nürnberg.
