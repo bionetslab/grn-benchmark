@@ -6,7 +6,7 @@ gProfiler (Gene List Profiling) is a web server and tool suite that is used for 
 
 ### Step 1: Sort the differentially correlated pairs of genes in descending order of (r1 - r2) values
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/rSortedList.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/rSortedList.png" width="700" >
 </div>
 
 ### Step 2: Upload the list of most differentially correlated pairs of genes to gProfiler Web
@@ -14,7 +14,7 @@ Visit  [gProfiler Web App](http://biit.cs.ut.ee/gprofiler/) and upload required 
 For the purpose of explaining the analysis better, only the first pair of genes were uploaded. _More pair can be uploaded for extensive analysis._
 After the query has been filled out, Press _Run query_ button
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/uploadGenes.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/uploadGenes.png" width="700" >
 </div>
 
 ### Step 3: Visulaze different ascpects of analysis as per requirements 
@@ -24,7 +24,7 @@ The first tab shows the significance of different functional categories across v
 The table below explains detailed information about the enriched terms. It includes __Source__ displaying the database or ontology from which the term is sourced from, __Term ID__ which is a unique identifier for the term within its source database, __term name__ and __adjusted p-value__.
 
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/overview.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/overview.png" width="700" >
 </div>
 
 ##### Detailed Results
@@ -33,27 +33,27 @@ Provides valuable insights into the functional roles of molecules in cellular pr
 For instance, the Gene Ontology Molecular Function [GO:MF] highlights how RBM3 and C1QBP genes play important roles in cells. They are good at binding to ribosomes and ribonucleoprotein complexes, helping to make proteins and process genetic information. They're also involved in binding to kininogen, a protein that helps regulate blood clotting and control inflammation in the body.
 
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/detailedResults.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/detailedResults.png" width="700" >
 </div>
 
 ##### GO Context
 gProfiler also provides a context network containing nodes with directed edges that reflects the ontology structure of biological processes. It is more like a visual summary of the enriched biological processes, helping to identify major functional themes and their relationships.
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/detailedResults.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/gopb.png" width="700" >
 </div>
 
 Positive Regulation of Gene Expression (GO:0010628): This term suggests that RBM3 and C1QBP are involved in processes that increase the expression of specific genes. This could be through various mechanisms such as enhancing transcription, increasing mRNA stability, or promoting translation.
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/gopb_1.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/gopb_1.png" width="700" >
 </div>
 
 Regulation of Nitrogen Compound Metabolic Process (GO:0051171): This term indicates that these genes play roles in the regulation of metabolic processes involving nitrogen-containing compounds. This includes amino acids, nucleotides, and other nitrogenous substances.
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/gopb_2.png" width="700" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/gopb_2.png" width="700" >
 </div>
 
 > Note: More pairs of genes can be analysed together
 > <div align="center">
->    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/cumulative.png" width="700" >
+>    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/cumulative.png" width="700" >
 > </div>
 
