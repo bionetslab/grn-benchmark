@@ -1,10 +1,13 @@
 # Differential Gene Correlation Analysis Command-line Tool (DGCA CLI Tool)
 
+![Cover Image](data/img/img1.png)
+
 <details>
 <summary>Table of Contents</summary>
 
 - [Brief Description](#brief-description)
 - [Reference](#reference)
+- [Methodology](#methodology)
 - [Available Commands](#available-commands)
 - [Installation Instructions](#installation-instructions)
   - [Using Docker](#using-docker)
@@ -21,6 +24,10 @@ This tool is a command-line utility designed as a wrapper around the DGCA packag
 ## Reference
 For detailed methodology and application, please refer to:
 McKenzie, A.T., Katsyv, I., Song, WM. et al. DGCA: A comprehensive R package for Differential Gene Correlation Analysis. BMC Syst Biol 10, 106 (2016). [https://doi.org/10.1186/s12918-016-0349-1](https://doi.org/10.1186/s12918-016-0349-1).
+
+## Methodology
+To find a detailed description of the methodology for this project click [Here](downstream_analysis/methodology.md)
+
 
 ## Available Commands
 The CLI includes commands for:

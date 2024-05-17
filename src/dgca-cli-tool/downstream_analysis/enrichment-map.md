@@ -7,7 +7,7 @@ This script performs Gene Set Enrichment Analysis (GSEA) on provided network dat
 ## Usage (using docker)
 If you have already built the docker image for the dgca-tool outlined in the main readme.md, just run the following command:
 ```bash
-    docker run --rm -v ./data:/data dgca-tool enrichment_map.R --network_file /data/network.tsv --output_path /data
+docker run --rm -v ./data:/data dgca-tool enrichment_map.R --network_file /data/network.tsv --output_path /data
 ```
 Replace `./data` with the directory path where `network.tsv` exists, if it is different than `./data`.
 
