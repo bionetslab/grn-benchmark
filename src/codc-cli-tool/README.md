@@ -70,7 +70,8 @@ pdm install
 
 ## Execution of codc Using Reference Data
 
-To run codc with reference data follow the instructions [here.](reference-data-commands.md)
+To run codc with reference data follow the instructions [here.](reference-data-commands.md). Make sure that
+you are in the `codc-cli-tool` directory before running the commands.
 
 ## Execution of codc Using BRCA Data
 
