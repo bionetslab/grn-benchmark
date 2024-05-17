@@ -65,6 +65,10 @@ To run the tool using Docker, ensure Docker is installed on your system and foll
    ```bash
    Rscript dgca.R --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRCA_tumor.tsv --output_path ./data
    ```
+## Commands for Running with Reference Datasets:
+
+To Run the DGCA tool with Reference Datasets, follow the instructions [here](ref_data_execution.md).
+Be sure of that, you are in dgca-cli-tool directory.
 
 ## Parameters
 - `--input_file_1`: Path to the TSV file containing gene expression data for the first condition.
