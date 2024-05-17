@@ -12,6 +12,7 @@
 - [Installation Instructions](#installation-instructions)
   - [Using Docker](#using-docker)
   - [Using Locally](#or-using-locally)
+- [Execution Of CODC Using Reference Data](#execution-of-codc-using-reference-data)
 - [Execution Of CODC Using BRCA Data](#execution-of-codc-using-brca-data)
   - [Using Docker](#using-docker-1)
   - [Using Locally](#or-using-locally-1)
@@ -66,6 +67,10 @@ Then, install the packages using PDM:
 ```bash
 pdm install
 ```
+
+## Execution of codc Using Reference Data
+
+To run codc with reference data follow the instructions [here.](reference-data-commands.md)
 
 ## Execution of codc Using BRCA Data
 
