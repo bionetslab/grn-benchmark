@@ -19,23 +19,22 @@
       <a href="#the-package">The Package</a>
       <ul>
         <li><a href="#Structure">Structure</a></li?>
-        <li><a href="#Dataset">About the datasets</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation and Execution</a></li>
+        <li><a href="#installation-and-execution">Installation and Execution</a></li>
       </ul>
     </li>
     <li>
       <a href="#Specifications">Specifications</a>
       <ul>
-        <li><a href="#input-specs">Input Specifications</a></li>
+        <li><a href="#input-specifications">Input Specifications</a></li>
         <li><a href="#preprocessing">Preprocessing Steps</a></li>
-        <li><a href="#output-specs">Output Specifications</a></li>
-        <li><a href="#Analysis">Analysing Output</a></li>
+        <li><a href="#output-specifications">Output Specifications</a></li>
+        <li><a href="#analysing-output">Analysing Output</a></li>
       </ul>
     </li>
     <li><a href="#downstream-analysis">Downstream Analysis</a></li>
@@ -61,7 +60,7 @@ The following bulletins describe the features, functionalities, and structure of
 3. **comp.2.cc.fdr**: Saves a list of significantly different correlations as a text file. It utilizes the fdrtool package to manage the false discovery rate (FDR). The exported file includes molecule IDs, conditional correlation coefficients, p-values from the correlation test, the difference between the two correlations, corresponding p-values, and the result of Fisher's z-test while controlling FDR.
 
 <div align="center">
-    <img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/DiffCorr.png" width="400" >
+    <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/DiffCorr.png" width="400" >
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -125,7 +124,7 @@ For example, a series of steps had to be taken for the Arabidopsis dataset
 3. Genes with low expression levels and low variability across samples were filtered out using the `genefilter` package to reduces the number of targets 
 4. Common probe sets between the two datasets were identified and retained
 
-<img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/Input.png" width="500" >
+<img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/Input.png" width="500" >
 
 ### Output file format specification
 Tab-separated output file will be stored at `--output.path`
@@ -139,7 +138,7 @@ The output text file contains the results of differential correlation analysis b
 - `(r1 - r2)`: Difference in correlation coefficients 
 - `lfdr (in cond. 1), lfdr (in cond. 2)`: Local false discovery rate (lfdr)
 - `lfdr (difference)`: Shows the significance of the difference between the correlations of Molecule X and Molecule Y under the two conditions.
-<img src="https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/ImageResouces/DiffCorr_Golub_Table.png" width="700" >
+<img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/DiffCorr_Golub_Table.png" width="700" >
 
 <!-- DOWNSTREAM ANALYSIS -->
 ## Downstream Analysis
@@ -149,11 +148,13 @@ To find relationships between genes or metabolites, identify modules or clusters
 2. Leaf and Flower Samples
 3. Macrophages and T-cells
 
-See [here](https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/Downstream.md),for exhaustive notes on the downstream analysis performed.
+See [here](https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/Downstream.md),for exhaustive notes on the downstream analysis performed.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- PARAMETER SETTINGS -->
 ## Parameter Settings
-See [here](https://github.com/aparnaullas97/grn-benchmark/blob/main/src/diffcorr/Wiki.md),for exhaustive notes on the methadology and parameter settings
+See [here](https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/Wiki.md),for exhaustive notes on the methadology and parameter settings
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
