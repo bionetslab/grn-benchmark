@@ -72,7 +72,7 @@ To run the tool using Docker, ensure Docker is installed on your system and foll
 - `--output_path`: Output path where the results will be saved. The results file will be named 'network.tsv'.
 
 ## Input File Format
-The input files should be TSV (Tab-Separated Values) format containing gene expression data. Each file must have genes as rows and samples as columns for each condition.
+The input files should be TSV (Tab-Separated Values) format containing gene expression data. Each file must have genes on the first column and samples on the others for each condition.
 
 ## Output File Format
 
@@ -99,6 +99,6 @@ The input files should be TSV (Tab-Separated Values) format containing gene expr
   
   where $s_{z_x}^2$ represents the variance of the z-score in condition $x$.
   
-- **Weight\_4 (P-values of the Z-Score Differences)**: Assesses the significance of the differences between the z-scores of two conditions using p-values.
+- **Weight\_4 (P-values of the Z-Score Differences)**: Assesses the significance of the differences between the z-scores of two conditions.
   
 - **Weight\_5 (Classifications of the Correlation Change)**: Evaluates whether gene pairs experience a gain or loss of correlation between two conditions. This classification further categorizes these changes based on their statistical significance and the directionality (positive or negative) of the correlation.
