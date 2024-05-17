@@ -132,6 +132,7 @@ The output text file contains the results of differential correlation analysis b
 - `lfdr (difference)`: Shows the significance of the difference between the correlations of Molecule X and Molecule Y under the two conditions.
 <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/DiffCorr_Golub_Table.png" width="700" >
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- DOWNSTREAM ANALYSIS -->
 ## Downstream Analysis
 To find relationships between genes or metabolites, identify modules or clusters of co-expressed genes/metabolites, and elucidate potential biological processes or pathways involved in the studied systems, downstream analysis was performed on three different datasets
