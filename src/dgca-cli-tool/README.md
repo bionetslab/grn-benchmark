@@ -31,30 +31,32 @@ In this readme, we will see the usage of dgca.R
 
 ## Installation Instructions
 
+Clone and navigate to the project (dgca-tool) root directory.
+   ```bash
+   git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/dgca-cli-tool
+   ```
+
 ### Using Docker
 To run the tool using Docker, ensure Docker is installed on your system and follow these steps:
 
-1. Navigate to the project (dgca-tool) root directory.
-
-2. Build the Docker image:
+1. Build the Docker image:
    ```bash
    docker build -t dgca-tool .
    ```
-3. Run the tool using the Docker container:
+2. Run the tool using the Docker container:
    ```bash
    docker run --rm -v ./data:/data dgca-tool dgca.R --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --output_path /data
    ```
 
 ### Using Locally (Using R)
-1. Navigate to the project (dgca-tool) root directory.
 
-2. Install the required R packages:
+1. Install the required R packages:
    ```bash
    Rscript install_dependencies.R
    ```
-3. Run the tool:
+2. Run the tool:
    ```bash
-   Rscript dgca.R --input_file_1 /data/BRCA_normal.tsv --input_file_2 /data/BRCA_tumor.tsv --output_path ./data
+   Rscript dgca.R --input_file_1 ./data/BRCA_normal.tsv --input_file_2 ./data/BRCA_tumor.tsv --output_path ./data
    ```
 
 ## Parameters
