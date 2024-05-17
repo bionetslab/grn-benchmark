@@ -28,15 +28,7 @@
         <li><a href="#installation-and-execution">Installation and Execution</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#Specifications">Specifications</a>
-      <ul>
-        <li><a href="#input-specifications">Input Specifications</a></li>
-        <li><a href="#preprocessing">Preprocessing Steps</a></li>
-        <li><a href="#output-specifications">Output Specifications</a></li>
-        <li><a href="#analysing-output">Analysing Output</a></li>
-      </ul>
-    </li>
+    <li><a href="#specifications">Specifications</a></li>
     <li><a href="#downstream-analysis">Downstream Analysis</a></li>
     <li><a href="#parameter-settings">Parameter Settings</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -139,7 +131,7 @@ The output text file contains the results of differential correlation analysis b
 - `lfdr (in cond. 1), lfdr (in cond. 2)`: Local false discovery rate (lfdr)
 - `lfdr (difference)`: Shows the significance of the difference between the correlations of Molecule X and Molecule Y under the two conditions.
 <img src="https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/ImageResouces/DiffCorr_Golub_Table.png" width="700" >
-
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- DOWNSTREAM ANALYSIS -->
 ## Downstream Analysis
 To find relationships between genes or metabolites, identify modules or clusters of co-expressed genes/metabolites, and elucidate potential biological processes or pathways involved in the studied systems, downstream analysis was performed on three different datasets
