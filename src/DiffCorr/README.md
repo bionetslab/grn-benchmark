@@ -41,9 +41,7 @@
 <!-- ABOUT THE PACKAGE -->
 ## The Package
 
-DiffCorr is a package in R that can be used to analyze and visualize Differential Correlations in Biological Networks.
-It can be seen as an initial step toward interpreting causal connections and identification of potential biomarkers.
-DiffCorr utilizes Fisher’s z-test to identify changes in correlation patterns between two data groups set in different experimental conditions. It's correlation operation is determined through Pearson’s correlation coefficient. 
+DiffCorr is a package in R that can be used to analyze and visualize Differential Correlations in Biological Networks. It can be seen as an initial step toward interpreting causal connections and identification of potential biomarkers. DiffCorr utilizes Fisher’s z-test to identify changes in correlation patterns between two data groups set in different experimental conditions. It's correlation operation is determined through Pearson’s correlation coefficient. 
 
 ### Structure
 The following bulletins describe the features, functionalities, and structure of the DiffCorr package
@@ -69,6 +67,10 @@ Before starting the project, please ensure that R Studio is installed. The imple
 
 Additionally, it would be beneficial to have Cytoscape installed for interactive visualization of the networks and for performing automated enrichment analysis.
 
+[![gProfiler][gProfiler]][gProfiler-url]
+
+gProfiler, a web server, was used inorder to perform enrichment analysis. See [Enrichment Analysis](https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/Downstream.md) for further information.
+
 ### Installation and Execution
 Please follow the steps following to make sure of a smooth installation process.
 
@@ -78,7 +80,7 @@ Please follow the steps following to make sure of a smooth installation process.
    ```
 2. Open terminal and navigate till the executable script
    ```sh
-   /grn-benchmark/src/diffcorr/Scripts/
+   /grn-benchmark/src/DiffCorr/Scripts/
    ```
 3. Run the command to execute the tool for exemplary datasets (No parameters required)
     
@@ -90,7 +92,7 @@ Please follow the steps following to make sure of a smooth installation process.
     ```js
    Rscript script_flower_leaf.R
    ```
-    Execute DiffCorr to explore the Metabolome Data of Flavonoid-Deficient Arabidopsis
+    Execute DiffCorr on the reference dataset of Macrophages and CD_8 T-cells
     ```js
    Rscript script_macro_cd8.R
    ```
@@ -110,7 +112,7 @@ Please follow the steps following to make sure of a smooth installation process.
 ### Preprocessing
 Make sure to input 2 (matrix) gene expression data which are preprocessed - normalised, filtered, non NA values
 
-For example, a series of steps had to be taken for the Arabidopsis dataset
+For example, a series of steps had to be taken for the GSE dataset
 1. Robust Multichip Average (RMA) method via the `justRMA` function from the `affy` package normalized the CEL files.
 2. The probes that do not represent biological transcripts or may have cross-hybridization issues were removed from the dataset.
 3. Genes with low expression levels and low variability across samples were filtered out using the `genefilter` package to reduces the number of targets 
@@ -122,11 +124,11 @@ For example, a series of steps had to be taken for the Arabidopsis dataset
 Tab-separated output file will be stored at `--output.path`
 
 ### Interpretation of the Output
-The output text file contains the results of differential correlation analysis by the DiffCorr package between pairs of molecules under different conditions or treatments 1 and 2, respectively.
+The output text file contains the results of pair-wise differential correlation between molecules by the DiffCorr package under different conditions or treatments.
 - `Molecule X, Molecule Y`: These columns are pairs of molecules which are correlated
-- `r1, r2`: Correlation coefficients for Molecule X and Molecule Y 
+- `r1, r2`: Correlation coefficients for condition 1 and condition 2
 - `p1, p2`: p-values for the correlation coefficients 
-- `p (difference)`: Indicates the significance of the difference between the correlations of Molecule X and Molecule Y under the two conditions.
+- `p (difference)`: signifies the difference between the correlations of Molecule X and Molecule Y under the two conditions.
 - `(r1 - r2)`: Difference in correlation coefficients 
 - `lfdr (in cond. 1), lfdr (in cond. 2)`: Local false discovery rate (lfdr)
 - `lfdr (difference)`: Shows the significance of the difference between the correlations of Molecule X and Molecule Y under the two conditions.
@@ -135,11 +137,7 @@ The output text file contains the results of differential correlation analysis b
 
 <!-- DOWNSTREAM ANALYSIS -->
 ## Downstream Analysis
-To find relationships between genes or metabolites, identify modules or clusters of co-expressed genes/metabolites, and elucidate potential biological processes or pathways involved in the studied systems, downstream analysis was performed on three different datasets
-
-1. Golub
-2. Leaf and Flower Samples
-3. Macrophages and T-cells
+To find relationships between molecules, identify highly differentially correlated molecules and elucidate potential biological processes or pathways involved in the studied systems. To exhibit this,  downstream analysis was performed on the reference dataset, Machrophages and CD_8 T-Cells
 
 See [here](https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/Downstream.md),for exhaustive notes on the downstream analysis performed.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -183,8 +181,8 @@ See [here](https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/Wi
 [R-url]: https://posit.co/downloads/
 [Cytoscape.js]: https://img.shields.io/badge/Cytoscape-FF5733?style=for-the-badge
 [cytoscape-url]: https://cytoscape.org
-[Jupyter.js]: https://img.shields.io/badge/Jupyter_Notebook-8B008B?style=for-the-badge&logo=jupyter&logoColor=white
-[jupyter-url]: https://jupyter.org
+[gProfiler]: https://img.shields.io/badge/gProfiler-8B008B?style=for-the-badge
+[gProfiler-url]: http://biit.cs.ut.ee/gprofiler/gost
 [DiffCorr.js]: https://img.shields.io/badge/DiffCorr-FFFF00?style=for-the-badge&logoColor=white
 [diffcorr-url]: https://www.sciencedirect.com/science/article/pii/S0378111912014497?ref=pdf_download&fr=RR-2&rr=877dd3089d88a040
 
