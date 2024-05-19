@@ -1,3 +1,11 @@
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rprofile
+.Rproj
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -124,3 +132,4 @@ secret.json
 
 /src/codc-cli-tool/data/network.tsv
 *.pdm-python
+
