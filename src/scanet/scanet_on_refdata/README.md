@@ -40,7 +40,7 @@ In the provided directory, you will find the following :
 
 - `network.tsv` : A tsv file which represents the two GRNs of the two module, which have the highest correlation to macrophages pretreatment and exhausted conditions.
 - `outs_scan` : A folder which has the plots of gcn and grn with/without drug candidates for the two conditions. This is not required, but I added them. 
-
+- `net.pkl` : A pickle file that include the inferred modules. It will be used later in the downstream analysis.
 ## Example
 
 To run the script with example data:
