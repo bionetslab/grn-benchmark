@@ -1,0 +1,24 @@
+
+# Start from the Rocker version 4.3.3 image
+FROM rocker/verse:4.3.3
+
+
+WORKDIR /tool
+
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        zlib1g-dev \
+        libgsl-dev   # Install the GNU Scientific Library development files
+
+# Install additional packages
+RUN R -e "install.packages('data.table')"
+RUN R -e "install.packages('BiocManager')"
+RUN R -e "BiocManager::install('MODA')"
+RUN R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")' \
+RUN R -e 'BiocManager::install(c("XVector", "Biostrings", "KEGGREST", "AnnotationDbi", "GO.db", "WGCNA", "MODA"))'
+
+
+COPY *.R /tool/
+COPY output /tool/output
+
