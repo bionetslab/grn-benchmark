@@ -69,7 +69,7 @@ In the provided output directory you will find the tsv files of the inferred grn
 Here are the output figures from the first study:
 
 ### 1. UMAP Clusters of Cell Types
-![UMAP Clusters of Cell Types](figures\umap_clasters_cell_types.png)
+![UMAP Clusters of Cell Types](figures/umap_clasters_cell_types.png)
 
 ### 2. Visualization of classical monocytes
 ![UMAP Visualization of Patient Outcomes](figures\classical_monocytes.png)
