@@ -1,3 +1,4 @@
+# install all necessary packages
 install.packages("devtools")
 devtools::install_github("arbet003/discoMod")
 install.packages("mclust")
@@ -10,16 +11,17 @@ library(devtools)
 library(multtest)
 library(mclust)
 
-data(golub)
 
+# Load Golub dataset 
 data(golub.cl)
-golub.cl
 
+# Data pre-processing
 X1 = golub[,which(golub.cl==0)] #ALL
 X2 = golub[,which(golub.cl==1)] #AML
 rownames(X1) = golub.gnames[,3]
 rownames(X2) = golub.gnames[,3]
 
+# Randomly select 200 samples
 set.seed(1234)
 ind = sample(1:nrow(X1),200)
 X1 = X1[ind,]
@@ -32,15 +34,32 @@ ngm = unlist(lapply(modules$group1_modules, ncol))
 summary(ngm)
 
 testmods = test_modules(group1_modules = modules$group1_modules, group2_modules = modules$group2_modules)
-#View(testmods$pvalues)
-#View(testmods$qvalues)
+
 
 which(testmods$pvalues$PND6 <= 0.05)
 which(testmods$qvalues$PND6 <= 0.05)
 
-
+# for correlation heatmap
 heat = corrheatmap(modules$group1_modules[[5]], modules$group2_modules[[5]])
 plot(heat$both_plots)
-plot(heat$group1_plot)
-plot(heat$group2_plot)
+#plot(heat$group1_plot)
+#plot(heat$group2_plot)
+
+#for line graph
+library(tidyr)
+library(viridis)
+library(ggplot2)
+
+graph_data = testmods$test_stats
+graph_data$module = rownames(graph_data)
+graph_data <- pivot_longer(graph_data, cols= -module, names_to = 'Test', values_to = 'Values')
+
+plot <- ggplot(data = graph_data, aes(x = Test, y = log10(Values), group= module, color= module)) +
+  geom_line() +
+  geom_point() +
+  labs(x= 'Test', y= 'Values', title = 'Plot') +
+  theme_minimal() +
+  scale_colour_viridis(discrete = TRUE)
+
+plot
 
