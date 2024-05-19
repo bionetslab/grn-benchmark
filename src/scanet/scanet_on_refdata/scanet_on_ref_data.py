@@ -4,6 +4,7 @@ import scanpy as sc
 import scanet as sn
 import argparse
 import os
+import pickle
 
 
 def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
@@ -102,6 +103,7 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
     # GCN inference
     net = sn.co.co_expression(adata_r, network_type="unsigned", cor_method="pearson", power=SFTpower, module_merging_threshold=0.8)
 
+
     # Number of genes per module.
     df_modules = sn.co.plot_modules(net, figsize=(8,4))
 
@@ -119,6 +121,11 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
     M1 = max_cor_macrophage['Modules']
     M2 = max_cor_exhausted['Modules']
 
+    var = {'net': net, 'adata_r' : adata_r}
+    # Write the inferred modules into a pickle file
+    with open('net.pkl', 'wb') as file:
+        pickle.dump(var, file)
+
     # Get the network of the first module of interest
     network_ = get_gcn_network(net, module = M1)
 
@@ -134,8 +141,7 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
 
     grn_df_final, grn_df_plot = get_grn(network_,tfs, threshold,"macrophage")
 
-    # save the grn_df as tsv
-    grn_df_final.to_csv('network_macrophage.tsv',sep='\t')
+    grn_df_final_macrophage = grn_df_final.reset_index(drop=True)
 
     plot_grn(grn_df_plot,threshold,"GRN_net_macrophages")
 
@@ -150,8 +156,12 @@ def main(input_file_1, input_file_2, output_file,num_rep_cells,threshold) :
 
     grn_df_final, grn_df_plot = get_grn(network_, tfs, threshold,"exhausted")
 
+    grn_df_final_exhausted = grn_df_final.reset_index(drop=True)
+
+    network_df = pd.concat([grn_df_final_exhausted, grn_df_final_macrophage], ignore_index=True) 
+
     # save the grn_df as tsv
-    grn_df_final.to_csv('network_exhausted.tsv',sep='\t')
+    network_df.to_csv('network.tsv',sep='\t')
 
     plot_grn(grn_df_plot,threshold,"GRN_net_exhausted")
 

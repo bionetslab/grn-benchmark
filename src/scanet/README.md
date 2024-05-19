@@ -4,7 +4,7 @@ SCANet is a Python package designed to infer gene co-expression networks, extend
 
 ## Description
 
-SCANet employs a multi-step approach to analyze single-cell gene expression data. Initially, it partitions the data into subclusters to extract representative cells.Subsequently, utilizing Spearman, Pearson, or biweight correlations, it infers Gene Co-expression Networks (GCNs). These GCNs are further analyzed to extract modules of interest, from which Gene Regulatory Networks (GRNs) are inferred. Ultimately, SCANet identifies potential drug candidates.
+SCANet offers an integrated approach to analyze single-cell gene expression data. Initially, it partitions the data into subclusters to extract representative cells.Subsequently, utilizing Spearman, Pearson, or biweight correlations, it infers Gene Co-expression Networks (GCNs). These GCNs are further analyzed to extract modules of interest, from which Gene Regulatory Networks (GRNs) are inferred. Ultimately, SCANet identifies potential drug candidates.
 
 [SCANet Paper](https://academic.oup.com/bioinformatics/article/39/11/btad644/7325353)
 
@@ -44,6 +44,7 @@ pip show scanet
 
 -  Navigate to scanet folder and replace the file `grn.py` with the modified one, which is named `grn.py` and can be found in the `Docker` folder. This is important as I have changed this file slightly (Further details provided in the `Problem with grn inference function of SCANet` section).
 
+- Please refer to the log file if you encounter any issues while running the tool.
 
 ## Examplery Execution Instructions:
 
@@ -106,6 +107,9 @@ Output is a tab-separated file `network.tsv` stored at `output path`. It contain
 - `condition`: Condition that the edge belongs to
 - `weight`: Weight of the edge, which is the correlation strength.
 
+
+`net.pkl` : A pickle file that include the inferred modules. It will be used later in the downstream analysis.
+
 ## Interpretation of the output
 
 - Nodes represent genes.
@@ -124,10 +128,10 @@ Output is a tab-separated file `network.tsv` stored at `output path`. It contain
 
 sn.grn.grn_inference(adata_processed=adata_processed,modules_df=modules_df, module=Mod_, groupby_=groupby_, anno_name=anno_name, specie=specie_, subsampling_pct=80, n_iteration=n_iteration, num_workers=num_workers)
 
-- Despite trying various parameter settings, the function consistently reports that 0 edges were found. Even when employing the provided example with the same parameters, the result remains the same.
+- Despite trying various parameter settings and on different pcs, the function consistently reports that 0 edges were found. Even when excuting the provided example with the same parameters, the result remains the same.
 
 - After some debugging, I found out that the problem is in the grn.py file, line 262. There is a problem with the multiprocessing library so the function `regulon` is never excuted. I tried to cancel the multiprocessing calling and make it nonparallel but it didn't work as the multiprocessing library is used in other multiple places in the code.
 
 - I have created an issue on the SCANet GitHub repository, accessible [here](https://github.com/oubounyt/SCANet/issues/8), and am waiting for assistance. I will contact you as soon as the matter is resolved, even if the response comes after submission.
 
-- To deal with this problem, I created the grn_df my self. Since grn_inference identifies without any issues the transcription factors within a given module, I modified the script slightly to return these transcription factors. Then, utilizing the GCN of the same module, I could get the target genes for each transcription factor. This approach allowed me to construct the grn dataframe. The modified grn.py file is uplaoded on this repo with the name `grn.py` and can be found in the `Docker` folder.
+- To deal with this problem, I created the grn_df my self. Since the function grn_inference identifies without any issues the transcription factors within a given module, I modified the script slightly to return these transcription factors. Then, utilizing the GCN of the same module, I could get the target genes for each transcription factor. This approach allowed me to construct the grn dataframe. The modified grn.py file is uplaoded on this repo with the name `grn.py` and can be found in the `Docker` folder.
