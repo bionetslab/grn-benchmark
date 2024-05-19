@@ -22,7 +22,7 @@ I worked on the same data that was used in the paper, followed the same methodol
 
 - [Cillo covid19 processed data GSE180578](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE180578) was used in the first study. You can download it directly [here](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE180nnn/GSE180578/suppl/GSE180578%5Fcillo%5Fcovid19%5Fstudy%5Faggregrated%5Fannotated%5Fdata%2Eh5ad%2Egz)
 
-- [Villus processed data GSE147319](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147319) was used in the second study. You can download it directly [here] (https://ftp.ncbi.nlm.nih.gov/geo/series/GSE147nnn/GSE147319/suppl/GSE147319%5Fadata%5Fvillus%5Fprocessed%2Eh5ad%2Egz)
+- [Villus processed data GSE147319](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147319) was used in the second study. You can download it directly [here](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE147nnn/GSE147319/suppl/GSE147319%5Fadata%5Fvillus%5Fprocessed%2Eh5ad%2Egz)
 
 ## Scripts
 
