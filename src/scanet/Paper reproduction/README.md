@@ -69,41 +69,41 @@ In the provided output directory you will find the tsv files of the inferred grn
 Here are the output figures from the first study:
 
 ### 1. UMAP Clusters of Cell Types
-![UMAP Clusters of Cell Types](umap_clasters_cell_types.png)
+![UMAP Clusters of Cell Types](figures\umap_clasters_cell_types.png)
 
 ### 2. Visualization of classical monocytes
-![UMAP Visualization of Patient Outcomes](classical_monocytes.png)
+![UMAP Visualization of Patient Outcomes](figures\classical_monocytes.png)
 
 ### 3. Bar Graph of Genes per Module
-![Bar Graph of Genes per Module](genes_per_module.png)
+![Bar Graph of Genes per Module](figures\genes_per_module.png)
 
 ### 4. Modules-Trait Correlation
-![Modules-Trait Correlation](correlation.png)
+![Modules-Trait Correlation](figures\correlation.png)
 
 ### 5.  GCN of the gene module associated with deceased patients
-![Gene Interaction Network](gcn_network_deceased.png)
+![Gene Interaction Network](figures\gcn_network_deceased.png)
 
 ### 6.  GCN of the gene module associated with survived patients
-![Gene Interaction Network](gcn_network_survived.png)
+![Gene Interaction Network](figures\gcn_network_survived.png)
 
 ### 7.  GRN of the gene module associated with deceased patients
-![Gene Interaction Network](GRN_net_deceased.png)
+![Gene Interaction Network](figures\GRN_net_deceased.png)
 
 ### 8.  GRN of the gene module associated with survived patients
-![Gene Interaction Network](GRN_net_survived.png)
+![Gene Interaction Network](figures\GRN_net_survived.png)
 
 
 
 Here are the output figures from the second study:
 
 ### 1. UMAP Clusters
-![UMAP Clusters](clusters.png)
+![UMAP Clusters](figures\clusters.png)
 
 ### 2. Modules-Trait Correlation
-![Modules-Trait Correlation](mod_trait_correlation.png)
+![Modules-Trait Correlation](figures\mod_trait_correlation.png)
 
 ### 3. GCN of the gene module associated with HFD_ISC + Drug candidates
-![GCN of the gene module associated with HFD_ISC + Drug candidates](GCN_net_HFD_ISC+drug.png)
+![GCN of the gene module associated with HFD_ISC + Drug candidates](figures\GCN_net_HFD_ISC+drug.png)
 
 ### 4. GRN of the gene module associated with HFD_ISC
-![GRN of the gene module associated with HFD_ISC](GRN_net_HFD_ISC.png)
+![GRN of the gene module associated with HFD_ISC](figures\GRN_net_HFD_ISC.png)
