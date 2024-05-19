@@ -106,6 +106,9 @@ Output is a tab-separated file `network.tsv` stored at `output path`. It contain
 - `condition`: Condition that the edge belongs to
 - `weight`: Weight of the edge, which is the correlation strength.
 
+
+`net.pkl` : A pickle file that include the inferred modules. It will be used later in the downstream analysis.
+
 ## Interpretation of the output
 
 - Nodes represent genes.
