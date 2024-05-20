@@ -4,10 +4,10 @@ This study focuses on a scientific study by [Arbet et al.](https://www.frontiers
 Here, I attempted to reimplement the [`discoMod`](https://github.com/arbet003/discoMod) and further applied downstream analysis to it.
 
  ## Methodology
-The methodology for analyzing gene networks using Differential Network Analysis (DiNA) is elaborated [here.](methodology.md)
+The methodology for analyzing gene networks through Differential Network Analysis (DiNA) is detailed [here.](methodology.md)
 
 ### Hyperparameters:
-The parameters for the methodology are given [here.](hyperparameters.md)
+The parameters for this methodology are provided [here.](hyperparameters.md)
 
 
 ##  Documentation of Discomod Library
