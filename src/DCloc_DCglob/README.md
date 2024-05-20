@@ -72,12 +72,12 @@ chmod +x example_script.sh
 
 - local topology analysis
 ```
-Rscript dcloc_dcglob.R -c ../../reference_datasets/full_input/out_CD8_exhausted.tsv -d ../../reference_datasets/full_input/out_Macrophages.tsv -o . --local --dthresh 0.25 --corrthresh 0.5
+Rscript dcloc_dcglob.R -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --local --dthresh 0.25 --corrthresh 0.5
 ```
 
 - global topology analysis
 ```
-Rscript dcloc_dcglob.R -c ../../reference_datasets/full_input/out_CD8_exhausted.tsv -d ../../reference_datasets/full_input/out_Macrophages.tsv -o . --global --pthresh 0.1 --corrthresh 0.5
+Rscript dcloc_dcglob.R -c -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --global --pthresh 0.1 --corrthresh 0.5
 ```
 
 
@@ -149,7 +149,7 @@ The output contains:
 - With conda environment:
 
 ```
-Rscript downstream_analysis.R -c out_CD8_exhausted.tsv -d out_Macrophages.tsv -o .  --dthresh 0.21 --pthresh 0.1 --corrthresh 0.5 --dcloc.output dcloc_output.tsv --dcglob.output dcglob_output.tsv 
+Rscript downstream_analysis.R-c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --dthresh 0.21 --pthresh 0.1 --corrthresh 0.5 --dcloc.output dcloc_output.tsv --dcglob.output dcglob_output.tsv 
 ```
 
 ###  Input file format specification:
@@ -205,7 +205,7 @@ a repeated random subsampling analysis was introduced by Bockmayr et. al. The sc
 
 #### With conda environment:
 ```
-Rscript false_discovery_rate_estimation.R -c out_CD8_exhausted.tsv -d out_Macrophages.tsv  -o .  --dthresh 0.25 --pthresh 0.1 --n.samples 100 --n.repetitions 100
+Rscript false_discovery_rate_estimation.R -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output  --dthresh 0.25 --pthresh 0.1 --n.samples 100 --n.repetitions 100
 ```
 
 ###  Input file format specification:
