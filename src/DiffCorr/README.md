@@ -88,7 +88,11 @@ Please follow the steps following to make sure of a smooth installation process.
    ``` 
 4. Navigate till the executable script
    ```sh
-   /grn-benchmark/src/DiffCorr/Scripts/
+   cd /grn-benchmark/src/DiffCorr/Scripts/
+   ```
+5. Execute the installion file
+   ```sh
+   Rscript installation.R
    ```
 5. Run the command to execute the tool for exemplary datasets (No parameters required)
     
