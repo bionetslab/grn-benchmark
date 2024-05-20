@@ -1,19 +1,10 @@
-# Installing the DiffCorr Package
-install.packages("BiocManager")
-BiocManager::install("http://bioconductor.org/biocLite.R")
-BiocManager::install(c("pcaMethods", "multtest"), force = TRUE)
-BiocManager::install("GEOquery", force = TRUE)
-BiocManager::install("affy", force = TRUE)
-BiocManager::install("genefilter", force = TRUE)
-BiocManager::install("GOstats", force = TRUE)
-BiocManager::install("ath1121501.db", force = TRUE)
-install.packages("spatstat", force = TRUE)
-install.packages("igraph", force = TRUE)
-
-library(DiffCorr)
-library("GEOquery")
+# Load necessary packages
 library(affy)
 library(genefilter)
+library(igraph)
+library(spatstat)
+library(cluster)
+library(DiffCorr)
 
 # Downloading the Transcriptome Data set
 data <- getGEOSuppFiles("GSE5632") 
