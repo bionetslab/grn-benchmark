@@ -1,13 +1,4 @@
-# Load required libraries
-install.packages("BiocManager")
-BiocManager::install(c("pcaMethods", "multtest"), force = TRUE)
-BiocManager::install("GEOquery", force = TRUE)
-BiocManager::install("affy", force = TRUE)
-BiocManager::install("genefilter", force = TRUE)
-BiocManager::install("GOstats", force = TRUE)
-BiocManager::install("ath1121501.db", force = TRUE)
-install.packages("spatstat", force = TRUE)
-install.packages("igraph", force = TRUE)
+# Load necessary packages
 library(affy)
 library(genefilter)
 library(igraph)
@@ -16,7 +7,7 @@ library(cluster)
 library(DiffCorr)
 
 # Define the function
-process_datasets <- function(input_file1, input_file2, output_file) {
+script_arbitrary <- function(input_file1, input_file2, output_file) {
   # Read the data into R
   eset_macro <- read.table(input_file1, header = TRUE, sep = "\t")
   row.names(eset_macro) <- eset_macro[, 1]
@@ -53,8 +44,10 @@ process_datasets <- function(input_file1, input_file2, output_file) {
   comp.2.cc.fdr(output.file = output_file, data2[, 1:100], data2[, 101:200], threshold = 0.05)
 }
 
+# Retrieve command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
+# Check if the correct number of arguments are provided
 if (length(args) != 3) {
   stop("Usage: Rscript script_name.R input_file1 input_file2 output_file")
 }
@@ -65,4 +58,4 @@ input_file2 <- args[2]
 output_file <- args[3]
 
 # Call the function with command-line arguments
-process_datasets(input_file1, input_file2, output_file)
+script_arbitrary(input_file1, input_file2, output_file)
