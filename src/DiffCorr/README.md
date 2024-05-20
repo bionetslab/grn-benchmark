@@ -158,6 +158,13 @@ See [here](https://github.com/bionetslab/grn-benchmark/blob/main/src/DiffCorr/Wi
     - [x] Scripting for Arbitrary datasets
 - [x] Downstream Analysis
 
+### Project Structure
+- `Docker_Files/` contain the Dockerfile require to build and run a container
+- `ImageResources/` contain all the images used in the README and other Wikis
+- `R/` contains all the subfolders which was run for each dataset along with their results
+- `Scripts/` have all the runnable scripts for the datasets and arbitrary data as well
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
