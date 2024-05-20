@@ -77,7 +77,7 @@ Rscript dcloc_dcglob.R -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv
 
 - global topology analysis
 ```
-Rscript dcloc_dcglob.R -c -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --global --pthresh 0.1 --corrthresh 0.5
+Rscript dcloc_dcglob.R -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --global --pthresh 0.1 --corrthresh 0.5
 ```
 
 
@@ -149,7 +149,7 @@ The output contains:
 - With conda environment:
 
 ```
-Rscript downstream_analysis.R-c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --dthresh 0.21 --pthresh 0.1 --corrthresh 0.5 --dcloc.output dcloc_output.tsv --dcglob.output dcglob_output.tsv 
+Rscript downstream_analysis.R -c data/out_CD8_exhausted.tsv -d data/out_Macrophages.tsv -o output --dthresh 0.21 --pthresh 0.1 --corrthresh 0.5 --dcloc.output output/dcloc_output.tsv --dcglob.output output/dcglob_output.tsv 
 ```
 
 ###  Input file format specification:
