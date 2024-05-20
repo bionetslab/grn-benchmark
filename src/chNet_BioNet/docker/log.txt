@@ -1,0 +1,1097 @@
+ F:\FAU\Semester 4\chNet_BioNet\docker> docker build -t r-scripts .
+[+] Building 0.0s (0/0)  docker:default
+2024/05/11 19:32:35 http2: server: error reading preface from client //./pipe/docker_engine: file has already been close[+] Building 653.5s (23/23) FINISHED                                                                     docker:default
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 1.67kB                                                                             0.0s
+ => [internal] load metadata for docker.io/rocker/verse:4.3.3                                                      1.7s
+ => [internal] load .dockerignore                                                                                  0.0s
+ => => transferring context: 2B                                                                                    0.0s
+ => [internal] load build context                                                                                  0.0s
+ => => transferring context: 3.17kB                                                                                0.0s
+ => [ 1/18] FROM docker.io/rocker/verse:4.3.3@sha256:3dfb501c8732a2809ef6b7effb6cdca9bd04a3dab75fb24880314d502eea  0.0s
+ => CACHED [ 2/18] WORKDIR /usr/src/app                                                                            0.0s
+ => CACHED [ 3/18] RUN apt-get update     && apt-get install -y --no-install-recommends         libcurl4-gnutls-d  0.0s
+ => CACHED [ 4/18] RUN R -e "install.packages('data.table', dependencies = TRUE)"                                  0.0s
+ => CACHED [ 5/18] RUN R -e "install.packages('igraph', dependencies = TRUE)"                                      0.0s
+ => CACHED [ 6/18] RUN R -e "install.packages('mvtnorm', dependencies = TRUE)"                                     0.0s
+ => CACHED [ 7/18] RUN R -e "install.packages('glmnet', dependencies = TRUE)"                                      0.0s
+ => CACHED [ 8/18] RUN R -e "install.packages('ggplot2', dependencies = TRUE)"                                     0.0s
+ => CACHED [ 9/18] RUN R -e "install.packages('corrplot', dependencies = TRUE)"                                    0.0s
+ => [10/18] RUN R -e "install.packages('pheatmap', dependencies = TRUE)"                                           4.2s
+ => [11/18] RUN R -e "install.packages('RColorBrewer', dependencies = TRUE)"                                       4.5s
+ => [12/18] RUN R -e "install.packages('reshape2', dependencies = TRUE)"                                           6.3s
+ => [13/18] RUN R -e "install.packages('gridExtra', dependencies = TRUE)"                                          6.9s
+ => [14/18] RUN R -e "install.packages('plotly', dependencies = TRUE)"                                            53.2s
+ => [15/18] RUN R -e "install.packages('BiocManager')"     && R -e "BiocManager::install(c('XVector', 'Biostrin  532.2s
+ => [16/18] RUN R -e "install.packages('devtools', dependencies = TRUE)"     && R -e "devtools::install_github('  39.0s
+ => [17/18] COPY *.R /usr/src/app/                                                                                 0.1s
+ => [18/18] COPY output /usr/src/app/output                                                                        0.2s
+ => exporting to image                                                                                             4.8s
+ => => exporting layers                                                                                            4.7s
+ => => writing image sha256:73522fa579eabb48ebeadafd2860101a2a3899fb083cfc0b666dd31b2958b59c                       0.0s
+ => => naming to docker.io/library/r-scripts                                                                       0.0s
+
+What's Next?
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" r-scripts Rscript input_output.R internal "TCGA.BRCA" "output/input_output" "TCGA_BRCA_network.tsv"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "Network file saved to output/input_output/TCGA_BRCA_network.tsv"
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" r-scripts Rscript input_output.R internal "GSE13159.AML" "output/input_output" "GSE13159.AML_network.tsv"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "Network file saved to output/input_output/GSE13159.AML_network.tsv"
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" -v "${PWD}/reference_datasets:/usr/src/app/reference_datasets" r-scripts Rscript input_output.R external "reference_datasets/500_genes/out_CD8_exhausted.tsv" "reference_datasets/500_genes/out_Macrophages.tsv" "output/input_output" "gene500_network.tsv"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "Network file saved to output/input_output/gene500_network.tsv"
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" -v "${PWD}/reference_datasets:/usr/src/app/reference_datasets" r-scripts Rscript input_output.R external "reference_datasets/1000_genes/out_CD8_exhausted.tsv" "reference_datasets/1000_genes/out_Macrophages.tsv" "output/input_output" "gene1000_network.tsv"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "Network file saved to output/input_output/gene1000_network.tsv"
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" r-scripts Rscript downstream.R internal "TCGA.BRCA" "Basal" "LumA" "output/downstream/TCGA.BRCA" "TCGA.BRCA"
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:circlize’:
+
+    degree
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+
+clusterProfiler v4.10.1  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+
+If you use clusterProfiler in published research, please cite:
+T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
+
+Attaching package: ‘clusterProfiler’
+
+The following object is masked from ‘package:igraph’:
+
+    simplify
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:igraph’:
+
+    normalize, path, union
+
+The following object is masked from ‘package:gridExtra’:
+
+    combine
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    rename
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    slice
+
+
+Attaching package: ‘AnnotationDbi’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    select
+
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:AnnotationDbi’:
+
+    select
+
+The following object is masked from ‘package:IRanges’:
+
+    slice
+
+The following object is masked from ‘package:S4Vectors’:
+
+    rename
+
+The following object is masked from ‘package:igraph’:
+
+    groups
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    add_heatmap
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+'select()' returned 1:1 mapping between keys and columns
+Warning messages:
+1: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+2: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+3: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" r-scripts Rscript downstream.R internal "GSE13159.AML" "cancer" "normal" "output/downstream/GSE13159.AML" "GSE13159.AML"
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:circlize’:
+
+    degree
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+
+clusterProfiler v4.10.1  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+
+If you use clusterProfiler in published research, please cite:
+T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
+
+Attaching package: ‘clusterProfiler’
+
+The following object is masked from ‘package:igraph’:
+
+    simplify
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:igraph’:
+
+    normalize, path, union
+
+The following object is masked from ‘package:gridExtra’:
+
+    combine
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    rename
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    slice
+
+
+Attaching package: ‘AnnotationDbi’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    select
+
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:AnnotationDbi’:
+
+    select
+
+The following object is masked from ‘package:IRanges’:
+
+    slice
+
+The following object is masked from ‘package:S4Vectors’:
+
+    rename
+
+The following object is masked from ‘package:igraph’:
+
+    groups
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    add_heatmap
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+'select()' returned 1:1 mapping between keys and columns
+Warning messages:
+1: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+2: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+3: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" -v "${PWD}/reference_datasets:/usr/src/app/reference_datasets" r-scripts Rscript downstream.R external "reference_datasets/500_genes/out_CD8_exhausted.tsv" "reference_datasets/500_genes/out_Macrophages.tsv" "CD8_exhausted" "Macrophages" "output/downstream/500_genes" "gene500"
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:circlize’:
+
+    degree
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+
+clusterProfiler v4.10.1  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+
+If you use clusterProfiler in published research, please cite:
+T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
+
+Attaching package: ‘clusterProfiler’
+
+The following object is masked from ‘package:igraph’:
+
+    simplify
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:igraph’:
+
+    normalize, path, union
+
+The following object is masked from ‘package:gridExtra’:
+
+    combine
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    rename
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    slice
+
+
+Attaching package: ‘AnnotationDbi’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    select
+
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:AnnotationDbi’:
+
+    select
+
+The following object is masked from ‘package:IRanges’:
+
+    slice
+
+The following object is masked from ‘package:S4Vectors’:
+
+    rename
+
+The following object is masked from ‘package:igraph’:
+
+    groups
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    add_heatmap
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+'select()' returned 1:1 mapping between keys and columns
+Warning messages:
+1: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+2: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+3: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+null device
+          1
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" -v "${PWD}/reference_datasets:/usr/src/app/reference_datasets" r-scripts Rscript downstream.R external "reference_datasets/1000_genes/out_CD8_exhausted.tsv" "reference_datasets/1000_genes/out_Macrophages.tsv" "CD8_exhausted" "Macrophages" "output/downstream/1000_genes" "gene1000"
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:circlize’:
+
+    degree
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+
+clusterProfiler v4.10.1  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+
+If you use clusterProfiler in published research, please cite:
+T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. The Innovation. 2021, 2(3):100141
+
+Attaching package: ‘clusterProfiler’
+
+The following object is masked from ‘package:igraph’:
+
+    simplify
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:igraph’:
+
+    normalize, path, union
+
+The following object is masked from ‘package:gridExtra’:
+
+    combine
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    rename
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    slice
+
+
+Attaching package: ‘AnnotationDbi’
+
+The following object is masked from ‘package:clusterProfiler’:
+
+    select
+
+
+
+Attaching package: ‘plotly’
+
+The following object is masked from ‘package:AnnotationDbi’:
+
+    select
+
+The following object is masked from ‘package:IRanges’:
+
+    slice
+
+The following object is masked from ‘package:S4Vectors’:
+
+    rename
+
+The following object is masked from ‘package:igraph’:
+
+    groups
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    add_heatmap
+
+The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+The following object is masked from ‘package:stats’:
+
+    filter
+
+The following object is masked from ‘package:graphics’:
+
+    layout
+
+'select()' returned 1:1 mapping between keys and columns
+Error: elements in `col` should be named vectors.
+In addition: Warning messages:
+1: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+2: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+3: Use of `top_df$Count` is discouraged.
+ℹ Use `Count` instead.
+Execution halted
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" r-scripts Rscript replicate.R internal "TCGA.BRCA" "Basal" "LumA" "output/replicate/TCGA.BRCA" "TCGA.BRCA"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘circlize’
+
+The following object is masked from ‘package:igraph’:
+
+    degree
+
+
+Attaching package: ‘pheatmap’
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    pheatmap
+
+$rect
+$rect$w
+[1] 0.6544926
+
+$rect$h
+[1] 0.2649767
+
+$rect$left
+[1] 0.6173958
+
+$rect$top
+[1] 1.1394
+
+
+$text
+$text$x
+[1] 0.7498842 0.7498842
+
+$text$y
+[1] 1.0510744 0.9627488
+
+
+[1] "ESR1"  "IGF1R" "LEF1"  "RB1"
+null device
+          1
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" r-scripts Rscript replicate.R internal "GSE13159.AML" "cancer" "normal" "output/replicate/GSE13159.AML" "GSE13159.AML"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘circlize’
+
+The following object is masked from ‘package:igraph’:
+
+    degree
+
+
+Attaching package: ‘pheatmap’
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    pheatmap
+
+$rect
+$rect$w
+[1] 0.6544926
+
+$rect$h
+[1] 0.2649767
+
+$rect$left
+[1] 0.6173958
+
+$rect$top
+[1] 1.1394
+
+
+$text
+$text$x
+[1] 0.7498842 0.7498842
+
+$text$y
+[1] 1.0510744 0.9627488
+
+
+[1] "FNIP2"  "PIK3CB" "RICTOR" "SEH1L"  "TSC2"
+null device
+          1
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" -v "${PWD}/reference_datasets:/usr/src/app/reference_datasets" r-scripts Rscript replicate.R external "reference_datasets/500_genes/out_CD8_exhausted.tsv" "reference_datasets/500_genes/out_Macrophages.tsv" "CD8_exhausted" "Macrophages" "output/replicate/500_genes" "gene500"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘circlize’
+
+The following object is masked from ‘package:igraph’:
+
+    degree
+
+
+Attaching package: ‘pheatmap’
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    pheatmap
+
+[1] "ESR1"  "IGF1R" "LEF1"  "RB1"
+null device
+          1
+PS F:\FAU\Semester 4\chNet_BioNet\docker> docker run -v "${PWD}/output:/usr/src/app/output" -v "${PWD}/reference_datasets:/usr/src/app/reference_datasets" r-scripts Rscript replicate.R external "reference_datasets/1000_genes/out_CD8_exhausted.tsv" "reference_datasets/1000_genes/out_Macrophages.tsv" "CD8_exhausted" "Macrophages" "output/replicate/1000_genes" "gene1000"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+corrplot 0.92 loaded
+Loading required package: grid
+========================================
+ComplexHeatmap version 2.18.0
+Bioconductor page: http://bioconductor.org/packages/ComplexHeatmap/
+Github page: https://github.com/jokergoo/ComplexHeatmap
+Documentation: http://jokergoo.github.io/ComplexHeatmap-reference
+
+If you use it in published research, please cite either one:
+- Gu, Z. Complex Heatmap Visualization. iMeta 2022.
+- Gu, Z. Complex heatmaps reveal patterns and correlations in multidimensional
+    genomic data. Bioinformatics 2016.
+
+
+The new InteractiveComplexHeatmap package can directly export static
+complex heatmaps into an interactive Shiny app with zero effort. Have a try!
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(ComplexHeatmap))
+========================================
+
+========================================
+circlize version 0.4.16
+CRAN page: https://cran.r-project.org/package=circlize
+Github page: https://github.com/jokergoo/circlize
+Documentation: https://jokergoo.github.io/circlize_book/book/
+
+If you use it in published research, please cite:
+Gu, Z. circlize implements and enhances circular visualization
+  in R. Bioinformatics 2014.
+
+This message can be suppressed by:
+  suppressPackageStartupMessages(library(circlize))
+========================================
+
+
+Attaching package: ‘circlize’
+
+The following object is masked from ‘package:igraph’:
+
+    degree
+
+
+Attaching package: ‘pheatmap’
+
+The following object is masked from ‘package:ComplexHeatmap’:
+
+    pheatmap
+
+[1] "MTRNR2L8" "BAZ1A"    "GAPDH"    "PHF5A"
+null device
+          1
+PS F:\FAU\Semester 4\chNet_BioNet\docker>
