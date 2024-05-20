@@ -74,7 +74,15 @@ function magic_tool(input_file1, input_file2, output_path,varargin)
     % store gene names
     geneNames = input1{:,1};
     
-    input2_Excl.Properties.VariableNames = strrep(input2_Excl.Properties.VariableNames, "Hackathon_April2024", '');
+    % To handle identical VariableNames/sample names across the two gene
+    % expression data inputs: hash functions
+    % prefix and sequential numbers for VariableNames using hash funct
+    numVars = width(input2_Excl);
+    prefix = 'var_';
+    uniqueIDs = arrayfun(@(x) sprintf('%d', x), 1:numVars, 'UniformOutput', false);
+    hashedNames = strcat(prefix, uniqueIDs);
+    input2_Excl.Properties.VariableNames = hashedNames;
+    
     total_data = [input1, input2_Excl];
     %combine tables to match data matrix required by MAGIC function
     data_matrix = double(total_data{:, 2:end});

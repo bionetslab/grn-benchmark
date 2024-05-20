@@ -2,18 +2,19 @@ Tool name: MATLAB Tool for Modulated Gene/Gene Set Interaction (MAGIC) Analysis
 function url:  https://github.com/chenlabgccri/MAGIC/tree/master
 
 Input: 
-	- DATA:
-	- GROUP:
-	- BONF:
-	- EQU_SAM_SIZE:
-	- P_CUTOFF:
-	- MOD_SCORE_CUTOFF:
-	- OUTPUT_FILENAME:
+	- DATA: gene expression data, KxN numeric matrix where K is number of genes (or gene sets) and N is number of samples
+	- GROUP: binary vector where 0 implies one condition and 1 implies another, N-length vector for N samples
+	- BONF: flag, set to 1 for Bonferroni correction for multiple testing, set to 0 for raw p-value analysis
+	- EQU_SAM_SIZE: sample size for comparing correlation coefficients, recommended to be set as average of number of samples for each condition
+	- P_CUTOFF: p-value threshold, recommended 0.05
+	- MOD_SCORE_CUTOFF: biological significance threshold, recommended 0.6
+	- OUTPUT_FILENAME: desired string for TXT file that will be generated
+
 Output: 
-	- P1
-	- P0
-	- MOD_SCORE
-	- ADJ_MAT
+	- P1: p-value elements from modulation test, KxK symmetric matrix where K is number of genes. P1 values below p_cutoff imply strong correlation in Condition 2 samples
+	- P0: KxK symmetric matrix where K is number of genes. P0 values below p_cutoff imply strong correlation in Condition 2 samples
+	- MOD_SCORE: KxK symmetric matrix containing modulation scores for each pair. Larger scores imply stronger correlation in Condition 2 samples
+	- ADJ_MAT: KxK symmetric matrix which is the adjacency matrix of the generated network. Non-zero denote the type of interaction between a pair. 
 	
 Dependencies: -
 Installation commands: -
