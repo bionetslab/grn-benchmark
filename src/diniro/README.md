@@ -160,3 +160,6 @@ Output is a tab-separated file `network.tsv` stored at `output path`. It contain
 
 - The author of the paper published a pdf file `Supplementary file 1` have some guidelines about choosing parameters. It will be provided in the repo in `Additional Files`
 
+## Problems with the code
+- Errors faced are mentioned in log.txt
+- I have contacted the author of the tool for the latest source code which works on the live version of the website but I didn't have a reply yet.
