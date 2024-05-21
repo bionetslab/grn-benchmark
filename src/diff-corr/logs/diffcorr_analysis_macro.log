@@ -1,0 +1,8 @@
+[2024-05-21 20:12:39.62938] Calling process_datasets function
+[2024-05-21 20:12:41.14683] Reading the data
+[2024-05-21 20:12:41.193186] Clustering on each subset
+[2024-05-21 20:12:41.213274] Getting eigen molecules
+[2024-05-21 20:12:41.821441] Visualizing module networks
+[2024-05-21 20:12:41.865219] Exporting the results (FDR < 0.05)
+[2024-05-21 20:12:42.075201] DiffCorr analysis completed
+[2024-05-21 20:12:42.075514] process_datasets function completed successfully
