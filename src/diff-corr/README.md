@@ -78,25 +78,26 @@ Please follow the steps following to make sure of a smooth installation process.
    ```sh
    git clone https://github.com/bionetslab/grn-benchmark.git
    ```
-2. Place the Dockerfile from the Docker_Files folder to the folder where the script is executing and build Docker container
+2. Navigate till the executable scripts
+   ```sh
+   cd /grn-benchmark/src/diff-corr/scripts/
+   ```
+3. Build Docker container
     ```sh
    docker build -t diffcorr .
    ```
-3. Run the docker image
+4. Run the docker image
     ```sh
    docker run --rm -it diffcorr bash
    ``` 
-4. Navigate till the executable script
-   ```sh
-   cd /grn-benchmark/src/DiffCorr/Scripts/
-   ```
 5. Execute the installion file
    ```sh
    Rscript installation.R
    ```
-5. Run the command to execute the tool for exemplary datasets (No parameters required)
-    
-    Execute DiffCorr on the Golub dataset which contains ALL and AML conditions
+6. Run the command to execute the tool for exemplary datasets (No parameters required)
+   > _Preferably keep the datasets files in the scripts/ folder_
+
+   Execute DiffCorr on the Golub dataset which contains ALL and AML conditions
    ```js
    Rscript script_all_aml.R
    ```
