@@ -258,13 +258,13 @@ This study introduces an advanced differential network analysis method designed 
 
 <table>
   <tr>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/Difference_of_Partial_Correlation_gene500.png" alt="Difference of Partial Correlation" width="300"/></td>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/Differential_network_graph_gene500.png" alt="Differential Network Graph" width="300"/></td>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/Hub_genes_boxplot_gene500.png" alt="Hub Genes Boxplot" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/Difference_of_Partial_Correlation_gene500.png" alt="Difference of Partial Correlation" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/Differential_network_graph_gene500.png" alt="Differential Network Graph" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/Hub_genes_boxplot_gene500.png" alt="Hub Genes Boxplot" width="300"/></td>
   </tr>
   <tr>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/Expression_data_CD8_exhausted_gene500.png" alt="Expression Data CD8 Exhausted" width="300"/></td>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/Expression_data_Macrophages_gene500.png" alt="Expression Data Macrophages" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/Expression_data_CD8_exhausted_gene500.png" alt="Expression Data CD8 Exhausted" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/Expression_data_Macrophages_gene500.png" alt="Expression Data Macrophages" width="300"/></td>
   </tr>
 </table>
 
@@ -284,13 +284,13 @@ This comprehensive visualization (Figure 1) captures the essence of differential
 ### Figure 2: Down Stream Analysis
 <table>
   <tr>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/network_clustering_gene500.png" alt="Network Clustering" width="300"/></td>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/network_histogram_gene500.png" alt="Network Histogram" width="300"/></td>
-    <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/hub_gene_correlation_gene500.png" alt="Hub Gene Correlation" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/network_clustering_gene500.png" alt="Network Clustering" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/network_histogram_gene500.png" alt="Network Histogram" width="300"/></td>
+    <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/hub_gene_correlation_gene500.png" alt="Hub Gene Correlation" width="300"/></td>
   </tr>
   <tr>
-  <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/hub_gene_boxplot_gene500.png" alt="Hub Gene Expression Boxplot" width="300"/></td>
-  <td><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/hub_gene_heatmap_gene500.png" alt="Hub Gene Heatmap" width="300"/></td>
+  <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/hub_gene_boxplot_gene500.png" alt="Hub Gene Expression Boxplot" width="300"/></td>
+  <td><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/hub_gene_heatmap_gene500.png" alt="Hub Gene Heatmap" width="300"/></td>
   </tr>
 </table>
 
@@ -316,7 +316,7 @@ The bottom-right heatmap illustrates the **expression levels** of significant ge
 ### Figure 3: Gene Antology Enrichment
 <table>
  <tr>
-      <td colspan="2"><img src="https://github.com/bionetslab/grn-benchmark/tree/main/src/chNet_BioNet/documents/pics/gene_ontology_enrichment_gene500.png" alt="Gene Ontology Enrichment" width="600"/></td>
+      <td colspan="2"><img src="https://github.com/bionetslab/grn-benchmark/src/chNet_BioNet/documents/pics/gene_ontology_enrichment_gene500.png" alt="Gene Ontology Enrichment" width="600"/></td>
   </tr>
 </table>
 
