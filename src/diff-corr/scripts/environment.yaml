@@ -1,0 +1,38 @@
+name: diffcorr_project
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.1.0  
+  - r-affy
+  - r-genefilter
+  - r-igraph
+  - r-spatstat
+  - r-cluster
+  - r-diffcorr
+  - r-rstudioapi
+  - r-optparse
+  - r-pcamethods
+  - r-multtest
+  - r-geoquery
+  - r-gostats
+  - r-ath1121501.db
+  - r-biocmanager
+  - r-wgcna
+  - r-impute
+  - r-preprocesscore
+  - r-minet
+  - r-org.mm.eg.db
+  - r-clusterprofiler
+  - r-org.dm.eg.db
+  - r-annotationdbi
+  - r-enrichplot
+  - r-pbapply
+  - r-dplyr
+  - r-readr
+  - r-tidyr
+  - r-ggplot2
+  - libxml2
+  - libcurl
+  - pandoc
