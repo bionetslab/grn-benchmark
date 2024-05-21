@@ -1,0 +1,1708 @@
+{% load static %} {% load static %} {% load crispy_forms_tags %}
+{% load rtags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117917519-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-117917519-1');
+    </script>
+    <title>DiNiro</title>
+    <link rel="stylesheet" href="{% rstatic 'test_interface/rc-slider@6.1.2.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-select@1.0.0-rc.3.min.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-virtualized@9.9.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-virtualized-select@3.1.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-dates@12.3.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/STREAM.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/Loading-State.css' %}">
+    <script src="{% rstatic 'test_interface/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% rstatic 'test_interface/css/all.css' %}">
+
+
+    <style>
+        .wider-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        @media (min-width: 576px) {
+            .wider-container {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .wider-container {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .wider-container {
+                max-width: 960px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .wider-container {
+                max-width: 1140px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .wider-container {
+                max-width: 1370px;
+            }
+        }
+
+        @media (min-width: 1850px) {
+            .wider-container {
+                max-width: 1800px;
+            }
+        }
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+        }
+        .wrappermain {
+            flex: 1 0 auto;
+            margin-bottom: 100px;
+            margin-top: 0px;
+
+        }
+       li {
+            display: inline;
+       }
+      .active1 {
+          color: #7d7d7d;
+          float: left;
+          padding: 0px;
+          {#color: #9d9d9d;#}
+          text-decoration: none !important;
+          font-size: 25px;
+          position: relative;
+          right: 0mm;
+          border: 0px solid #73AD21;
+
+      }
+      .active2 {
+          float: right;
+          padding: 0px;
+          color: white;
+          margin-top: 6px;
+          text-decoration: none !important;
+          font-size: 18px;
+          position: relative;
+          left: 0mm;
+          margin-right: 0mm;
+          border: 0px solid #73AD21;
+      }
+      .active22, .btn22:hover {
+          color: #FFFFFF;
+          text-decoration: none !important;
+      }
+    .stepwizard-step p {
+    margin-top: 0px;
+    color:#666;
+    }
+    .stepwizard-row {
+        display: table-row;
+    }
+    .stepwizard {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+    .stepwizard-step button[disabled] {
+        /*opacity: 1 !important;
+        filter: alpha(opacity=100) !important;*/
+    }
+    .stepwizard .btn.disabled, .stepwizard .btn[disabled], .stepwizard fieldset[disabled] .btn {
+        opacity:1 !important;
+        color:#bbb;
+    }
+    .stepwizard-row:before {
+        top: 28px;
+        bottom: 0;
+        position: absolute;
+        content:" ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        z-index: 0;
+    }
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+    .btn-circle {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 24px;
+        line-height: 1.428571429;
+        border-radius: 30px;
+    }
+        .wrapper {
+          -webkit-transform: translateZ(0); /* webkit flicker fix */
+          -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+        }
+
+        .wrapper .tooltip {
+          background: #1496bb;
+          bottom: 100%;
+          color: #fff;
+          display: block;
+          left: -25px;
+          margin-bottom: 15px;
+          opacity: 0;
+          padding: 20px;
+          pointer-events: none;
+          position: absolute;
+          width: 100%;
+          -webkit-transform: translateY(10px);
+             -moz-transform: translateY(10px);
+              -ms-transform: translateY(10px);
+               -o-transform: translateY(10px);
+                  transform: translateY(10px);
+          -webkit-transition: all .25s ease-out;
+             -moz-transition: all .25s ease-out;
+              -ms-transition: all .25s ease-out;
+               -o-transition: all .25s ease-out;
+                  transition: all .25s ease-out;
+          -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+             -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+              -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+               -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+                  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+        }
+
+        /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+        .wrapper .tooltip:before {
+          bottom: -20px;
+          content: " ";
+          display: block;
+          height: 20px;
+          left: 0;
+          position: absolute;
+          width: 100%;
+        }
+
+        /* CSS Triangles - see Trevor's post */
+        .wrapper .tooltip:after {
+          border-left: solid transparent 10px;
+          border-right: solid transparent 10px;
+          border-top: solid #1496bb 10px;
+          bottom: -10px;
+          content: " ";
+          height: 0;
+          left: 50%;
+          margin-left: -13px;
+          position: absolute;
+          width: 0;
+        }
+
+        .wrapper:hover .tooltip {
+          opacity: 1;
+          pointer-events: auto;
+          -webkit-transform: translateY(0px);
+             -moz-transform: translateY(0px);
+              -ms-transform: translateY(0px);
+               -o-transform: translateY(0px);
+                  transform: translateY(0px);
+        }
+
+        /* IE can just show/hide with no transition */
+        .lte8 .wrapper .tooltip {
+          display: none;
+        }
+
+        .lte8 .wrapper:hover .tooltip {
+          display: block;
+        }
+
+        .ttp {
+        }
+        .ttp[tt]:hover:after {
+          content: attr(tt);
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: 0px;
+          left: 0px;
+          width: 200px;
+          z-index: 1;
+          padding-bottom: 10px;
+          padding-top: 10px;
+          background-color: #faaca7;
+          text-align: center;
+          border-radius: 4px;
+          color: black;
+          font-family: 'Ubuntu'!important;
+        }
+    .act {
+        text-align: initial;
+        border-style: solid;
+        border-width: 1mm;
+        border-color: deepskyblue;
+        min-width: 50%;
+        background-color: deepskyblue;
+        border-radius: 2px;
+        margin-right: 0px;
+        color: white
+    }
+    .pas {
+        min-width: 50%;
+        background-color: white;
+        border-radius: 2px;
+        color: #33C3F0;
+        border-style: solid;
+        border-width: 1mm;
+        border-color: deepskyblue;
+    }
+    .card1 {
+      box-shadow: 5px 7px 9px 5px rgba(0,0,0,0.4);
+      #box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.8);
+      transition: 0s;
+      width: 100%;
+    }
+    .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+    }
+
+    </style>
+
+</head>
+
+<body>
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-radius: 0px!important;">
+    <div class="collapse navbar-collapse">
+        <ul class="ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active1" style="margin-right: 20px"  href="{% rurl 'test-home' %}"><i class="fad fa-house-user"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active22 active1" style="margin-right: 20px" href="{% rurl 'test-upload' %}"><i class="fal fa-paper-plane"></i> Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active1" style="margin-right: 20px" href="{% rurl 'test-about' %}"><i class="far fa-info-square"></i> Documentation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active2" href="#"><i class="fab fa-github-square"></i> Version 1.0.0</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="wrappermain" style="border-style: solid; border-width: 0mm;border-color: red">
+
+    <div class="wider-container center-block" style="margin-bottom: 50px;border-style: solid; border-width: 0mm;border-color: blue">
+        <div class="row" style="margin-right: 2.5px;margin-left: 2.5px;border-style: solid; border-width: 0mm;border-color:green">
+                <div class="col-8 container-fluid" style="border-style: solid; border-width: 0.7mm; border-color: rgb(220, 220, 220); border-radius: 10px;">
+                    <h4><i class="fas fa-flask"></i> &nbsp  <span style="font-style: italic ">De novo</span> reconstruction of transcriptional gene regulatory network modules differentiating cell clusters.</h4>
+                </div>
+                <div class="col-4 container-fluid" style="border-style: solid; border-width: 0.7mm; border-color: rgb(220, 220, 220); border-radius: 10px;">
+                    <h4><i class="fas fa-user"></i> &nbsp   Session: <a id="sessionbox" style=" color: #1EAEDB;font-size: 26px;font-weight: bold; font-family: AnjaliOldLipi">&nbsp {{ sessionname }}</a></h4> <div id="printdiv"></div>
+                </div>
+        </div>
+        <br>
+        <div class="row" style="overflow: hidden; margin-right: 2.5px;margin-left: 2.5px;border-style: solid; border-width: 0mm;border-color: black">
+        <! -- Start of the first box -->
+            <div id="FirstBox" class="col-4" style="padding-right: 25px;display: flex;flex-direction: column;overflow: hidden;border-style: solid; border-width: 0mm; border-color: black; border-radius: 5px;">
+                     <div class="row" style="padding-top: 10px;margin-bottom: 5px;border-style: solid; border-width: 0.7mm; border-color: rgb(220, 220, 220); border-radius: 5px;">
+                         <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step col-xs-3">
+                                    <a href="#step-1" type="button" class="btn btn-success btn-circle"><i class="far fa-file-import"></i></a>
+                                    <p><small>Upload</small></p>
+                                </div>
+                                <div class="stepwizard-step col-xs-3">
+                                    <a id="step2-state" href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fas fa-chart-scatter"></i></a>
+                                    <p><small>Plot</small></p>
+                                </div>
+                                <div  class="stepwizard-step col-xs-3">
+                                    <a href="#step-3" id="step3-state" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="far fa-info-square"></i></a>
+                                    <p><small>Select</small></p>
+                                </div>
+                                <div  class="stepwizard-step col-xs-3">
+                                    <a href="#step-4" id="step4-state" type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fas fa-sliders-h-square"></i></a>
+                                    <p><small>Paramters</small></p>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                     <div class="row" style="flex: 1 1 auto;overflow: hidden;border-style: solid; border-width: 0mm; border-color: red;">
+                          <!-- Step 1 -->
+                          <div class="panel panel-primary setup-content" id="step-1" style="margin-bottom: 0px;height: 100%;width: 100%;padding: 0px;">
+                                <div class="panel-heading">
+                                     <h3 class="panel-title" style=""><i class="far fa-file-import"></i>&nbsp Upload Files</h3>
+                                </div>
+                                <div id="uploadcard"></div>
+                                <div id="uploadcardmain" class="panel-body" style="height: 100%;display: block;">
+                                     <form name="InputForm" id="upload_data_form" class="required-files-upload-file" method="POST" enctype="multipart/form-data">
+                                          {% csrf_token %}
+                                            <!input type="file" accept=".h5ad" name="Data_Matrix">
+                                             <p style=""><p style="font-size: 13px;font-family: Arial">[Required] Upload your data as AnnData object in H5AD format.</p></p>
+                                              <label>Anndata H5AD file</label>
+                                             {{ form.main_anndata}}
+                                              <p style=""><p style="margin-top: 20px;font-size: 13px;font-family: Arial"> [Optional] You can upload your own TFs of interste.<br> If not all known TFs for the selected species are used.</p></p>
+                                             <label>[Optional] TFs file</label>
+                                             {{ form.main_TFs}}
+                                             <label style="margin-top: 20px;">[Optional] Session Name</label>
+                                               {{ form.sessionname}}
+                                    </form>
+    {#                                <label style="margin-top: 20px;">[Optional] Session Name</label>#}
+    {#                                <input type="text" style="width: 40%" class="form-control" id="sessionid" placeholder="Session Name">#}
+
+                                    <div id="ftv"  style="padding-bottom: 5mm; padding-top: 5mm; display: none"><span style="color: Tomato;font-size: 11px; color: red"><i style="font-size: 6mm;" class="fad fa-exclamation-triangle"></i> Your File Type Not Supported : please upload an AnnData object as a H5AD file.</span></div>
+                                    <button id="UploadButton" form="upload_data_form" class="btn btn-primary" style="min-width: 100px; margin-top: 10mm" type="submit">Upload</button>
+                                    <br>                <br>                <br>
+                                    <! to be moved >
+                                    <div style="display: none">
+                                        <h4 id="buffer5" style="margin-top: 5mm"><i class="fas fa-database"></i>&nbsp Data Example</h4>
+                                        <div class="w-100"><p style="font-size: 13px"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i>&nbsp You can try some of the pre-made examples to give DiNiro a spin.</p></div>
+                                        {#<label>Load Current example</label>#}
+                                        <form id="formexampledata" method="POST">
+                                           {% csrf_token %}
+                                          <input style="display: none" type="text" id="lname" name="thisdataexample" value=10>
+                                        </form>
+                                        <form id="formexampledata2" method="POST">
+                                           {% csrf_token %}
+                                          <input style="display: none" type="text" id="lname" name="thisdataexample" value=20>
+                                        </form>
+                                        <button style="min-width: 170px" class="btn btn-success" id="load_example_data_true" form="formexampledata" type="submit">Load Current example</button>
+                                        <button style="min-width: 170px" class="btn btn-success" id="load_example_data_true2" form="formexampledata2" type="submit">Load Current example</button>
+                                    </div>
+                                        <div id="nonext"  style="display: none"><span style="color: Tomato;font-size: 11px; color: red; font-weight: bold"><i style="font-size: 6mm;" class="fad fa-exclamation-triangle"></i> Please upload an AnnData object as a H5AD file or use one of the example datasets.</span></div>
+                                        <button id="next1" class="btn btn-primary nextBtn pull-right" type="button" style="display: none">Next</button>
+                                        <button id="nextnext" class="btn btn-primary nextBtn pull-right" type="button" style="right: 25px;position: absolute;bottom: 15px">Next</button>
+                                    </div>
+                          </div>
+                          <!-- Step 2 -->
+                            <div class="panel panel-primary setup-content" id="step-2" style="overflow: hidden;display: none;margin-bottom: 0px;height: 100%;width: 100%;padding: 0px;">
+                            <div class="panel-heading">
+                                 <h3 class="panel-title"><i class="fas fa-chart-scatter"></i>&nbsp Plotting Choices </h3>
+                            </div>
+                            <div class="panel-body" style="overflow: hidden;height: 100%;">
+                                <div class="container-fluid" style="padding: 0px">
+                                <p style="padding-top: 20px;font-size: 13px; font-family: Arial"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> You can switch between different plotting maps and coloring observations.</p>
+                                <div style="display: none">{{ userr }}</div>
+                                <input type="text" id="username"  style="display: none" value={{ userr }}>
+                                <form method="POST" id="post-form" enctype="multipart/form-data">
+                                    <label style="">Type of plot</label>
+                                    <select style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;min-width: 200px" id="map_selection">
+                                        {% for x in plotting_maps %}
+                                            <option value={{ x }}>{{ x }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div style="height: 10px"></div>
+                                    <label>Plot color</label>
+                                    <select style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;min-width: 200px" id="obs_selection">
+                                        {% for x in observations %}
+                                            <option value={{ x }}>{{ x }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <br>
+                                </form>
+                                <br>
+                                <p style="font-size: 13px;font-family: Arial"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> Click to update the plot.</p>
+                                <div class="btn-group" role="group" aria-label="Basic example" style="padding-left: 0px">
+    {#                                <button id="reset-plotting-choices" style="margin-right: 2px;" class="btn btn-warning" role="button" onclick="location.href='{% rurl 'test-home' %}'">Reset&nbsp;</button>#}
+                                    <button id="sel" class="btn btn-primary" role="button">update plot</button>
+                                </div>
+                                <br><br>
+    {#                            <div class="row" style="margin-top: auto;border-style: solid; padding-top: 0px;border-width: 0.5mm; border-color: rgb(255, 0, 255);" >#}
+                                <button id="next2" class="btn btn-primary nextBtn pull-right" style="right: 25px;position: absolute;bottom: 15px" type="button">Next</button>
+    {#                            <button id="back2" class="btn btn-warning nextBtn pull-right" type="button" style="" >Back</button>#}
+                                <button  class="btn btn-warning pull-right" style="right: 100px;position: absolute;bottom: 15px" role="button" onclick="location.href='{% rurl 'test-upload' %}'">Back</button>
+    {#                           </div>#}
+                            </div>
+                           </div>
+                          </div>
+                          <! step 3>
+                          <div class="ali panel panel-primary setup-content" id="step-3" style="display: none;height: 100%;width: 100%;margin-bottom: 2px;padding: 0px;">
+                                <div class="panel-heading">
+                                     <h3 class="panel-title"><i class="far fa-info-square"></i>&nbsp Selection </h3>
+                                </div>
+
+                                <div class="panel-body" style="">
+                                    <div class="row w-100" style="margin-bottom: 15px;width: 100%;margin-left: 2.5px;border-style: solid; border-width: 0mm; border-color: lawngreen;">
+                                        <div class="btn-group" role="group" style="width: 100%">
+                                        <button class="btn act" id="CS" class="btn" role="button">Clusters Selection</button>
+                                        <button class="btn pas" id="butt234" onclick="Hide()" role="button">Lasso Selection</button>
+                                        </div>
+                                    </div>
+                                    <div id="dfsele" style="display: block;border-style: solid; padding-top: 0px;border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                        <div id="firstform" style="border-style: solid; padding-top: 0px;border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                            <div class="row" style="border-style: solid; padding-top: 0px;padding-left: 2mm;border-width: 0mm; border-color: rgb(0, 255, 255);">
+                                            <p style="font-size: 13px; font-family: Arial"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> You can select and form groups using clusters annotation or Lasso selection.</p>
+                                                <br>
+                                                <div class="" style="width: 60%;margin-right: 0px;border-style: solid; padding-top: 0px;border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                                    <form method="POST" enctype="multipart/form-data">
+                                                        <label>Select clusters to ADD to sample one:</label>
+                                                        <select style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;max-width: 100%; min-width: 150px" id="mySelect1">
+                                                            {% for x in unique_leb %}
+                                                                <option value={{ x }}>{{ x }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                                <div class="" style="width: 40%;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                                      <label for="fname1">Type in an ID for the sample:</label>
+                                                     <input type="text" id="fname1" name="fname1" value="Sample-I" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;max-width: 70%">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="border-style: solid; margin-top: 10px;padding-left: 2mm;border-width: 0mm; border-color: rgb(0, 255, 255);">
+                                            <button class="btn btn-primary" style="margin-top: auto;margin-right: 10px" role="button" onclick="goo()">Add</button>
+                                               <input type="text" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;width: 85%" id="choice1" value="Please add one or more clusters.." readonly>
+                                            </div>
+                                            <div class="row" style="margin-top: 20px;padding-left: 2mm;border-width: 0mm; border-color: rgb(0, 255, 255);border-style: solid;">
+                                                <div class="" style="width: 60%;border-style: solid; padding-top: 0px;border-width: 0mm; border-style: solid;border-color: rgb(255, 255, 255);">
+                                                    <form method="POST" enctype="multipart/form-data">
+                                                        <label>Select clusters to ADD to sample two:</label>
+                                                        <select style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;-width: 100%; min-width: 150px" id="mySelect2" name="mySelect2">
+                                                            {% for x in unique_leb %}
+                                                                <option value={{ x }}>{{ x }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                                <div class="" style="width: 40%;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                                      <label for="fname2">Type in an ID for the sample:</label>
+                                                      <input type="text" id="fname2" name="fname2" value="Sample-II" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;max-width: 70%">
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 10px;padding-left: 2mm;border-width: 0mm; border-color: rgb(0, 255, 255);border-style: solid;">
+                                               <button class="btn btn-primary" style="margin-right: 10px" role="button" onclick="gooo()">Add</button>
+                                               <input type="text" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;width: 85%" id="choice2" value="Please add one or more clusters.." readonly>
+                                            </div>
+
+                                            <div class="row" style="padding-left: 2mm;margin-top: 20px;border-style: solid; border-width: 0mm; border-color: orange;">
+                                            <p class="w-100" style="font-size: 13px; font-family: Arial"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> Clear selection and start over.</p>
+                                                    <button class="btn btn-primary"  id="clustersselections" style="display: none" role="button" onclick="go()">Select</button>
+                                                    <div><button class="btn btn-warning" id="clearselection" role="button" onclick="clearselection1()">Clear Selection</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <! Lasso Selection>
+                                    <div class="" id="lassoview" style="display: none;border-style: solid; border-width: 0.5mm; border-color: white;">
+                                         <h4 id="buffer557"><i class="far fa-lasso"></i> Lasso Selection </h4>
+                                         <p style="font-size: 13px;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> You can use lasso selection by simply drawing a circle using the curser around the cells you want to add to each group.</p>
+                                         <p> <i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> Draw a circl around the cells that you want to include in each sample</p>
+        {#                                <h0 id="adds1">Add Sample One</h0>#}
+                                        <div class="row" style="width: 100%;margin-left: 2.5px">
+                                            <button class="btn btn-primary" style="display: block;margin-top: 24px;margin-right: auto" id="draws1" role="button">pick&nbsp;</button>
+                                            <input type="text" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;display: none;color: green;margin-top: 25px;margin-right: 5px;width: 50%" id="adds11" value="Please select cells for sample I.." readonly>
+                                            <div class="col" style="width: 50%;border-style: solid; border-width: 0mm; border-color: rgb(255, 0, 255);">
+                                                  <label for="fname1">Type in an ID for sample I:</label>
+                                                 <input type="text" id="fname1" name="fname1" value="Sample-I" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;max-width: 70%">
+                                            </div>
+                                        </div>
+                                        <br>
+        {#                                <h0 id="adds2">Add Sample Two</h0>#}
+                                        <div class="row" style="width: 100%;margin-left: 2.5px">
+                                        <button class="btn btn-primary" style="display: block;margin-top: 24px;margin-right: auto" id="draws2" role="button">pick&nbsp;</button>
+                                        <input type="text" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;display: none;color: red;margin-top: 25px;margin-right: 5px;width: 50%" id="adds22" value="Please select cells for sample II.." readonly>
+                                        <div class="col" style="width: 50%;border-style: solid; border-width: 0mm; border-color: rgb(255, 0, 255);">
+                                              <label for="fname2">Type in an ID for sample II:</label>
+                                              <input type="text" id="fname2" name="fname2" value="Sample-II" style="border-width: 2px;border-color: darkgray;border-style: solid;border-radius: 3px;max-width: 70%">
+                                        </div>
+                                        </div>
+                                        <div><p><br> <i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> Click on RESET SELECTION to start over.</p></div>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+        {#                                    <button class="btn btn-primary" role="button"   onclick="go_select2()">Select</button>#}
+                                            <button class="btn btn-warning" id="lassoreset" role="button" onclick="go3()">Reset selection&nbsp;</button>
+                                        </div>
+                                    </div>
+
+                                    <br><br>
+                                    <button id="next3" class="btn btn-primary nextBtn pull-right" style="right: 25px;position: absolute;bottom: 15px" type="button">Next</button>
+                                    <button  id="back3" class="btn btn-warning pull-right" style="right: 100px;position: absolute;bottom: 15px" role="button">Back</button>
+
+                                </div>
+                          </div>
+                          <! Step4>
+                          <div class="panel panel-primary setup-content" style="display: none;height: 100%;width: 100%;margin-bottom: 2px;padding: 0px;" id="step-4">
+                                    <div class="panel-heading">
+                                         <h3 class="panel-title"><i class="fas fa-sliders-h-square"></i>&nbsp Parameters</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p style="font-size: 13px;font-family: Arial;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> You directly run your analysis using the default parameters (<a href="url">see documentation</a>) or you can specify these parameters. Please see the documentation for more details.</p>
+                                        <br>
+                                        <div class="row" style="border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                            <div class="col-6" style="margin-left: auto;margin-right: auto;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                                <form  class="wrapper" style="margin-left: auto;margin-right: auto;">
+                                                    <div class="tooltip">We use a permutation test to calculate the p-value for every gene-gene interaction found in the results. Here you can specify the cut-off value to reject the null hypothesis.</div>
+                                                    <label  for="pval_l" style="font-size: 13px;margin-left: auto;margin-right: auto;">Significance cutoff:</label>
+                                                    <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" oninput="this.value;" min="0" max="1" step="0.05" id="pval" value="0.05" name="pval">
+                                                </form>
+                                            </div>
+                                            <div class="col-6" style="width:100px;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                                {#<p style="font-size: 15px"><p style="font-size: 11px"> [Required] Species selection</p></p>#}
+                                                <form  class="wrapper" style="border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+                                                        <div class="tooltip">We use transcription factors (TFs) when searching for gene regulation. In case you have not uploaded your own TFs of interest, species-specific transcription factor files are used (Here you can specify which file to use).  </div>
+                                                        <label style="font-size: 13px">Species selection:</label>
+                                                        <select class="show-tick" style="padding: 0px;border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" id="Species-selection">
+                                                        <optgroup>
+                                                            <option>Human</option>
+                                                            <option>Mouse</option>
+                                                        </optgroup>
+                                                        </select>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <p style="font-size: 13px;margin-top: 0px"><i style="color: Tomato;font-size: 18px" class="far fa-info-square"></i> Click on the arrow to open the parameters view.</p>
+                                        <h4 id="buffer5"> Advanced Parameters <button id="butt2345" onclick="" class="btn" data-toggle="collapse" aria-expanded="false" data-target="#multiCollapseExample3" aria-controls="multiCollapseExample3"><i class="fas fa-caret-square-down" style="font-size: 28px"></i></button></h4>
+                                        <div class="collapse multi-collapse" id="multiCollapseExample3" style="width: 100%;border-style: solid; border-width: 0mm; border-color: black;">
+
+                                            <div class="row" style="display: flex;width: 100%;border-style: solid; border-width: 0mm; border-color: red;">
+                                                <div class="col" style="border-style: solid; border-width: 0mm; border-color: green;">
+                                                    <form class="wrapper" style="text-align: left;justify-content: left;align-content: left;">
+                                                        <label class="" for="n-sub" style="font-size: 12px">Number of subsamples:</label>
+                                                        <div class="tooltip">Number of subsamples to derive from each sample in order to generate multiple gene regulatory networks (for denoising purpose).</div>
+                                                        <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" oninput="this.value = Math.round(this.value);" min="1" max="100" step="1" id="n-sub" value="4" name="n-sub">
+                                                    </form>
+                                                </div>
+                                                <div class="col" style="border-style: solid; border-width: 0mm; border-color: blue;">
+                                                    <form  class="wrapper" style="float: right">
+                                                        <div class="tooltip">...</div>
+                                                        <label style="font-size: 12px" for="Size-threshold-max">Max module size :</label>
+                                                        <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;us: 0px;height: 25px;min-width: 170px" oninput="this.value = Math.round(this.value);" min="20" max="1000" step="1" id="Size-threshold-max" value="200" name="Size-threshold-max">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="display: flex;width: 100%;border-style: solid; border-width: 0mm; border-color: rgb(2555, 2555, 255);">
+                                                <div class="col">
+                                                    <form  class="wrapper" style="text-align: left;justify-content: left;align-content: left">
+                                                        <div class="tooltip">The percentage of cells that will be random subsample from each sample to form the subsamples.</div>
+                                                        <label style="font-size: 12px" for="s-size">Sub-sampling size (%):</label>
+                                                        <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" id="s-size" oninput="this.value = Math.round(this.value);" min="50" max="100" step="1" value="70" name="s-size">
+                                                    </form>
+                                                </div>
+                                                <div class="col">
+                                                    <form  class="wrapper" style="float: right">
+                                                        <div class="tooltip">To reduce noise, gene regulatory networks are computed multiple times and gene interactions are filtered based on an occurrence threshold (in percentage).</div>
+                                                        <label style="font-size: 12px" for="Occurrence-threshold">Occurrence threshold (%):</label>
+                                                        <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" id="Occurrence-threshold" oninput="this.value = Math.round(this.value);" min="5" max="100" step="5" value="100" name="Occurrence-threshold">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="display: flex;width: 100%;border-style: solid; border-width: 0.5mm; border-color: rgb(2555, 2555, 255);">
+                                                <div class="col">
+                                                    <form  class="wrapper" style="text-align: left;justify-content: left;align-content: left">
+                                                        <div class="tooltip">Number of gene modules to keep in the final results. Modules are ignored based on ranking criteria.</div>
+                                                        <label style="font-size: 12px" for="number-modules">Number of Modules :</label>
+                                                        <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" id="number-modules" oninput="this.value = Math.round(this.value);" min="1" max="50" step="1" value="15" name="number-modules">
+                                                    </form>
+                                                </div>
+                                                <div class="col">
+                                                    <form  class="wrapper" style="float: right">
+                                                        <div class="tooltip">The minimum number of genes in a module in order to include it in the results.</div>
+                                                        <label style="font-size: 12px" for="Size-threshold-min">Min module size :</label>
+                                                        <input type="number" style="border-width: 2px;border-color: black;border-style: solid;border-radius: 0px;max-height: 25px;min-width: 170px" oninput="this.value = Math.round(this.value);" min="0" max="10" step="1" id="Size-threshold-min" value="0" name="Size-threshold-min">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="border-style: solid; border-width: 0.5mm; border-color: rgb(2555, 2555, 255);">
+
+                                            </div>
+
+                                        </div>
+                                        <br>
+                                        <h4 id="selection_check"></h4>
+                                        <div id="hcontrol" style="border-style: solid; border-width: 0mm; border-color: blue;height:calc(100vh - 80vh)"></div>
+                                         <!button id="StartButton" class="btn btn-primary" style="min-width: 300px;" type="button" onclick="start()"><!/button>
+                                        <button id="StartButton" class="btn btn-primary nextBtn pull-right" style="right: 25px;position: absolute;bottom: 15px" type="button" onclick="start()">Start</button>
+                                        <button id="back4" class="btn btn-warning nextBtn pull-right" type="button" style="right: 110px;position: absolute;bottom: 15px">Back</button>
+                                    </div>
+                          </div>
+                     </div>
+            <!1 Box>
+            </div>
+            <!2 Box>
+            <div class="col-7" style="padding-right: 25px;overflow: hidden;display:flex;border-style: solid; border-width: 0mm; border-color: black; border-radius: 5px;">
+            <div class="row" style="flex: 1 1 auto;overflow: hidden;position: relative; border-style: solid; border-width: 0mm; border-color: red;">
+                    <div class="panel panel-primary setup-content" id="graphcard" style="overflow: hidden;margin-bottom: 0px;height: 100%;width: 100%;padding: 0px;">
+                            <div class="panel-heading" style="">
+                                 <h3 class="panel-title" style=""><i class="fas fa-chart-scatter"></i>&nbsp Single-Cell Data Plot</h3>
+                            </div>
+                            <div id="graphcard1"></div>
+                            <div class="panel-body" style="display: block;border-style: solid; border-width: 0mm; border-color: lawngreen;">
+                                <div id="graphcardref" style="padding: 0px;margin: 0px;border-style: solid; border-radius: 10px;border-width: 0mm; border-color: red;"><div id="graph" style="border-style: solid; border-width: 0mm; border-color: rgb(0, 255, 255);"></div></div>
+                                      <div id="plotimage">
+                                     <h5 style="margin-bottom: 25px"> Data Examples </h5>
+                                              <div id="plotimage1" class="row" style="border-style: solid; border-width: 0mm; border-color: green;" >
+                                                <div class="nomargin col-md-6" style="border-style: solid; border-width: 0mm; border-color: black;">
+                                                  <div class="card1" style="margin-bottom: 10px; border-style: solid; border-width: 1mm; border-color: white;border-radius: 4px">
+                                                    <img src="{% rstatic 'test_interface/ex-1.png' %}" style="margin-bottom:calc(100vh - 98.9vh);width: 100%"></img>
+                                                    <div class="card-body">
+                                                      <p class="card-text" style="text-align: center;margin-top: calc(100vh - 97vh)"><b>Peripheral blood mononuclear cells</b></a></p>
+                                                      <p class="card-text" style="text-align: center">The data is based on: <a style="text-decoration: none" href="https://www.nature.com/articles/nbt.3192" target=”_blank”>Satija et al. (2015)</a></p>
+                                                   <button style="min-width: 170px" class="btn btn-success center" id="load_example_data_true" form="formexampledata" type="submit">Get started</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="nomargin col-md-6" style="border-style: solid; border-width: 0mm; border-color: blue;">
+                                                  <div class="card1" style="margin-bottom: 10px; border-style: solid; border-width: 1mm; border-color: white;border-radius: 4px" >
+                                                    <img src="{% rstatic 'test_interface/ex2.png' %}" style="width: 100%"></img>
+                                                    <div class="card-body">
+                                                  <p class="card-text" style="text-align: center;margin-top: calc(100vh - 97vh)"><b> CD8+ T-cells in lung cancer</b></a></p>
+                                                      <p class="card-text" style="text-align: center">The data is based on: <a style="text-decoration: none" href="https://pubmed.ncbi.nlm.nih.gov/29942094/" target=”_blank”>Guo X et al. (2018)</a></p>
+                                                   <button style="min-width: 170px" class="btn btn-success center" id="load_example_data_true2" form="formexampledata2" type="submit">Get started</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                          </div>
+
+                            </div>
+                    </div>
+            </div>
+            <!2 Box>
+            </div>
+            <!3 Box>
+            <! data summry card>
+            <div class="col-1" style="overflow: hidden;border-style: solid; border-width: 0mm; border-color: black; border-radius: 5px; border-spacing: 0px;margin-right: 0mm; margin-left: 0mm;margin-bottom: 0mm;">
+                <div class="row">
+                     <div class="panel panel-primary setup-content" id="datasummry" style="margin-bottom: 0px;height: 100%;width: 100%;padding: 0px;">
+                            <div class="panel-heading">
+                                 <h3 class="panel-title" style=""><i class="far fa-info-square"></i>&nbsp Data Summary</h3>
+                            </div>
+                            <div id="datasummry1"></div>
+                            <div id="datasummry2" class="panel-body w-100 center" style="text-align: center">
+                                <label id="ncells" style="font-weight: bold; font-size: 12px"></label>
+                                <label id="ngenes" style="font-weight: bold; font-size: 12px"></label>
+                                <label id="ngroups" style="font-weight: bold; font-size: 12px"></label>
+                                <div id="print"></div>
+                                <div id="print1"></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <! end data summry card>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark footer footer-custom navbar-fixed-bottom">
+    <div class="container">
+        <p class="m-0 text-center text-white">Di-Niro | version 1.0.0 | &copy2021 <a style="text-decoration:none;" href="https://mdbootstrap.com/"> cosy.bio</a> </p>
+    </div>
+</footer>
+<!-- Footer -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    src="{% rstatic 'test_interface/main.js' %}"
+</script>
+<link rel="stylesheet" href="{% rstatic 'test_interface/spinner.css' %}">
+
+</body>
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+});
+</script>
+
+{#<script type="text/javascript" src={% rstatic "JavaScript/plot.js" %}></script>#}
+<script>
+    $('#nextnext').click(function() {
+          var nonext = document.getElementById("nonext");
+          nonext.style.display = "none"
+          alert('Please upload a data file or run one of the examples!');
+    });
+</script>
+
+<script>
+    $('#lassoreset').click(function() {
+        document.getElementById('sel').click();
+        document.getElementById('fname1').value = 'Sample-I'
+        document.getElementById('fname2').value = 'Sample-II'
+        document.getElementById('adds11').value = 'Please select cells for sample I..'
+        document.getElementById('adds22').value = 'Please select cells for sample II..'
+    });
+</script>
+<script>
+    function clearselection1(){
+        document.getElementById('fname1').value = 'Sample-I'
+        document.getElementById('fname2').value = 'Sample-II'
+        document.getElementById('choice1').value = 'Please add one or more clusters..'
+        document.getElementById('choice2').value = 'Please add one or more clusters..'
+    }
+</script>
+<script>
+   var counter = {{ plotting_maps }};
+</script>
+{#<script>#}
+{#    function load_current_example() {#}
+{#            rrequest = $.ajax({#}
+{#            type: 'POST',#}
+{#            url:'{% rurl "test-upload" %}',#}
+{#            data:{ csrfmiddlewaretoken: '{{ csrf_token }}',#}
+{#                   thisdataexample : 10,#}
+{#            }#}
+{##}
+{#        });#}
+{#       rrequest.done(function (datareceivedd){#}
+{#        var counter = datareceivedd.plotting_maps;#}
+{#        window.unique_leb = datareceivedd.unique_leb;#}
+{#        var N_Cells = datareceivedd.N_Cells;#}
+        {#var N_Genes = {{ datareceivedd.N_Genes|safe }};#}
+        {#var N_Groups = {{ datareceivedd.N_Groups|safe }};#}
+{#        document.getElementById("ncells").innerHTML = "Cell Number: "+ counter;#}
+{#        document.getElementById("ngenes").innerHTML = "Gene Number: "+ datareceivedd.N_Genes;#}
+{#        document.getElementById("ngroups").innerHTML = "Plotting Maps: "+ datareceivedd.N_Groups;#}
+{##}
+{#       });#}
+{#    }#}
+{#</script>#}
+<script>
+    $(document).ready(function () {
+        var ftvv = {{ FTV|safe }};
+        if (ftvv==1){
+            var hs = document.getElementById("ftv");
+            hs.style.display = "block";
+            }
+        });
+</script>
+<script>
+    $(document).ready(function () {
+        var isitdataexample = {{ isitdataexample|safe }};
+        if (isitdataexample==1){
+             var plotimage = document.getElementById("plotimage");
+             plotimage.style.display = 'none';
+            document.getElementById('next1').click();
+            }
+        });
+</script>
+<script>
+    $('#next1').click(function() {
+          var step2s = document.getElementById("step2-state");
+          step2s.classList.add("btn-success")
+
+          var step1 = document.getElementById("step-1");
+          var step2 = document.getElementById("step-2");
+          var step3 = document.getElementById("step-3");
+          var step4 = document.getElementById("step-4");
+          step1.style.display = "none"
+          step2.style.display = "block"
+          step3.style.display = "none"
+          step4.style.display = "none"
+    });
+</script>
+<script>
+    $('#next2').click(function() {
+          var step3s = document.getElementById("step3-state");
+          step3s.classList.add("btn-success")
+
+          var step1 = document.getElementById("step-1");
+          var step2 = document.getElementById("step-2");
+          var step3 = document.getElementById("step-3");
+          var step4 = document.getElementById("step-4");
+          step1.style.display = "none"
+          step2.style.display = "none"
+          step3.style.display = "block"
+          step4.style.display = "none"
+    });
+</script>
+<script>
+    $('#back2').click(function() {
+          var step2s = document.getElementById("step2-state");
+          step2s.classList.remove("btn-success")
+          step2s.classList.add("btn-default")
+          var step1 = document.getElementById("step-1");
+          var step2 = document.getElementById("step-2");
+          var step3 = document.getElementById("step-3");
+          var step4 = document.getElementById("step-4");
+          step1.style.display = "block"
+          step2.style.display = "none"
+          step3.style.display = "none"
+          step4.style.display = "none"
+    });
+</script>
+<script>
+    $('#next3').click(function() {
+          var see_selction_1 = document.getElementById("choice1").value;
+          var see_selction_2 = document.getElementById("choice2").value;
+          var see_selction_1_lasso = document.getElementById("adds11").value;
+          var see_selction_2_lasso = document.getElementById("adds22").value;
+          var pass = 1;
+          if(see_selction_1 =='Please add one or more clusters..' || see_selction_2 =='Please add one or more clusters..'){
+              if(see_selction_1_lasso =='Please select cells for sample I..' || see_selction_2_lasso =='Please select cells for sample II..'){
+                  pass = 0;
+              }
+          }
+          if(see_selction_1_lasso =='Please select cells for sample I..' || see_selction_2_lasso =='Please select cells for sample II..'){
+              if(see_selction_1 =='Please add one or more clusters..' || see_selction_2 =='Please add one or more clusters..'){
+                  pass = 0;
+              }
+          }
+          if ( pass==0 ){
+              alert('Please select two samples in order to continu!');
+              //document.getElementById("print1").innerHTML = 'empty';
+          }else{
+              //document.getElementById("print1").innerHTML = 'not empty';
+              var step4s = document.getElementById("step4-state");
+              step4s.classList.add("btn-success")
+              var step1 = document.getElementById("step-1");
+              var step2 = document.getElementById("step-2");
+              var step3 = document.getElementById("step-3");
+              var step4 = document.getElementById("step-4");
+              step1.style.display = "none"
+              step2.style.display = "none"
+              step3.style.display = "none"
+              step4.style.display = "block"
+          }
+
+    });
+</script>
+
+
+<script>
+    $('#back3').click(function() {
+          var step3s = document.getElementById("step3-state");
+          step3s.classList.remove("btn-success")
+          step3s.classList.add("btn-default")
+
+          var step1 = document.getElementById("step-1");
+          var step2 = document.getElementById("step-2");
+          var step3 = document.getElementById("step-3");
+          var step4 = document.getElementById("step-4");
+          step1.style.display = "none"
+          step2.style.display = "block"
+          step3.style.display = "none"
+          step4.style.display = "none"
+    });
+</script>
+<script>
+    $('#back4').click(function() {
+          var step4s = document.getElementById("step4-state");
+          step4s.classList.remove("btn-success")
+          step4s.classList.add("btn-default")
+          var step1 = document.getElementById("step-1");
+          var step2 = document.getElementById("step-2");
+          var step3 = document.getElementById("step-3");
+          var step4 = document.getElementById("step-4");
+          step1.style.display = "none"
+          step2.style.display = "none"
+          step3.style.display = "block"
+          step4.style.display = "none"
+    });
+</script>
+<script>
+    $('#StartButton').click(function() {
+          {#alert('small and large hubs filter in advance paramters!');#}
+          {#var step4s = document.getElementById("step4-state");#}
+          {#step4s.classList.remove("btn-success")#}
+          {#step4s.classList.add("btn-default")#}
+
+          var step1 = document.getElementById("step-1");
+          var step2 = document.getElementById("step-2");
+          var step3 = document.getElementById("step-3");
+          var step4 = document.getElementById("step-4");
+          step1.style.display = "none"
+          step2.style.display = "none"
+          step3.style.display = "none"
+          step4.style.display = "block"
+    });
+</script>
+
+{#<script>#}
+{#    $('#back3').click(function() {#}
+{#     document.getElementById('butt234').click();#}
+{#    });#}
+{#</script>#}
+<script>
+    $('#CS').click(function() {
+
+      document.getElementById('lassoreset').click();
+      document.getElementById('lassoview').style.display = 'none';
+      document.getElementById('dfsele').style.display = 'block';
+     //document.getElementById('butt234').click();
+     //document.getElementById('lassoreset').click();
+    });
+</script>
+<script>
+    $('#next2').click(function() {
+     document.getElementById('sel').click();
+    });
+</script>
+<script>
+    $('#next3').click(function() {
+     document.getElementById('clustersselections').click();
+    });
+</script>
+<script>
+    $('#butt234').click(function() {
+          document.getElementById('clearselection').click();
+          document.getElementById('lassoview').style.display = 'block';
+          document.getElementById('dfsele').style.display = 'none';
+          //document.getElementById('clearselection').click();
+        //$("i", this).toggleClass("fas fa-caret-square-down fas fa-caret-square-up");
+    });
+</script>
+<script>
+    $('#butt2345').click(function() {
+        $("i", this).toggleClass("fas fa-caret-square-down fas fa-caret-square-up");
+        $("#hcontrol").toggle();
+    });
+</script>
+<script>
+    $('#upload_data_form').on('submit', function() {
+        //document.getElementById("sessionbox").innerHTML =  document.getElementById("sessionid").value;
+        var plotimage = document.getElementById("plotimage");
+         plotimage.style.display = 'none';
+        var card1 = document.getElementById("uploadcardmain");
+         card1.style.display = 'none';
+        $( "#uploadcard" ).replaceWith('<div id="uploadcardspinner" class="w-100" style="display: block;border-style: solid; border-width: 0.5mm; border-color: white; border-radius: 10px; border-spacing: 15px; padding-top: 20mm;padding-bottom: 20mm; margin-left: 0mm;margin-top: 270px;"><div class="d-flex justify-content-center" style="border-style: solid; border-width: 0mm;"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><div class="d-flex justify-content-center" style="border-style: solid; border-width: 0mm;"><h4>Uploading Files..</h4></div></div>');
+    });
+</script>
+<script>
+    $('#load_example_data_true').click(function() {
+         $( "#plotimage" ).replaceWith('<div>test</div>');
+         var card1 = document.getElementById("uploadcardmain");
+         card1.style.display = 'none';
+        $( "#uploadcard" ).replaceWith('<div id="uploadcardspinner" class="w-100" style="display: block;border-style: solid; border-width: 0.5mm; border-color: white; border-radius: 10px; border-spacing: 15px; padding-top: 20mm;padding-bottom: 20mm; margin-left: 0mm;"><div class="d-flex justify-content-center" style="border-style: solid; border-width: 0mm;"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><div class="d-flex justify-content-center" style="border-style: solid; border-width: 0mm;"><h4>Uploading</h4></div></div>');
+    });
+</script>
+<script>
+    $('#load_example_data_true2').click(function() {
+         $( "#plotimage" ).replaceWith('<div>test</div>');
+         var card1 = document.getElementById("uploadcardmain");
+         card1.style.display = 'none';
+        $( "#uploadcard" ).replaceWith('<div id="uploadcardspinner" class="w-100" style="display: block;border-style: solid; border-width: 0.5mm; border-color: white; border-radius: 10px; border-spacing: 15px; padding-top: 20mm;padding-bottom: 20mm; margin-left: 0mm;"><div class="d-flex justify-content-center" style="border-style: solid; border-width: 0mm;"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><div class="d-flex justify-content-center" style="border-style: solid; border-width: 0mm;"><h4>Uploading</h4></div></div>');
+    });
+</script>
+<script>
+    function Hide() {
+          $("#CS").toggleClass("act pas");
+          $("#butt234").toggleClass("pas act");
+          var x = document.getElementById("dfsel");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+</script>
+
+<script>
+    var arrayselection1 = [];
+    $('#clearselection').click(function() {
+        arrayselection1 = [];
+    });
+    function goo() {
+        var x = document.getElementById("mySelect1").value;
+        arrayselection1.push(x);
+        {#$("choice1").prepend("<b>test</b>");#}
+        {#document.getElementById("choice1").innerHTML = arrayselection1;#}
+        {#$( "#choice1" ).replaceWith('<p id="choice1" class="center" style="overflow-y: auto;max-width: 50%;border-width: 0.5mm; border-style: solid;border-color: red;">'+arrayselection1+'<p>');#}
+        var ID = document.getElementById("choice1");
+        ID.value = arrayselection1;
+        {#ID.style.width = arrayselection1.length*50+'px';#}
+
+    }
+</script>
+<script>
+    var arrayselection2 = [];
+    $('#clearselection').click(function() {
+        arrayselection2 = [];
+    });
+    function gooo() {
+        var x = document.getElementById("mySelect2").value;
+        arrayselection2.push(x);
+        {#document.getElementById("choice2").innerHTML = arrayselection2;#}
+        var ID = document.getElementById("choice2");
+        ID.value = arrayselection2;
+    }
+</script>
+
+<script>
+    function myFunction() {
+          var s1 = 'test';
+          var s2 = document.getElementById("mySelect2").value;
+          document.getElementById("s1").innerHTML = s1;
+          document.getElementById("s2").innerHTML = s2;
+        }
+</script>
+
+<script>
+    function myFunctiontest() {
+      document.getElementById("s1").innerHTML = "Paragraph !";
+    }
+</script>
+
+<script>
+    {#var is_selected = 0;#}
+
+        function go(val) {
+            {#is_selected = 1;#}
+            var sample1Name = document.getElementById("fname1").value;
+            var sample2Name = document.getElementById("fname2").value;
+            var s1 = arrayselection1.toString();
+            var s2 = arrayselection2.toString();
+            var username = document.getElementById("username").value;
+            $.ajax({
+                url : "{% rurl 'test-sample-selection' %}", // the endpoint
+                type : "GET", // http method
+                data : { sample_1 : s1,
+                    sample_2 : s2,
+                    s1name : sample1Name,
+                    s2name : sample2Name,
+                    user : username,
+
+                },
+            });
+
+
+        };
+</script>
+
+<script>
+   function go_select2() {
+            is_selected = 1; 
+       }
+</script>
+
+{#<script>#}
+{#    $("#StartButton").click(function(){#}
+{#        if (is_selected == 1) {#}
+{#        $( "#step-4" ).replaceWith('<div id="spinner-2" class="w-100" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px;"><div class="d-flex justify-content-center" style="margin-top: 200px;margin-bottom: 0px;border-style: solid; border-width: 0mm;"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div><div class="d-flex justify-content-center" style="margin-top: 5px;margin-bottom: 200px;border-style: solid; border-width: 0mm;"><h4>Computing<br>countdown<br>user url :)</h4></div></div>');#}
+{#        }#}
+{#    })#}
+{#</script>#}
+
+<script>
+    $("#StartButton").click(function(){
+        if (1 == 1) {
+              var timerId = 0;
+              var ctr=0;
+              var max=10;
+
+              timerId = setInterval(function () {
+                // interval function
+                ctr++;
+                $('#blips > .progress-bar').attr("style","width:" + ctr*max + "%");
+                document.getElementById("prog").innerHTML = ctr*max + "%";
+                // max reached?
+                if (ctr==max){
+                  clearInterval(timerId);
+                }
+
+              }, 600000);
+        $( "#step-4" ).replaceWith('<div class="ali panel panel-primary setup-content" id="step-wait" style="display: block;height: 100%;width: 100%;margin-bottom: 2px;padding: 0px;"><div class="panel-heading"><h3 class="panel-title"><i class="fas fa-hourglass-start"></i>&nbsp Computing.. </h3></div><div class="panel-body" style="height: calc(100vh - 400x)"><div id="spinner-2" class="w-100" style="width: 100%;border-style: solid; border-width: 0mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px;min-height: calc(100vh - 500x);"><div class="d-flex justify-content-center" style="margin-top: 200px;margin-bottom: 0px;border-style: solid; border-width: 0mm;"><div class="container" style="width: 100%;border-style: solid; border-width: 0mm; border-color: red;text-align: center;"><h3>Your Access Token:</h3><h6 style="font-size: 13px;"><a href="https://exbio.wzw.tum.de/diniro//result2/?user={{ userr }}" target="_blank">https://exbio.wzw.tum.de/diniro//result2/?user={{ userr }}</a></h6><br><br><br><br><br><br><div class="progress" id="blips"> <div class="progress-bar progress-bar-striped active" role="progressbar"> <span id="prog"></span><span class="sr-only"></span></div></div></div></div></div></div></div>');
+        }
+    })
+</script>
+
+
+<script>
+    function start() {
+            if (1 == 0) {
+                    $( "#selection_check" ).replaceWith('<span style="color: Tomato;font-size: 11px; color: red"><i style="font-size: 6mm;" class="fad fa-exclamation-triangle"></i>  Please select two samples in order to start the analysis.</span>');
+            }else {
+                var v1 = document.getElementById("n-sub").value;
+                var v2 = document.getElementById("s-size").value;
+                var v3 = document.getElementById("Species-selection").value;
+                var v4_min = document.getElementById("Size-threshold-min").value;
+                var v4_max = document.getElementById("Size-threshold-max").value;
+                var v5 = document.getElementById("Occurrence-threshold").value;
+                var v6 = document.getElementById("number-modules").value;
+                var v7 = document.getElementById("pval").value;
+                var username = document.getElementById("username").value;
+
+                reqq = $.ajax({
+                    url : "{% rurl 'test-result' %}",
+                    type : "POST",
+                    data : {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        n_sub: v1,
+                        s_size: v2,
+                        Species_selection: v3,
+                        Size_threshold_min: v4_min,
+                        Size_threshold_max: v4_max,
+                        Occurrence_threshold: v5,
+                        number_modules: v6,
+                        pval: v7,
+                        user : username,
+                    },
+                });
+                    reqq.done(function (){
+                        var username = document.getElementById("username").value;
+                        window.location.href = "{% rurl 'test-result-page' %}" + "?user=" + username;
+                    {#    reqq2 = $.ajax({#}
+                    {#        url : "{% rurl 'test-result-page' %}",#}
+                    {#        type : "POST",#}
+                    {#        data : {#}
+                    {#            csrfmiddlewaretoken: '{{ csrf_token }}',#}
+                    {#            user : username,#}
+                    {#        },#}
+                    {#    });#}
+                    {#    reqq2.done(function (){window.location.href = "{% rurl 'test-result-page' %}";});#}
+                });
+            };
+        }
+</script>
+<script>
+    function go3() {
+            document.getElementById("adds11").style.display = 'none';
+            document.getElementById("draws1").style.display = 'block';
+            document.getElementById("adds22").style.display = 'none';
+            document.getElementById("draws2").style.display = 'block';
+            var username = document.getElementById("username").value;
+            req33 = $.ajax({
+                url : "{% rurl 'test-lasso-reset' %}",
+                type : "POST",
+                data : {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    'reset' : 1,
+                     'user' : username,
+
+                },
+            });
+            req33.done(function (){
+                document.getElementById("adds1").innerHTML = 'Add Sample One';
+                document.getElementById("adds2").innerHTML = 'Add Sample Two';
+
+            });
+        };
+</script>
+
+<script>
+
+    $(document).ready(function (){
+            var already_selectedx = [];
+            var already_selectedy = [];
+            var timesofselection = 0;
+            var prviousselection = [];
+            var reset = 0;
+            var original_colors = [];
+            var original_points = [];
+            var drawsam1 = 0;
+            var x = [];
+            var y = [];
+
+            $('#lassoreset').click(function() { drawsam1 = 0;
+            x = [];
+            y = [];
+            already_selectedx = [];
+            already_selectedy = [];
+
+            });
+
+            $('#draws1').click(function() { drawsam1 = 1;
+            document.getElementById("draws1").style.display= 'none';
+            document.getElementById("adds11").style.display= 'block';
+            });
+            $('#draws2').click(function() { drawsam1 = 2;
+            x = [];
+            y = [];
+            document.getElementById("draws2").style.display= 'none';
+            document.getElementById("adds22").style.display= 'block';
+            });
+
+            $("#lassoreset").on('click', function () {
+                 reset = 1;
+                 timesofselection=0;
+                 prviousselection = [];
+                 document.getElementById('sel').click();
+
+                  {#  var graphDiv = document.getElementById('graph');#}
+                  {#  var colors = [];#}
+                  {#  for(var i = 0; i < 10000; i++) colors.push('gray');#}
+                  {#  document.getElementById("print1").innerHTML = original_points.toString().split(",");#}
+                  {#  for (var i = 0; i < original_points.toString().split(",").length; i++) {#}
+                  {#      //console.log(original_colors.toString().split(",")[i])#}
+                  {#      colors[original_points.toString().split(",")[i]] = original_colors.toString().split(",")[i];#}
+                  {#  }#}
+                  {#  original_colors = []#}
+                  {#  //colors[0] = 'black';#}
+                  {#  //[341] = 'black';#}
+                  {#  var update = {#}
+                  {##}
+                  {#      'marker.color': [colors],#}
+                  {#      'marker.opacity': 1,#}
+                  {##}
+                  {#  };#}
+                  {#Plotly.restyle(graphDiv, update);#}
+
+
+                       //document.getElementById("print1").innerHTML = original_colors.toString().split(",")[10];
+                       //leng = original_colors.toString().split(",").length;
+                 {#     for (var i = 0; i < leng; i++) {#}
+                 {#         console.log(i)#}
+                 {#       var trace= {#}
+                 {#         x: original_x.toString().split(",")[i],#}
+                 {#         y: original_y.toString().split(",")[i],#}
+                 {#         mode: 'markers',#}
+                 {#         type: 'scatter',#}
+                 {#         marker: {color: original_colors.toString().split(",")[i], colorscale: 'RdBu', size: 12,line: {color: 'black', width: 1}},#}
+                 {##}
+                 {#       };#}
+                 {#   all_data = []#}
+                 {#   all_data.push(trace)#}
+                 {#   }#}
+                 {##}
+                 {#Plotly.newPlot(graphDiv, all_data, {#}
+                 {# dragmode: false,#}
+                 {# autosize: false,#}
+                 {# width: clientWidthvalu,#}
+                 {# height: clienth,#}
+                 {# xaxis: {#}
+                 {#   zeroline: false,#}
+                 {#   showgrid: false,#}
+                 {#   ticks: '',#}
+                 {#   showticklabels: false#}
+                 {# },#}
+                 {# yaxis: {#}
+                 {#   zeroline: false,#}
+                 {#   showgrid: false,#}
+                 {#   ticks: '',#}
+                 {#   showticklabels: false#}
+                 {# }#}
+                 {# }, {showSendToCloud: true});#}
+
+            });
+            $("#sel").on('click', function () {
+
+                var v11 = document.getElementById("map_selection").value;
+                var v22 = document.getElementById("obs_selection").value;
+                var username = document.getElementById("username").value;
+                req = $.ajax({
+                    type: 'POST',
+                    url:'{% rurl "test-select" %}',
+                    data:{ csrfmiddlewaretoken: '{{ csrf_token }}',
+                           map : v11,
+                           obs : v22,
+                           'user' : username,
+                           'reset' : reset,
+                           }
+                });
+                 req.done(function (data){
+                     var d = data.plotting_data;
+                     var b = data.unique_leb;
+
+                     var sel1 = document.getElementById("mySelect1");
+                     var v = "";
+                     for (var i = 0; i < b.length; i++) {
+                       v += "<option value='" + b[i] + "'>" + b[i] + "</option>"}
+                     sel1.innerHTML = v;
+                     var sel2 = document.getElementById("mySelect2");
+                     var vv = "";
+                     for (var i = 0; i < b.length; i++) {
+                       vv += "<option value='" + b[i] + "'>" + b[i] + "</option>"}
+                     sel2.innerHTML = vv;
+
+
+
+                            var graphDiv = document.getElementById('graph');
+                            var clientWidthval = document.getElementById('graphcardref').clientWidth;
+                            var clientWidthvalu = clientWidthval-10
+                            var clienth = (clientWidthvalu / 100)*60
+                            {#var cards = document.getElementById('step-2');#}
+                            {#cards.style.height = clienth+'px'#}
+
+                            {#var color1 = '#7b3294';#}
+                            {#var color1Light = '#c2a5cf';#}
+                            {#var colorX = '#ffa7b5';#}
+                            {#var colorY = '#fdae61';#}
+
+                            var color1 = 'blue';
+                            var color1Light = 'yellow';
+                            //var colorX = 'red';
+                            //var colorY = 'green';
+
+                            var plot_data = data.plotting_data;
+                            var all_data = [];
+                            var arrayLength = plot_data.length;
+                            for (var i = 0; i < arrayLength; i++) {
+                                var trace= {
+                                  x: plot_data[i][0],
+                                  y: plot_data[i][1],
+                                  mode: 'markers',
+                                  type: 'scatter',
+                                  name:plot_data[i][2],
+                                  marker: {color: plot_data[i][3], colorscale: 'RdBu', size: 12,line: {color: 'black', width: 1}},
+
+                                };
+                            all_data.push(trace)
+                            }
+                            const config = {
+                              'displayModeBar': false // this is the line that hides the bar.
+                            };
+                            Plotly.newPlot(graphDiv, all_data, {
+                              dragmode: 'lasso',
+                              hovermode: false,
+                              autosize: true,
+                              width: clientWidthvalu,
+                              height: clienth,
+                              margin: {
+                                    l: 0,
+                                    r: 0,
+                                    b: 0,
+                                    t: 0,
+                                    pad: 0
+                                   },
+                              xaxis: {
+                                linecolor: 'white',
+                                linewidth: 1,
+                                mirror: true,
+                                zeroline: false,
+                                showgrid: false,
+                                ticks: '',
+                                showticklabels: false
+                              },
+                              yaxis: {
+                                linecolor: 'white',
+                                linewidth: 1,
+                                mirror: true,
+                                zeroline: false,
+                                showgrid: false,
+                                ticks: '',
+                                showticklabels: false
+                              }
+                            }, {modeBarButtonsToRemove: ['toImage']});
+                            //{displayModeBar: false}
+                            prviousselection = []
+                            var gd = document.getElementById('graph')
+
+                            graphDiv.on('plotly_selected', function(eventData) {
+                              //document.getElementById("print1").innerHTML = drawsam1;
+                              //document.getElementById("print").innerHTML = timesofselection;
+                              if (drawsam1==0){
+                                  document.getElementById('lassoreset').click();
+                              }
+                              var t =0;
+                              if (timesofselection==2){
+                                    var update = {
+                                        'dargmode': false,
+                                    };
+                                  Plotly.relayout(graphDiv, update);
+
+                              }
+                              if (drawsam1==1 || drawsam1==2) {
+                                  //drawsam1 = 1;
+                                  //timesofselection++;
+                                  t++;
+
+
+                                  var colors = [];
+                                  for(var i = 0; i < 10000; i++) colors.push('orange');
+
+                                  //console.log(eventData.points)
+                                  {#previous_selection = eventData.points#}
+                                  {#var all = Object.values(eventData.points);#}
+                                  {#colors[4] = 'green';#}
+                                  for (var i = 0, l = prviousselection.length; i < l; i++) {
+                                     colors[prviousselection[i]] = 'green';
+                                  }
+                                  var printt = []
+                                  eventData.points.forEach(function(pt) {
+                                    //console.log(pt.x)
+                                    if (already_selectedx.includes(pt.x) == false) {
+                                        //console.log(pt.x)
+                                        x.push(pt.x);
+                                        y.push(pt.y);
+                                    }
+
+
+                                    original_colors.push(pt.data.marker.color);
+                                    original_points.push(pt.data.uid);
+                                    //console.log(pt)
+                                    prviousselection.push(pt.data.uid);
+                                    already_selectedx.push(pt.x);
+                                    already_selectedy.push(pt.y);
+                                    if (drawsam1==1){
+                                         colors[pt.data.uid] = 'green';
+                                    } else if (drawsam1==2){
+                                        //console.log('testtest')
+                                        //console.log(already_selected)
+                                        //console.log('testtestend')
+                                        colors[pt.data.uid] = 'yellow';
+                                    }
+                                  });
+
+                                            var XX = [];
+                                            var YY = [];
+                                            XX.push(x);
+                                            YY.push(y);
+                                            var username = document.getElementById("username").value;
+                                            req2 = $.ajax({
+                                                type: 'POST',
+                                                url:'{% rurl "test-lasso" %}',
+                                                data:{ csrfmiddlewaretoken: '{{ csrf_token }}',
+                                                       X_ax : XX,
+                                                       Y_ax : YY,
+                                                       user : username,
+                                                       drawsam : drawsam1,
+                                                }
+                                            });
+                                             req2.done(function (datareceived){
+
+                                                 var ll = datareceived.lengthx;
+                                                 var s1 = datareceived.sample1;
+                                                 var s2 = datareceived.sample2;
+                                             if (s1>0){
+                                                 //var ss1 = document.getElementById("calm");
+                                                 //ss1.value = 'You Have Selected '+ll+' Cells';
+                                                 //document.getElementById("adds1").innerHTML = 'You Have Selected '+ll+' Cells';
+                                                 var ss1 = document.getElementById("adds11");
+                                                 ss1.value = 'You Have Selected '+ll+' Cells';
+                                                 ss1.style.color = 'green';
+                                                 //ss1.style.font-weight = 'bold';
+                                             } else if (s2>0){
+                                                //document.getElementById("adds2").innerHTML = 'You Have Selected '+ll+' Cells';
+                                                var ss2 = document.getElementById("adds22");
+                                                 ss2.style.color = 'red';
+                                                 //ss2.style.font-weight = 'bold';
+                                                ss2.value = 'You Have Selected '+ll+' Cells';
+
+                                             }
+
+                                             });
+
+
+                                    var update = {
+                                        //'marker.color': [colors],
+                                        //'marker.opacity': 1,
+                                        'unselected.marker.opacity':1,
+                                         {#'selected.marker.color':'blue',#}
+                                         {#'unselected.marker.color':'gray',#}
+
+                                    };
+                                            if (drawsam1==1) {
+                                                Plotly.addTraces(graphDiv, {
+                                                    x: x,
+                                                    y: y,
+                                                    type: 'scatter',
+                                                    mode: 'markers',
+                                                    //marker: {color: 'green'},
+                                                    //marker: {size: 12},
+                                                    //marker: {'line': {'width': 1}},
+                                                    marker: {color: 'green', size: 12, line: {color: 'black', width: 1}},
+                                                    name: 'Slection I'
+                                                });
+                                            } else if (drawsam1==2) {
+                                                    Plotly.addTraces(graphDiv, {
+                                                        x: x,
+                                                        y: y,
+                                                        type: 'scatter',
+                                                        mode: 'markers',
+                                                        //marker: {color: 'green'},
+                                                        //marker: {size: 12},
+                                                        //marker: {'line': {'width': 1}},
+                                                        marker: {
+                                                            color: 'red',
+                                                            size: 12,
+                                                            line: {color: 'black', width: 1}
+                                                        },
+                                                        name: 'Slection II'
+                                                    });
+                                            }
+                                  Plotly.restyle(graphDiv, update);
+                              }
+
+                            });
+
+                 });
+                $("#graph").fadeOut(0).fadeIn(0);
+            });
+        });
+</script>
+
+
+
+
+<script>
+        var graphDiv = document.getElementById('graph');
+        var clientWidthval = document.getElementById('graphcardref').clientWidth;
+        var clientWidthvalu = clientWidthval - 10
+        var clienth = (clientWidthvalu / 100)*60
+
+        {#var color1 = '#7b3294';#}
+        {#var color1Light = '#c2a5cf';#}
+        {#var colorX = '#ffa7b5';#}
+        {#var colorY = '#fdae61';#}
+
+        var color1 = 'red';
+        var color1Light = 'blue';
+        //var colorX = 'green';
+        //var colorY = 'yellow';
+
+        var plot_data = {{ plotting_data|safe }};
+        var all_data = [];
+
+        var N_Cells = {{ N_Cells|safe }};
+        var N_Genes = {{ N_Genes|safe }};
+        var N_Groups = {{ N_Groups|safe }};
+        document.getElementById("ncells").innerHTML = "Cell Number: "+ N_Cells;
+        document.getElementById("ngenes").innerHTML = "Gene Number: "+ N_Genes;
+        document.getElementById("ngroups").innerHTML = "Plotting Maps: "+ N_Groups;
+
+
+
+
+        var arrayLength = plot_data.length;
+        for (var i = 0; i < arrayLength; i++) {
+
+            var trace= {
+              x: plot_data[i][0],
+              y: plot_data[i][1],
+              mode: 'markers',
+              type: 'scatter',
+              name:plot_data[i][2],
+              marker: {color: plot_data[i][3], colorscale: 'RdBu', size: 12,line: {color: 'black', width: 1}},
+
+            };
+        all_data.push(trace)
+        }
+
+        Plotly.newPlot(graphDiv, all_data, {
+          dragmode: false,
+          hovermode: false,
+          autosize: false,
+          width: clientWidthvalu,
+          height: clienth,
+          margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 0,
+                pad: 0
+               },
+          xaxis: {
+            linecolor: 'white',
+            linewidth: 1,
+            mirror: true,
+            zeroline: false,
+            showgrid: false,
+            ticks: '',
+            showticklabels: false
+          },
+          yaxis: {
+            linecolor: 'white',
+            linewidth: 1,
+            mirror: true,
+            zeroline: false,
+            showgrid: false,
+            ticks: '',
+            showticklabels: false
+          }
+        }, {displayModeBar: false});
+
+        graphDiv.on('plotly_selected', function(eventData) {
+          var x = [];
+          var y = [];
+
+          var colors = [];
+          for(var i = 0; i < 10000; i++) colors.push(color1Light);
+
+          //console.log(eventData.points)
+
+          eventData.points.forEach(function(pt) {
+            x.push(pt.x);
+            y.push(pt.y);
+            colors[pt.pointNumber] = color1;
+          });
+            var XX = [];
+            XX.push(x);
+            var YY = [];
+            YY.push(y);
+            req2 = $.ajax({
+                type: 'POST',
+                url:'{% rurl "test-lasso" %}',
+                data:{ csrfmiddlewaretoken: '{{ csrf_token }}',
+                       X_ax : XX,
+                       Y_ax : YY,
+                }
+            });
+             req2.done(function (datareceived){
+
+                 var ll = datareceived.lengthx;
+                 var s1 = datareceived.sample1;
+                 var s2 = datareceived.sample2;
+             if (s1>0){
+                 //document.getElementById("adds1").innerHTML = 'You Have Selected '+ll+' Cells';
+                 var ss1 = document.getElementById("adds11");
+                 ss1.value = 'You Have Selected '+ll+' Cells';
+             } else if (s2>0){
+                //document.getElementById("adds2").innerHTML = 'You Have Selected '+ll+' Cells';
+                 var ss2 = document.getElementById("adds22");
+                 ss2.value = 'You Have Selected '+ll+' Cells';
+
+             }
+
+             });
+
+          Plotly.restyle(graphDiv, 'marker.color', [colors], [0]);
+        });
+</script>
+
+
+</html>

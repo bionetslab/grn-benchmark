@@ -1,0 +1,446 @@
+{% load static %} {% load static %} {% load crispy_forms_tags %}
+{% load rtags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117917519-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-117917519-1');
+    </script>
+    <title>DiNiro</title>
+    <link rel="stylesheet" href="{% rstatic 'test_interface/rc-slider@6.1.2.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-select@1.0.0-rc.3.min.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-virtualized@9.9.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-virtualized-select@3.1.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-dates@12.3.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/STREAM.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/Loading-State.css' %}">
+    <script src="{% rstatic 'test_interface/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% rstatic 'test_interface/css/all.css' %}">
+
+
+    <style>
+        .wider-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        @media (min-width: 576px) {
+            .wider-container {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .wider-container {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .wider-container {
+                max-width: 960px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .wider-container {
+                max-width: 1140px;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .wider-container {
+                max-width: 1370px;
+            }
+        }
+
+        @media (min-width: 1850px) {
+            .wider-container {
+                max-width: 1800px;
+            }
+        }
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+        }
+        .wrappermain {
+            flex: 1 0 auto;
+            margin-bottom: 100px;
+            margin-top: 0px;
+
+        }
+       li {
+            display: inline;
+       }
+      .active1 {
+          color: #7d7d7d;
+          float: left;
+          padding: 0px;
+          {#color: #9d9d9d;#}
+          text-decoration: none !important;
+          font-size: 25px;
+          position: relative;
+          right: 0mm;
+          border: 0px solid #73AD21;
+
+      }
+      .active2 {
+          float: right;
+          padding: 0px;
+          color: white;
+          margin-top: 6px;
+          text-decoration: none !important;
+          font-size: 18px;
+          position: relative;
+          left: 0mm;
+          margin-right: 0mm;
+          border: 0px solid #73AD21;
+      }
+      .active22, .btn22:hover {
+          color: #FFFFFF;
+          text-decoration: none !important;
+      }
+    .stepwizard-step p {
+    margin-top: 0px;
+    color:#666;
+    }
+    .stepwizard-row {
+        display: table-row;
+    }
+    .stepwizard {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+    .stepwizard-step button[disabled] {
+        /*opacity: 1 !important;
+        filter: alpha(opacity=100) !important;*/
+    }
+    .stepwizard .btn.disabled, .stepwizard .btn[disabled], .stepwizard fieldset[disabled] .btn {
+        opacity:1 !important;
+        color:#bbb;
+    }
+    .stepwizard-row:before {
+        top: 28px;
+        bottom: 0;
+        position: absolute;
+        content:" ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        z-index: 0;
+    }
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+    .btn-circle {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 24px;
+        line-height: 1.428571429;
+        border-radius: 30px;
+    }
+        .wrapper {
+          -webkit-transform: translateZ(0); /* webkit flicker fix */
+          -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+        }
+
+        .wrapper .tooltip {
+          background: #1496bb;
+          bottom: 100%;
+          color: #fff;
+          display: block;
+          left: -25px;
+          margin-bottom: 15px;
+          opacity: 0;
+          padding: 20px;
+          pointer-events: none;
+          position: absolute;
+          width: 100%;
+          -webkit-transform: translateY(10px);
+             -moz-transform: translateY(10px);
+              -ms-transform: translateY(10px);
+               -o-transform: translateY(10px);
+                  transform: translateY(10px);
+          -webkit-transition: all .25s ease-out;
+             -moz-transition: all .25s ease-out;
+              -ms-transition: all .25s ease-out;
+               -o-transition: all .25s ease-out;
+                  transition: all .25s ease-out;
+          -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+             -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+              -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+               -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+                  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+        }
+
+        /* This bridges the gap so you can mouse into the tooltip without it disappearing */
+        .wrapper .tooltip:before {
+          bottom: -20px;
+          content: " ";
+          display: block;
+          height: 20px;
+          left: 0;
+          position: absolute;
+          width: 100%;
+        }
+
+        /* CSS Triangles - see Trevor's post */
+        .wrapper .tooltip:after {
+          border-left: solid transparent 10px;
+          border-right: solid transparent 10px;
+          border-top: solid #1496bb 10px;
+          bottom: -10px;
+          content: " ";
+          height: 0;
+          left: 50%;
+          margin-left: -13px;
+          position: absolute;
+          width: 0;
+        }
+
+        .wrapper:hover .tooltip {
+          opacity: 1;
+          pointer-events: auto;
+          -webkit-transform: translateY(0px);
+             -moz-transform: translateY(0px);
+              -ms-transform: translateY(0px);
+               -o-transform: translateY(0px);
+                  transform: translateY(0px);
+        }
+
+        /* IE can just show/hide with no transition */
+        .lte8 .wrapper .tooltip {
+          display: none;
+        }
+
+        .lte8 .wrapper:hover .tooltip {
+          display: block;
+        }
+
+        .ttp {
+        }
+        .ttp[tt]:hover:after {
+          content: attr(tt);
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: 0px;
+          left: 0px;
+          width: 200px;
+          z-index: 1;
+          padding-bottom: 10px;
+          padding-top: 10px;
+          background-color: #faaca7;
+          text-align: center;
+          border-radius: 4px;
+          color: black;
+          font-family: 'Ubuntu'!important;
+        }
+    .act {
+        text-align: initial;
+        border-style: solid;
+        border-width: 1mm;
+        border-color: deepskyblue;
+        min-width: 50%;
+        background-color: deepskyblue;
+        border-radius: 2px;
+        margin-right: 0px;
+        color: white
+    }
+    .pas {
+        min-width: 50%;
+        background-color: white;
+        border-radius: 2px;
+        color: #33C3F0;
+        border-style: solid;
+        border-width: 1mm;
+        border-color: deepskyblue;
+    }
+    .card1 {
+      box-shadow: 5px 7px 9px 5px rgba(0,0,0,0.4);
+      #box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.8);
+      transition: 0s;
+      width: 100%;
+    }
+    .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+    }
+    body{
+    background-image: url('{% rstatic 'test_interface/cells.jpg'%}');
+    content: ' ';
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    {#display: block;#}
+    {#position: fixed;#}
+    {#left: 0;#}
+    {#top: 0;#}
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    }
+    </style>
+
+</head>
+
+<body>
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-radius: 0px!important;">
+    <div class="collapse navbar-collapse">
+        <ul class="ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active22 active1" style="margin-right: 20px"  href="{% rurl 'test-home' %}"><i class="fad fa-house-user"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active1" style="margin-right: 20px" href="{% rurl 'test-upload' %}"><i class="fal fa-paper-plane"></i> Explore</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active1" style="margin-right: 20px" href="{% rurl 'test-about' %}"><i class="far fa-info-square"></i> Documentation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active2" href="#"><i class="fab fa-github-square"></i> Version 1.0.0</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="wrappermain" style="border-style: solid; border-width: 0mm;border-color: red">
+
+    <div class="wider-container center-block" style="margin-bottom: 50px;border-style: solid; border-width: 0mm;border-color: blue">
+        <div class="row" style="margin-right: 2.5px;margin-left: 2.5px;border-style: solid; border-width: 0mm;border-color:green">
+            <div class="" style="margin-top: 0px;border-style: solid; border-width: 0mm; border-color: red;">
+                  <div style="display: flex;align-items: center;justify-content: center">
+                    <img src="{% rstatic 'test_interface/seelogo2-1.png' %}" style="height: 20%!important;box-shadow: 0px 4px 8px 0px rgba(0,0,0,1);border-style: solid; border-width: 0mm; border-color: white;border-radius: 10px;background-color: white">
+                  </div>
+                   <br>
+                  <p class="lead" style="text-align: center;width: 100%;text-shadow: 2px 2px 0px black; color: white;font-size: 22px">DiNiro is an interactive platform for <span style="font-style: italic ">de novo</span>  reconstruction of transcriptional gene regulatory network modules differentiating cell clusters from single-cell RNAseq data.</p>
+            </div>
+        </div>
+        <!row 2>
+        <br><br>
+        <div class="row" style="overflow: hidden;display: flex;align-items: center;justify-content: center;margin-right: 2.5px;margin-left: 2.5px;border-style: solid; border-width: 0mm;border-color:green">
+            <div class="container row" style="overflow: hidden;width: 70%;height: 80%;margin-right: 2.5px;margin-left: 2.5px;border-style: solid; border-width: 0mm;border-color:orange">
+
+              <div class="col-4" style="overflow: hidden;">
+                  <div class="card border-0 my-0" style="overflow: hidden;box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);">
+                    <div class="card-body p-5" style="text-align: center;align-items: center">
+                        <span style="font-size: 150px; color: darkred;">
+                            <i class="fal fa-qrcode"></i>
+                        </span>
+                        <br>
+                        <p class="lead my-5" style="">Visualize a precomputed example results (data)</p>
+                        <br>
+                      <div style="display: flex;align-items: center;justify-content: center">
+                      <button style="width: 70%;position: absolute;bottom: 20px;height: 50px" type="button" class="btn btn-lg btn-block btn-success center" onclick="location.href='https://exbio.wzw.tum.de/diniro//result2/?user=svMpEXejdkidC2XfmLLPVKxYO2SwBEv0'" role="button">Visualize</button>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-4" style="overflow: hidden;">
+                  <div class="card border-0 my-0" style="overflow: hidden;box-shadow:  0px 8px 16px 0px rgba(0,0,0,1);">
+                    <div class="card-body p-5" style="text-align: center;align-items: center">
+                        <span style="font-size: 150px; color: darkred;">
+                            <i class="fal fa-paper-plane"></i>
+                        </span>
+                        <br>
+                        <p class="lead my-5" style="">Run DiNiro on your single-cell data &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <br>
+                      <div style="display: flex;align-items: center;justify-content: center">
+                      <button style="width: 70%;position: absolute;bottom: 20px;height: 50px" type="button" class="btn btn-lg btn-block btn-success center" onclick="location.href='{% rurl 'test-upload' %}'" role="button">Get started</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4" style="overflow: hidden;">
+                  <div class="card border-0 my-0" style="overflow: hidden;box-shadow: 0px 8px 16px 0px rgba(0,0,0,1);">
+                    <div class="card-body p-5" style="text-align: center;align-items: center">
+                        <span style="font-size: 150px; color: darkred;">
+                            <i class="fal fa-info-square"></i>
+                        </span>
+                        <br>
+                        <p class="lead my-5" style="">Documentation: Learn how to use DiNiro &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <br>
+                      <div style="display: flex;align-items: center;justify-content: center">
+                      <button style="width: 70%;position: absolute;bottom: 20px;height: 50px" type="button" class="btn btn-lg btn-block btn-success center" onclick="location.href='{% rurl 'test-about' %}'" role="button">Help</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <footer class="container pt-4 my-md-5 pt-md-5 border-top" style="width: 70%">
+            <div class="row">
+            </div>
+        </footer>
+
+
+    <!end>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark footer footer-custom navbar-fixed-bottom">
+    <div class="container">
+        <p class="m-0 text-center text-white">Di-Niro | version 1.0.0 | &copy2021 <a style="text-decoration:none;" href="https://mdbootstrap.com/"> cosy.bio</a> </p>
+    </div>
+</footer>
+<!-- Footer -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    src="{% rstatic 'test_interface/main.js' %}"
+</script>
+<link rel="stylesheet" href="{% rstatic 'test_interface/spinner.css' %}">
+
+</body>
+</html>

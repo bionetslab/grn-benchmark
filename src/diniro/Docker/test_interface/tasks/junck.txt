@@ -1,0 +1,20 @@
+        {% for i in n_plots %}
+
+        <script type="text/javascript">
+          // create an array with nodes
+          var nodes = new vis.DataSet({{ nodes|index:i|safe }});
+
+          // create an array with edges
+          var edges = new vis.DataSet({{ edges|index:i|safe }});
+
+          // create a network
+          var container = document.getElementById("mynetwork{{i}}");
+          var data = {
+            nodes: nodes,
+            edges: edges,
+          };
+          var options = {};
+          var network = new vis.Network(container, data, options);
+        </script>
+
+  {% endfor %}

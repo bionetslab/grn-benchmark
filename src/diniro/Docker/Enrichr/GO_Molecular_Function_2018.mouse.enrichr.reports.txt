@@ -1,0 +1,7 @@
+Gene_set	Term	Overlap	P-value	Adjusted P-value	Old P-value	Old Adjusted P-value	Odds Ratio	Combined Score	Genes
+GO_Molecular_Function_2018	regulatory region DNA binding (GO:0000975)	1/224	0.011199892244585324	0.02182481377439521	0	0	Infinity	Infinity	JUND
+GO_Molecular_Function_2018	RNA polymerase II core promoter proximal region sequence-specific DNA binding (GO:0000978)	1/262	0.013099882605590227	0.02182481377439521	0	0	Infinity	Infinity	JUND
+GO_Molecular_Function_2018	core promoter proximal region sequence-specific DNA binding (GO:0000987)	1/278	0.013899878819522905	0.02182481377439521	0	0	Infinity	Infinity	JUND
+GO_Molecular_Function_2018	transcription coactivator activity (GO:0003713)	1/291	0.014549875849596803	0.02182481377439521	0	0	Infinity	Infinity	JUND
+GO_Molecular_Function_2018	transcription regulatory region DNA binding (GO:0044212)	1/374	0.018699858807509014	0.022439830569010825	0	0	Infinity	Infinity	JUND
+GO_Molecular_Function_2018	RNA polymerase II regulatory region sequence-specific DNA binding (GO:0000977)	1/460	0.02299984393534193	0.02299984393534193	0	0	Infinity	Infinity	JUND

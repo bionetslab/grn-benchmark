@@ -1,0 +1,682 @@
+{% load static %}
+{% load index %}
+{% load crispy_forms_tags %}
+{% load index %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+
+
+<head>
+
+    <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-venn.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.9.0/themes/pastel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+     <script type = "text/javascript" src = "https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"> </script >
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117917519-1"></script>
+        <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-117917519-1');
+    </script>
+        <meta charset="UTF-8">
+        <title>my_project</title>
+        <link rel="stylesheet" href="{% static 'test_interface/rc-slider@6.1.2.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-select@1.0.0-rc.3.min.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-virtualized@9.9.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-virtualized-select@3.1.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-dates@12.3.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/STREAM.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/Loading-State.css' %}">
+    <script src="{% static 'test_interface/jquery-3.3.1.min.js' %}"></script>
+
+
+    <!-- Custom styles for this template -->
+    <!link href="jumbotron.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{% static 'test_interface/css/all.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css"
+          integrity="sha384-9IE49Wand+n6ztme8e7Gh51OalpKkPG5z23U2F7SicqKr5It9ttcDbg6dNlhYeTE" crossorigin="anonymous">
+
+    <style>
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+      .active1 {
+          color: #7d7d7d;
+          float: left;
+          padding: 0px;
+          {#color: #9d9d9d;#}
+          text-decoration: none !important;
+          font-size: 25px;
+          position: relative;
+          right: 0mm;
+          border: 0px solid #73AD21;
+
+        }
+      .active2 {
+          float: right;
+          padding: 0px;
+          color: white;
+          margin-top: 6px;
+          text-decoration: none !important;
+          font-size: 18px;
+          position: relative;
+          left: 0mm;
+          margin-right: 0mm;
+          border: 0px solid #73AD21;
+        }
+      .active22, .btn22:hover {
+          color: #FFFFFF;
+          text-decoration: none !important;
+        }
+      .selection-with {
+         width:300px;
+      }
+      .graph-container {
+            width:100% !important;
+            height:100% !important;
+      }
+      .navbar-custom {
+          height: 50px;
+      }
+      .footer-custom {
+          height: 40px;
+          padding-top: 10px;
+      }
+      .nopadding {
+           padding: 0 !important;
+           margin: 0 !important;
+      }
+      html, body {
+        height: 100%;
+      }
+
+    </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-custom navbar-inverse navbar-fixed-top">
+        <div class="container-fluid navbar-collapse collapse w-100">
+            <a class="nav-item  active1"  href="{% url 'test-home' %}"><i class="fad fa-house-user"></i> Home</a>
+            <a class="nav-item btn22 active22 active1" style="padding-left: 20px" href="{% url 'test-upload' %}"><i class="fas fa-external-link-alt"></i> Explore</a>
+            <a class="nav-item  active1" style="padding-left: 20px" href="#"><i class="fas fa-feather"></i> Cite</a>
+            <a class="nav-item  active1" style="padding-left: 20px"href="{% url 'test-about' %}"><i class="fas fa-question-circle"></i> About</a>
+            <a class="nav-item active2" style="padding-left: 20px" href="#"><i class="fab fa-github-square"></i> Version 1.0.0</a>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+    <h2 style="margin-left: 10mm;"><i class="fas fa-flask"></i>  Analysis Results</h2>
+           <div class="text-center">
+                <button id="table_button" class="btn btn-primary" style="min-width: 300px" type="button" onclick="table_switch()">Table</button>
+                <!button id="network_button" class="btn btn-primary" style="min-width: 300px" type="button" onclick="network_switch()"><!button>
+                <button id="network2_button" class="btn btn-primary" style="min-width: 300px" type="button" onclick="network2_switch()">Network</button>
+                <button id="report_button" class="btn btn-primary" style="min-width: 300px" type="button" onclick="report_switch()">Report</button>
+            </div>
+    <div id="table" class="row center" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 5px; padding: 1mm; padding-top: 0px;margin-bottom: 10mm; margin-left: 5mm; margin-right: 5mm;">
+            <!-- Page Content -->
+        <div class="wrapper center" style="width: 100%;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);padding-top: 0px">
+
+            <div class="container-fluid my-8" style="padding: 0px;border-style: solid; border-width: 0.5mm; border-color: rgb(255, 255, 255);">
+
+                <div class="card border-0 shadow my-0 center">
+                    <div class="card-body p-3" style="padding: 0px;border-style: solid; border-width: 0.5mm; border-color: white;">
+                        <div class="table-responsive">
+                            <h6 class="mt-4">
+
+              <table border="0" class="dataframe table table-striped table-bordered">
+              <thead>
+                <tr style="text-align: unset;">
+                  <th>Rank</th>
+                  <th>Module TF</th>
+                  <th>Number of Genes</th>
+                  <th>GO Terms (pb)</th>
+                  <th>Module Network</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for x in table %}
+                <tr>
+                  <td>{{ x|index:0 }}</td>
+                  <td>{{ x|index:1 }}</td>
+                  <td>{{ x|index:2 }}</td>
+                  <td>{% for y in x|index:3 %}
+                      <pre>{{ y }} </pre>
+                      <br>
+                     {% endfor %}</td>
+                  <td>
+                  <div class="checkbox">
+                  <label><input type="checkbox" value="checked" id="{{ x|index:1 }}" oninput="plot(this.id)">{{ x|index:1 }}</label>
+                  </div>
+                  <div class="w-100" id="{{ x|index:1 }}+{{ x|index:1 }}" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); width: 100%"></div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              </table>
+
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <! network view>
+    <div id="network" class="row" style="display: none; border-style: solid; border-width: 1mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 2mm; margin-bottom: 10mm; margin-left: 5mm; margin-right: 5mm;">
+        <div class="container-fluid" style="border-style: solid; border-width: 0mm; border-color: rgb(220, 220, 220);">
+        <div class="row" style="border-style: solid; border-width: 0mm; border-color: rgb(220, 220, 220);">
+        <div class="col-2" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);" >
+            <div class="shadow p-3 mb-5 bg-white rounded" style="width: 20rem;  margin-left: 10mm;">
+
+                <div class="container">
+                  <h0><i class="fas fa-check-square"></i> Choose Modules</h0>
+                  <form>
+                      {% for x in table %}
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="checked" id="{{ x|index:1 }}" oninput="plot(this.id)">{{ x|index:1 }}</label>
+                        </div>
+                      {% endfor %}
+                  </form>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="col-9" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);margin-left: 50px">
+                <h6 id="demo">Networks</h6>
+            <div class="shadow p-3 mb-5 bg-white rounded text-center">
+                <div class="w-100" id="networks" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); width: 100%;height: 600px"></div>
+            </div>
+                  <div class='row'>
+                        <div class="col-md-1">
+                            <label>TFs</label>
+                          <img src="{% static 'test_interface/tf.png' %}" width="50%">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label>Genes</label>
+                          <img src="{% static 'test_interface/gene.png' %}" width="50%">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label>Common</label>
+                          <img src="{% static 'test_interface/gray.png' %}" width="50%">
+                        </div>
+                        <div class="col-md-1">
+                            <label>{{ s1n }}</label>
+                          <img src="{% static 'test_interface/blue.png' %}" width="50%">
+                        </div>
+                        <div class="col-md-1">
+                            <label>{{ s2n }}</label>
+                          <img src="{% static 'test_interface/red.png' %}" width="50%">
+                        </div>
+                  </div>
+              </div>
+    </div>
+    </div>
+    </div>
+    <! network2 view>
+    <div id="network2" class="row" style="display: none; border-style: solid; border-width: 1mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 0px; padding: 2mm; margin-bottom: 50px; margin-left: 5mm; margin-right: 5mm;">
+         <div class='row' style="margin-bottom: 0px;border-style: solid; border-width: 1mm; border-color: white;margin-top: 0px;margin-right: 5px;margin-left: 5px">
+             <div class="col-8" style="border-style: solid; border-width: 0.5mm; border-color: white;padding: 0">
+                <div class=""><p style="font-size: 15px"><i style="font-size: 17px; color: Tomato;" class="fas fa-info"></i>&nbsp You can search genes of interest through the network (as comma-separated values).</p></div>
+                <input type="text" name="designation" data-role="tagsinput" id="tags_id" style="width: 500px">
+                <button id="changeData" class="btn btn-primary" style="min-width: 50px" type="button" onclick=""changeData()"">Search</button>
+                 <p> <span style="font-weight:bold;">Examples :</span>NPC2,TYMP,LST1</p>
+                <p id="p"></p>
+                <br>
+             </div>
+
+             <div class="col-4 nopadding" style="width: 100%;border-style: solid; border-width: 0.5mm; border-color: white;">
+                 <label style="text-align: center">Network Legend</label>
+                 <div class="row nopadding" style="width: 100%;border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);padding: 0px;border-radius: 10px;">
+                        <div class="col-2 nopadding" style="border-style: solid; border-width: 0.5mm; border-color: white"></div>
+                        <div class="col-2 nopadding" style="width: 25%;border-style: solid; border-width: 0.5mm; border-color: white">
+                            <label style="text-align: center">TFs</label>
+                          <img src="{% static 'test_interface/tf.png' %}" width="70%">
+                        </div>
+
+                        <div class="col-2 nopadding" style="width: 20%;border-style: solid; border-width: 0.5mm; border-color: white">
+                            <label style="text-align: center">Genes</label>
+                          <img src="{% static 'test_interface/gene.png' %}" width="70%">
+                        </div>
+
+                        <div class="col-2 nopadding" style="width: 20%;border-style: solid; border-width: 0.5mm; border-color: white">
+                            <label style="text-align: center">Common</label>
+                          <img src="{% static 'test_interface/gray.png' %}" width="70%">
+                        </div>
+                        <div class="col-2 nopadding " style="width: 20%;border-style: solid; border-width: 0.5mm; border-color: white">
+                            <label style="text-align: center">{{ s1n }}</label>
+                          <img src="{% static 'test_interface/blue.png' %}" width="70%">
+                        </div>
+                        <div class="col-2 nopadding" style="width: 20%;border-style: solid; border-width: 0.5mm; border-color: white">
+                            <label style="text-align: center">{{ s2n }}</label>
+                          <img src="{% static 'test_interface/red.png' %}" width="70%">
+                        </div>
+                </div>
+             </div>
+
+        </div>
+
+
+
+        <div id="networks2" class="container-fluid center" style="border-style: solid; border-width: 1mm; border-color: rgb(100, 100, 100); border-radius: 10px;width: 100%; background: rgb(220, 220, 220); height: border-box;height: 80vh;margin-bottom: 100px;"> </div>
+    </div>
+    <! report view>
+    <div id="report" class="row center" style="display: none; border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 2mm; margin-bottom: 10mm; margin-left: 55mm; margin-right: 55mm;">
+        <h6> </h6>
+        <!div class="w-100" id="networks2" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); width: 100%;height: 600px"><!/div>
+        <!div id="p"><!/div>
+            <div style="text-align: center"><h6>Figure 1 : The the distribution of the TF-Genen interaction across the two samples</h6></div>
+        <img src={{ url }} width="50%" class="center-block">
+        <br><br>
+            <div id="venn" class="center" style="width: 50%; text-align: center; height: 500px"></div>
+        <br><br>
+        <div style="text-align: center"><h6>Table 1 : DE genes and TFs distribution across the two samples</h6></div>
+        <table border="0" class="dataframe table table-striped table-bordered">
+              <thead>
+                <tr style="text-align: unset;">
+                  <th>Only in sample 1 Genes</th>
+                  <th>Only in sample 1 TFS</th>
+                 <th>Only in sample 2 Genes</th>
+                  <th>Only in sample 2 TFS</th>
+                  <th>In both</th>
+                  <th>GO Terms (pb)</th>
+                  <th>Module Network</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for x in table %}
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+
+
+
+
+        <img src={{ figure1_url }} width="50%" class="center-block">
+        <img>
+    </div>
+
+<script>
+var la = {{ la|safe }};
+var lb = {{ lb|safe }};
+var lc = {{ lc|safe }};
+
+anychart.onDocumentReady(function () {
+  // set chart theme
+  anychart.theme('pastel');
+  var data = [
+    {
+      x: 'A',
+      value: la+lc,
+      name: '{{ s1n|safe }}',
+      tooltipTitle: 'Gene only DE in Smaple I',
+      normal: {fill: "#8ecafb 0.7"},
+      hovered: {fill: "#8ecafb 1"},
+      selected: {fill: "#8ecafb 1"}
+    },
+    {
+      x: 'B',
+      value: lb+lc,
+      name: '{{ s2n|safe }}',
+      tooltipTitle: 'INGREDIENTS \n Key elements available',
+      normal: {fill: "#ffeaa6 0.7"},
+      hovered: {fill: "#ffeaa6 1"},
+      selected: {fill: "#ffeaa6 1"}
+    },
+    {
+      x: ['A', 'B'],
+      value: lc,
+      name: 'Possibility \n of disaster',
+      tooltipTitle: 'Possibility of disaster',
+      tooltipDesc: 'Keep a backup ready',
+      normal: {fill: "#9fdebe 0.8"},
+      hovered: {fill: "#9fdebe 1"},
+      selected: {fill: "#9fdebe 1"},
+      hatchFill: {
+        type:"weave",
+        color: "#83c3a3"
+      }
+    },
+  ];
+
+  // create venn diagram
+  var chart = anychart.venn(data);
+
+  // set chart title
+  chart
+    .title()
+    .enabled(true)
+    .fontFamily('Roboto, sans-serif')
+    .fontSize(24)
+    .padding({ bottom: 30 })
+    .text('The the distribution of the TF-Genen interaction across the two samples');
+
+  // set chart stroke
+  chart.stroke('1 #fff');
+
+  // set labels settings
+  chart
+    .labels()
+    .fontSize(16)
+    .fontColor('#5e6469')
+    .hAlign("center")
+    .vAlign("center")
+    .fontFamily('Roboto, sans-serif')
+    .fontWeight('500')
+    .format('{%Name}');
+
+  // set intersections labels settings
+  chart
+    .intersections()
+    .labels()
+    .fontStyle('italic')
+    .fontColor('#fff')
+    .format('{%Name}');
+
+  // disable legend
+  chart.legend(false);
+
+  // set tooltip settings
+  chart
+    .tooltip()
+    .titleFormat('{%tooltipTitle}')
+    .format("{%tooltipDesc}")
+    .background().fill("#000 0.5");
+
+  // set container id for the chart
+  chart.container('venn');
+
+  // initiate chart drawing
+  chart.draw();
+});
+
+</script>
+
+
+
+
+
+        <script>
+            $(document).ready(function(){
+              document.getElementById("module-test").innerText += 'Here we go';
+            });
+        </script>
+
+        <script>
+        function plot(val) {
+            var plu = "+"
+            var id = val.toString();
+            var ID = val.toString()+plu.toString()+val.toString();
+            reqq = $.ajax({
+                url : "{% url 'test-result-page' %}",
+                type : "POST",
+                data : {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    modu: id,
+
+                },
+            });
+                reqq.done(function (data){
+                  var n = data.n_combined
+                  var e = data.e_combined
+                  // create an array with nodes
+                  var edges = new vis.DataSet(e);
+                  var nodes = new vis.DataSet(n);
+
+                  console.log(n);
+
+                    // create a network
+                    var container = document.getElementById(ID);
+                    var data = {
+                      nodes: nodes,
+                      edges: edges,
+                    };
+                      var options = {
+                             physics:{
+                                   },
+                          layout: {improvedLayout:false},
+                        interaction: {
+                          navigationButtons: true,
+                          keyboard: true,
+                        },
+                         nodes: {
+                            font: {
+                                bold: '10px arial black',
+                                align: 'left'
+                            }
+                        }
+                      };
+                    var network = new vis.Network(container, data, options);
+            });
+        };
+    </script>
+
+    <script>
+        function network_switch() {
+          var t = document.getElementById("table");
+          var n = document.getElementById("network");
+          var r = document.getElementById("report");
+          var rb = document.getElementById("report_button");
+          var tb = document.getElementById("table_button");
+          var nb = document.getElementById("network_button");
+          var n2 = document.getElementById("network2");
+          var n2b = document.getElementById("network2_button");
+          if (n.style.display === "none") {
+              t.style.display = "none";
+              n.style.display = "block";
+              r.style.display = "none";
+              n2.style.display = "none";
+              n2b.style.background = ''
+              rb.style.background = ''
+              tb.style.background = ''
+              nb.style.background = '#215802'
+          } else {
+
+
+          }
+        }
+    </script>
+    <script>
+        function changeData(){
+            nodes.update({id: 1, color: {background: "orange"}});
+        }
+    </script>
+    <script>
+        function network2_switch() {
+          var t = document.getElementById("table");
+          //var n = document.getElementById("network");
+          var r = document.getElementById("report");
+          var n2 = document.getElementById("network2");
+          var n2b = document.getElementById("network2_button");
+          var rb = document.getElementById("report_button");
+          var tb = document.getElementById("table_button");
+          //var nb = document.getElementById("network_button");
+          if (n2.style.display === "none") {
+              t.style.display = "none";
+              //n.style.display = "none";
+              r.style.display = "none";
+              n2.style.display = "block";
+              rb.style.background = ''
+              tb.style.background = ''
+              //nb.style.background = ''
+              n2b.style.background = '#215802'
+          } else {
+          }
+            var nn = {{ NODES|safe }};
+            var ee = {{ EDGES|safe }};
+            var edges = new vis.DataSet(ee);
+            var nodes = new vis.DataSet(nn);
+            // create a network
+            var container = document.getElementById("networks2");
+            var data = {
+              nodes: nodes,
+              edges: edges,
+            };
+            var options = {};
+            var network = new vis.Network(container, data, options);
+
+            $('#changeData').click(function () {
+
+                var array = $('#tags_id').val().split(",");
+                array.forEach(function (gene, index) {
+                         console.log(gene, index);
+                       var items = nodes.get({
+                          filter: function (item) {
+                            return (item.label == gene);
+                          }
+                        });
+                       var type = items.length;
+                       console.log(type);
+                       if (items.length === 0 ) {
+                           document.getElementById("p").innerText += 'The gene '+gene+' is not found. \r\n';
+                           //console.log('NOT Found');
+                       } else {
+                            nodes.remove(items[0].id)
+                            nodes.add({
+                                id: items[0].id,
+                                label: items[0].label,
+                                color: 'green',
+                            });
+                        }
+                });
+
+
+            });
+        }
+    </script>
+    <script>
+        function table_switch() {
+          var t = document.getElementById("table");
+          var tb = document.getElementById("table_button");
+          var nb = document.getElementById("network_button");
+          var n = document.getElementById("network");
+          var r = document.getElementById("report");
+          var rb = document.getElementById("report_button");
+          var n2 = document.getElementById("network2");
+          var n2b = document.getElementById("network2_button");
+          if (t.style.display === "none") {
+              t.style.display = "block";
+              n.style.display = "none";
+              r.style.display = "none";
+              n2.style.display = "none";
+              n2b.style.background = ''
+              rb.style.background = ''
+              tb.style.background = '#215802'
+              nb.style.background = ''
+          } else {
+
+          }
+        }
+
+   </script>
+    <script>
+        function report_switch() {
+          var t = document.getElementById("table");
+          var tb = document.getElementById("table_button");
+          var nb = document.getElementById("network_button");
+          var n = document.getElementById("network");
+          var r = document.getElementById("report");
+          var rb = document.getElementById("report_button");
+          var n2 = document.getElementById("network2");
+          var n2b = document.getElementById("network2_button");
+          if (r.style.display === "none") {
+              t.style.display = "none";
+              n.style.display = "none";
+              r.style.display = "block";
+              n2.style.display = "none";
+              n2b.style.background = ''
+              rb.style.background = '#215802'
+              tb.style.background = ''
+              nb.style.background = ''
+          } else {
+
+          }
+        }
+
+   </script>
+
+
+             <!-- Footer -->
+    <footer class="bg-dark footer footer-custom navbar-fixed-bottom">
+
+      <!-- Copyright -->
+{#      <div class="footer-copyright text-center py-3">© 2020 Copyright:#}
+{#        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>#}
+{#      </div>#}
+            <div class="container">
+                <p class="m-0 text-center text-white">© 2020 Copyright: Di-Niro  <a style="text-decoration:none;" href="https://mdbootstrap.com/"> cosy.bio</a> </p>
+            </div>
+
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+  </body>
+
+
+</html>

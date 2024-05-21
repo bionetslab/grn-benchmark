@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver --insecure 0.0.0.0:8025
+    volumes:
+      - .:/code2
+    ports:
+      - "8025:8025"
+    networks:
+      - DiNiro_nginx_network
+networks:
+  DiNiro_nginx_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.204.0/24

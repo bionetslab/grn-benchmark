@@ -1,0 +1,100 @@
+{% load static %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117917519-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-117917519-1');
+    </script>
+        <meta charset="UTF-8">
+        <title>my_project</title>
+        <link rel="stylesheet" href="{% static 'test_interface/rc-slider@6.1.2.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-select@1.0.0-rc.3.min.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-virtualized@9.9.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-virtualized-select@3.1.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-dates@12.3.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/STREAM.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/Loading-State.css' %}">
+    <script src="{% static 'test_interface/jquery-3.3.1.min.js' %}"></script>
+    <style>
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'test_interface/logo.png' %}" width="30%" class="center">
+    <h2>Single-Cell Differential Co-expression Analysis</h2>
+    <h0>Current User name : {{ user.username }}</h0>
+    <br>
+    <h0>Current file : {{ user.userfiles.main_anndata }}</h0>
+    <div class="row">
+       <div class="six columns">
+          <h3 id="buffer1">Step 1: Input Files</h3>
+       </div>
+    </div>
+    <div class="row">
+       <div class="six columns" style="border-style: solid; border-width: 2px; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 10px 10px 3.8em;">
+          <div class="row">
+             <div class="six columns">
+                <h3 id="buffer5">Personal Files</h3>
+                <div>
+                   <form id="required-files-upload-file" method="POST" enctype="multipart/form-data">
+                      <div>
+                         <label>
+                            <!-- react-text: 55 --> <!-- /react-text --><!-- react-text: 56 -->Data Matrix<!-- /react-text -->
+                         </label>
+                          {% csrf_token %}
+                         <!input type="file" accept=".pdf" name="Data_Matrix">
+                          {{ form|crispy}}
+                          <button type="submit">Upload</button>
+                      </div>
+                   </form>
+                   <form id="required-files-upload-file" method="post" enctype="multipart/form-data">
+                      <div>
+                         <label>
+                            <!-- react-text: 516 --> <!-- /react-text --><!-- react-text: 517 -->Cell Labels<!-- /react-text -->
+                         </label>
+                         <input type="file" name="Cell Labels">
+                      </div>
+                      <div>
+                         <label>
+                            <!-- react-text: 521 --> <!-- /react-text --><!-- react-text: 522 -->Cell Label Colors<!-- /react-text -->
+                         </label>
+                         <input type="file" name="Cell Label Colors">
+                      </div>
+                      <button id="required-files-upload-file-btn" type="button">
+                         <!-- react-text: 59 --> <!-- /react-text --><!-- react-text: 60 -->Upload<!-- /react-text -->
+                      </button>
+                   </form>
+                </div>
+                <label id="max-cells" style="font-weight: bold;">IMPORTANT: Maximum of 2500 Cells</label><br><br><label id="matrix-update" style="font-weight: bold;">Data Matrix: No Upload (Required)</label><label id="cl-update" style="font-weight: bold;">Cell Labels File: No Upload (Optional)</label><label id="clc-update" style="font-weight: bold;">Cell Label Colors File: No Upload (Optional)</label>
+             </div>
+             <div class="six columns">
+                <h3 id="buffer5">Example Files</h3>
+                <button id="load_example_data">Load Example Data</button><br><br><br><br><br><br><br><br><br><br>
+                <h4 id="ready-to-compute">Ready for Step 2: No</h4>
+             </div>
+          </div>
+       </div>
+       <div class="six columns" style="border-style: solid; border-width: 2px; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 10px;">
+
+
+
+             <div class="six columns"><label style="font-weight: bold; padding-right: 10px;">LOESS Fraction</label><input value="0.1" id="loess_frac"><label style="font-weight: bold; padding-right: 10px;">LLE Neighbours</label><input value="0.1" id="lle-nbs"><label style="font-weight: bold; padding-right: 10px;">LLE Components</label><input value="3" id="lle-dr"></div>
+          </div>
+          <hr>
+
+    </div>
+</body>
+</html>

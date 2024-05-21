@@ -1,0 +1,207 @@
+    <!div class="container-fluid">
+    <div class="row" style="margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto">
+
+        <! -- Start of the first box -->
+        <div id="FirstBox" class="w-auto" style="padding: 0px;border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 0px; padding: 0mm 0mm 0mm 0mm; margin-right: 10mm; margin-left: 10mm;margin-bottom: 50mm">
+
+            <div class="container-fluid">
+
+            <! -- one row -->
+            <div class="row">
+
+                <! -- Start of the first column -->
+                <div class="col-7 text-center" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);text-align: center;">
+
+                    <h4 id="buffer94"><i class="far fa-file-import"></i> Upload Files</h4>
+                    <form id="upload_data_form" class="required-files-upload-file" method="POST" enctype="multipart/form-data">
+
+                        <div>
+                            {% csrf_token %}
+                            <!input type="file" accept=".h5ad" name="Data_Matrix">
+                            {{ form.as_p }}
+                            <br>
+                            <button id="UploadButton" class="btn btn-primary btn-lg" type="submit">Upload</button>
+                        </div>
+
+                    </form>
+                    <br><br>
+                    <h4 id="buffer5"><i class="fas fa-filter"></i> Samples Selection</h4>
+
+                    <div id="dfsel">
+
+                        <div id="firstform">
+                            <form method="POST" enctype="multipart/form-data">
+                                Select Sample One:
+                                <select style="min-width: 150px" id="mySelect1">
+                                    {% for x in unique_leb %}
+                                        <option value={{ x }}>{{ x }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br>
+                            </form>
+                            <button class="btn btn-primary " role="button" onclick="goo()">Add</button>
+                            <div id="choice1"></div>
+                            <form method="POST" enctype="multipart/form-data">
+                                Select Sample Two:
+                                <select style="min-width: 150px" id="mySelect2" name="mySelect2">
+                                    {% for x in unique_leb %}
+                                        <option value={{ x }}>{{ x }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                            <button class="btn btn-primary " role="button" onclick="gooo()">Add</button>
+                            <div id="choice2"></div>
+                        </div>
+
+                        <br>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button class="btn btn-primary btn-lg" role="button" onclick="go()">Select</button>
+                            <button class="btn btn-warning btn-lg" role="button" onclick="location.href='{% url 'test-home' %}'">Reset&nbsp;</button>
+                        </div>
+
+                    </div>
+
+                    <p id="s1"></p>
+                    <p id="s2"></p>
+                    <br>
+                    <h4 id="buffer66"></h4>
+
+                    <h4 id="buffer557"><i class="far fa-lasso"></i> Lasso Selection <button id="butt234" onclick="Hide()" class="btn" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2"><i class="fas fa-caret-square-down" style="font-size: 28px"></i></button></h4>
+
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <h0 id="adds1">Add Sample One</h0>
+                        <br>
+                        <h0 id="adds2">Add Sample Two</h0>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button class="btn btn-primary btn-lg" role="button">Select</button>
+                            <button class="btn btn-warning btn-lg" role="button" onclick="go3()">Reset&nbsp;</button>
+                        </div>
+                    </div>
+
+                </div>
+                <! -- End of the first column -->
+
+
+                <! -- Start of the second column -->
+                <div class="col-5" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); margin-left: 0mm;text-align: center ">
+                    <h4 id="buffer5"><i class="fas fa-sliders-v"></i> Parameters <span style="font-size: 0.7em; color: Tomato;"><i class="fas fa-info-circle"></i></span></h4>
+                    <form>
+                        <label for="n-sub">Number of samples :</label>
+                        <input type="number" style="min-width: 150px" oninput="this.value = Math.round(this.value);" min="1" max="100" step="1" id="n-sub" value="1" name="n-sub">
+                    </form>
+                    <br>
+                    <form>
+                        <label for="s-size">Sampling size :</label>
+                        <input type="number" style="min-width: 150px" id="s-size" oninput="this.value = Math.round(this.value);" min="5" max="10000" step="1" value="50" name="s-size">
+                    </form>
+                    <br>
+                    <form>
+                        <label for="exampleFormControlSelect1">Spice</label>
+                        <select class="show-tick" style="min-width: 150px" id="Species-selection">
+                        <option>Human</option>
+                        <option>Mouse</option>
+                        </select>
+                    </form>
+                    <br>
+                    <form>
+                        <label for="Size-threshold">Size threshold :</label>
+                        <input type="number" style="min-width: 150px" oninput="this.value = Math.round(this.value);" min="1" max="100" step="1" id="Size-threshold" value="3" name="Size-threshold">
+                    </form>
+                    <br>
+                    <form>
+                        <label for="Occurrence-threshold">Occurrence threshold :</label>
+                        <input type="number" style="min-width: 150px" id="Occurrence-threshold" oninput="this.value = Math.round(this.value);" min="5" max="10000" step="5" value="20" name="Occurrence-threshold">
+                    </form>
+                    <br>
+                    <form>
+                        <label for="number-modules">Number of Modules :</label>
+                        <input type="number" style="min-width: 150px" id="number-modules" oninput="this.value = Math.round(this.value);" min="1" max="50" step="1" value="10" name="number-modules">
+                    </form>
+
+                </div>
+                <! -- End of the second column -->
+
+            </div>
+            <! -- one row -->
+
+            <br><br><br>
+
+            <! -- Start of the 3 column -->
+            <div class="row" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);text-align: center">
+                <div class="text-center center" style="text-align: center">
+                    <h4 id="buffer77"><i class="fas fa-play-circle"></i> Compute</h4>
+                    <h4 id="selection_check"></h4>
+                    <button id="StartButton" class="btn btn-primary" style="min-width: 300px" type="button" onclick="start()">Start</button>
+                </div>
+            </div>
+            <! -- End of the 3 column -->
+
+        </div>
+
+
+
+        </div>
+        <! -- End of the first box -->
+
+
+        <! -- Start of the 2 box -->
+        <div class="col-7" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 0mm 6mm 0mm 6mm; margin-right: 0mm; margin-left: 10mm;margin-bottom: 50mm;">
+            <div class="row">
+                <div class="w-100" style="border-style: solid; border-width: 0mm;">
+                    <div class="shadow-lg p-3 mb-0 bg-white rounded" style="border-style: solid; border-width: 0mm;">
+                        <div  style="border-style: solid; border-width: 0mm; border-color: rgb(220, 220, 220); object-fit: scale-down">
+                            <div  class="container graph-container" style="object-fit: contain; border-style: solid; border-width: 0mm;" id="graph"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="w-25 text-center" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);">
+                    <h4 id="buffer5" style="" data-toggle="tooltip" title="You can switch between different plotting maps and coloring observations">Plotting Choices <span style="font-size: 0.8em; color: Tomato;"><i class="fas fa-info-circle"></i></span></h4>
+                    <form method="POST" id="post-form" enctype="multipart/form-data">
+                        Type of plot:
+                        <select style="min-width: 150px" id="map_selection">
+                            {% for x in plotting_maps %}
+                                <option value={{ x }}>{{ x }}</option>
+                            {% endfor %}
+                        </select>
+                        <br> Plot color:&nbsp;&nbsp;&nbsp;&nbsp;
+                        <select style="min-width: 150px" id="obs_selection">
+                            {% for x in observations %}
+                                <option value={{ x }}>{{ x }}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                    </form>
+
+                    <br>
+
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button id="sel" class="btn btn-primary btn-lg" role="button">Select</button>
+                        <button id="reset-plotting-choices" class="btn btn-warning btn-lg" role="button" onclick="location.href='{% url 'test-home' %}'">Reset&nbsp;</button>
+                    </div>
+
+                </div>
+
+                <div class="w-25 text-center" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);">
+                    <h4 id="buffer5">Data Example</h4>
+                    <button id="load_example_data" href="{% url 'test-about' %}">Run Current Example</button>
+                </div>
+
+
+                <div class="w-25 text-center" style="border-style: solid; border-width: 0.5mm; border-color: rgb(220, 220, 220);">
+                    <h4 id="buffer57">Data Summary</h4>
+                    <label id="ncells" style="font-weight: bold">Data Matrix: </label>
+                    <label id="ngenes" style="font-weight: bold">Cell Labels: </label>
+                    <label id="ngroups" style="font-weight: bold">Cell Labels: </label>
+
+                    <br><br><br>
+
+                </div>
+
+            </div>
+            <! -- End of the 2 box -->
+        </div>
+    </div>

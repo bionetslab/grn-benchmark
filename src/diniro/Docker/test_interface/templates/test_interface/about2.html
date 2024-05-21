@@ -1,0 +1,41 @@
+{% extends "test_interface/base.html" %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+{% block content %}
+    <h1>About template</h1>
+    <h0>{{ request.user }}</h0>
+    <br/>
+    <h0>{{ instance.main_anndata.url }}</h0>
+
+    <canvas id="myChart"></canvas>
+
+
+{% endblock %}
+
+<script>
+    var scatterChart = new Chart(ctx, {
+    type: 'scatter',
+    data: {
+        datasets: [{
+            label: 'Scatter Dataset',
+            data: [{
+                x: -10,
+                y: 0
+            }, {
+                x: 0,
+                y: 10
+            }, {
+                x: 10,
+                y: 5
+            }]
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+            }]
+        }
+    }
+});
+</script>

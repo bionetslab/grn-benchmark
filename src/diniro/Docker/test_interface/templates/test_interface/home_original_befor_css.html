@@ -1,0 +1,363 @@
+{% load static %} {% load static %} {% load crispy_forms_tags %}
+{% load rtags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+
+
+<head>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117917519-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-117917519-1');
+    </script>
+    <meta charset="UTF-8">
+    <title>DiNiro</title>
+    <link rel="stylesheet" href="{% rstatic 'test_interface/rc-slider@6.1.2.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-select@1.0.0-rc.3.min.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-virtualized@9.9.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-virtualized-select@3.1.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/react-dates@12.3.0.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/STREAM.css' %}">
+    <link rel="stylesheet" href="{% rstatic 'test_interface/Loading-State.css' %}">
+    <script src="{% rstatic 'test_interface/jquery-3.3.1.min.js' %}"></script>
+
+
+    <!-- Custom styles for this template -->
+    <!link href="jumbotron.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% rstatic 'test_interface/css/all.css' %}">
+
+
+    <style>
+
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+        }
+        .card1 {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: deepskyblue;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+
+        input:checked + .slider {
+          background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
+        }
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+      .active1 {
+          color: #7d7d7d;
+          float: left;
+          padding: 0px;
+          {#color: #9d9d9d;#}
+          text-decoration: none !important;
+          font-size: 25px;
+          position: relative;
+          right: 0mm;
+          border: 0px solid #73AD21;
+
+        }
+      .active2 {
+          float: right;
+          padding: 0px;
+          color: white;
+          margin-top: 6px;
+          text-decoration: none !important;
+          font-size: 18px;
+          position: relative;
+          left: 0mm;
+          margin-right: 0mm;
+          border: 0px solid #73AD21;
+        }
+      .active22, .btn22:hover {
+          color: #FFFFFF;
+          text-decoration: none !important;
+        }
+      .selection-with {
+         width:300px;
+      }
+      .graph-container {
+            width:100% !important;
+            height:100% !important;
+      }
+      .navbar-custom {
+          height: 50px;
+      }
+      .footer-custom {
+          height: 40px;
+          padding-top: 10px;
+      }
+      .stepwizard-step p {
+    margin-top: 0px;
+    color:#666;
+    }
+    .stepwizard-row {
+        display: table-row;
+    }
+    .stepwizard {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+    .stepwizard-step button[disabled] {
+        /*opacity: 1 !important;
+        filter: alpha(opacity=100) !important;*/
+    }
+    .stepwizard .btn.disabled, .stepwizard .btn[disabled], .stepwizard fieldset[disabled] .btn {
+        opacity:1 !important;
+        color:#bbb;
+    }
+    .ali{
+        height: 100%;!important;
+        width: 100%;!important;
+        padding-bottom: 0px;!important;
+        margin-bottom: 0px;!important;
+        min-height: 100%;!important;
+    }
+    .nomargin{
+        height: 100%;!important;
+        width: 100%;!important;
+        margin-left: 0px;!important
+        padding-bottom: 0px;!important;
+        margin-top: 0px;!important;
+        margin-right: 0px;!important;
+        bottom: 0px;!important;
+        left: 0px;!important;
+        right: 0px;!important;
+        top: 0px;!important;
+    }
+    .stepwizard-row:before {
+        top: 28px;
+        bottom: 0;
+        position: absolute;
+        content:" ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        z-index: 0;
+    }
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+    .btn-circle {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        padding: 12px 0;
+        font-size: 24px;
+        line-height: 1.428571429;
+        border-radius: 30px;
+    }
+    .act {
+        text-align: initial;
+        border-style: solid;
+        border-width: 1mm;
+        border-color: deepskyblue;
+        min-width: 50%;
+        background-color: deepskyblue;
+        border-radius: 2px;
+        margin-right: 0px;
+        color: white
+    }
+    .pas {
+        min-width: 50%;
+        background-color: white;
+        border-radius: 2px;
+        color: #33C3F0;
+        border-style: solid;
+        border-width: 1mm;
+        border-color: deepskyblue;
+    }
+    body{
+    background-image: url('{% rstatic 'test_interface/cells.jpg'%}');
+    content: ' ';
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    {#display: block;#}
+    {#position: fixed;#}
+    {#left: 0;#}
+    {#top: 0;#}
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    }
+
+    </style>
+</head>
+
+<body>
+       <nav class="navbar navbar-inverse navbar-custom navbar-fixed-top">
+          <div class="container-fluid navbar-collapse collapse" style="width: 100%">
+              <a class="nav-item btn22 active22  active1" href="{% rurl 'test-home' %}"><i class="fad fa-house-user"></i> Home</a>
+              <a class="nav-item active1" style="padding-left: 2vh" href="{% rurl 'test-upload' %}"><i class="fal fa-paper-plane"></i> Explore</a>
+              <a class="nav-item  active1" style="padding-left: 2vh" href="{% rurl 'test-about' %}"><i class="far fa-info-square"></i> Documentation</a>
+              <aa class="nav-item active2" style="padding-left: 2vh" href="#"><i class="fab fa-github-square"></i> Version 1.0.0</aa>
+          </div>
+        </nav>
+<div class="container-fluid" style="height: 90vh!important;margin: 50px 0px 50px 0px; padding: 0px;border-style: solid; border-width: 0mm; border-color: black;">
+    <div class="container-fluid pricing-header px-3 py-3 pt-md-0 pb-md-4 mx-auto text-center w-100" style="height: 30vh!important;margin-top: 0px;border-style: solid; border-width: 0mm; border-color: red;">
+          <div style="display: flex;align-items: center;justify-content: center;height: 20vh">
+            <img src="{% rstatic 'test_interface/seelogo2-1.png' %}" style="height: 15vh!important;box-shadow: 0px 4px 8px 0px rgba(0,0,0,1);border-style: solid; border-width: 1mm; border-color: white;border-radius: 10px;background-color: white">
+          </div>
+          <p class="lead" style="width: 100%;text-shadow: 2px 2px 0px black; color: white;font-size: 2vh">DiNiro is an interactive platform for <span style="font-style: italic ">de novo</span>  reconstruction of transcriptional gene regulatory network modules differentiating cell clusters from single-cell RNAseq data.</p>
+    </div>
+
+        <div class="container-fluid text-center" style="display: flex;align-items: center;justify-content: center;width: 60%!important;height: 60vh!important;border-style: solid; border-width: 0mm; border-color: blue;">
+          <div class="card-deck mb-3 text-center w-100">
+              <div class="card border-0 my-0" style="box-shadow: 5px 14px 18px 5px rgba(0,0,0,1);">
+                <div class="card-body p-5" style="text-align: center;align-items: center;height: 15vh!important;">
+                    <span style="font-size: 10vh; color: darkred;">
+                        <i class="fal fa-qrcode"></i>
+                    </span>
+                    <p class="lead my-5" style="width: 80%;position: absolute;bottom: 10vh;">Visualize a precomputed example results (data)</p>
+                  <div style="display: flex;align-items: center;justify-content: center">
+                  <button style="width: 70%;position: absolute;bottom: 2vh;height: 5vh" type="button" class="btn btn-lg btn-block btn-success center" onclick="location.href='https://exbio.wzw.tum.de/diniro//result2/?user=8H1sqKSOKTjPuRAOlxPylZRNW71PIqw8'" role="button">Visualize</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow my-0" style="box-shadow: 5px 14px 18px 5px rgba(0,0,0,1);">
+                <div class="card-body p-5" style="height: 50vh!important;">
+                    <span style="font-size: 10vh; color: darkred;">
+                     <i class="fal fa-paper-plane"></i>
+                    </span>
+                    <p class="lead my-5" style="width: 80%;position: absolute;bottom: 10vh;">Run DiNiro on your single-cell data</p>
+                  <div style="display: flex;align-items: center;justify-content: center">
+                  <button style="width: 70%;position: absolute;bottom: 2vh;height: 5vh" type="button" class="btn btn-lg btn-block btn-success" onclick="location.href='{% rurl 'test-upload' %}'" role="button">Get started</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card border-0 shadow my-0" style="box-shadow: 5px 14px 18px 5px rgba(0,0,0,1);">
+                <div class="card-body p-5" style="height: 15vh!important;">
+                    <span style="font-size: 10vh; color: darkred;">
+                        <i class="fal fa-info-square"></i>
+                    </span>
+                    <p class="lead my-5" style="width: 80%;position: absolute;bottom: 10vh;">Documentation: Learn how to use DiNiro</p>
+                  <div style="display: flex;align-items: center;justify-content: center">
+                  <button style="width: 70%;position: absolute;bottom: 2vh;height: 5vh" type="button" class="btn btn-lg btn-block btn-success" onclick="location.href='{% rurl 'test-about' %}'" role="button">Help</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+            </div>
+          </footer>
+        </div>
+
+</div>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="../../assets/js/vendor/popper.min.js"></script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
+        <script src="../../assets/js/vendor/holder.min.js"></script>
+        <script>
+          Holder.addTheme('thumb', {
+            bg: '#55595c',
+            fg: '#eceeef',
+            text: 'Thumbnail'
+          });
+        </script>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!script src="../../dist/js/bootstrap.min.js"><!/script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!script src="../../assets/js/ie10-viewport-bug-workaround.js"><!/script>
+        <!-- Footer -->
+        <footer class="footer-custom bg-dark footer navbar-fixed-bottom">
+        <div class="container">
+            <p class="m-0 text-center text-white">Di-Niro | version 1.0.0 | &copy2021 <a style="text-decoration:none;" href="https://mdbootstrap.com/"> cosy.bio</a> </p>
+        </div>
+        </footer>
+</body>
+</html>

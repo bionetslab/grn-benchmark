@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <title>Title</title>
+</head>
+<body>
+  <div id="graph"></div>
+    <p id="demo"></p>
+
+</body>
+
+
+    <script>
+        var graphDiv = document.getElementById('graph');
+        var N = 1000;
+        var color1 = '#7b3294';
+        var color1Light = '#c2a5cf';
+        var colorX = '#ffa7b5';
+        var colorY = '#fdae61';
+
+
+            var trace1 = {
+              x: plot_data[0][0],
+              y: plot_data[0][1],
+              mode: 'markers',
+              type: 'scatter',
+                name: 'Team B',
+
+            };
+
+            var trace2 = {
+              x: [2, 3, 4, 5],
+              y: [16, 5, 11, 9],
+              mode: 'markers',
+              type: 'scatter'
+            };
+
+            var trace3 = {
+              x: [1, 2, 3, 4],
+              y: [12, 9, 15, 12],
+              mode: 'markers',
+              type: 'scatter'
+            };
+
+            var data = [trace1, trace2, trace3];
+
+        Plotly.newPlot(graphDiv, data, {
+          title: 'Lasso around the scatter points to see sub-distributions',
+          dragmode: 'lasso',
+          xaxis: {
+            zeroline: false,
+          },
+          yaxis: {
+
+          }
+        }, {showSendToCloud: true});
+
+        graphDiv.on('plotly_selected', function(eventData) {
+          var x = [];
+          var y = [];
+
+          var colors = [];
+          for(var i = 0; i < N; i++) colors.push(color1Light);
+
+          console.log(eventData.points)
+
+          eventData.points.forEach(function(pt) {
+            x.push(pt.x);
+            y.push(pt.y);
+            colors[pt.pointNumber] = color1;
+          });
+
+        var fruits = [];
+        fruits.push(x);
+        document.getElementById("demo").innerHTML = fruits;
+
+
+
+          Plotly.restyle(graphDiv, 'marker.color', [colors], [0]);
+        });
+    </script>
+
+</html>

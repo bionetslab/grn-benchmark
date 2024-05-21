@@ -1,0 +1,255 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-117917519-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-117917519-1');
+    </script>
+        <meta charset="UTF-8">
+        <title>STREAM</title>
+        <link rel="stylesheet" href="{% static 'test_interface/rc-slider@6.1.2.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-select@1.0.0-rc.3.min.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-virtualized@9.9.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-virtualized-select@3.1.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/react-dates@12.3.0.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/STREAM.css' %}">
+        <link rel="stylesheet" href="{% static 'test_interface/Loading-State.css' %}">
+    <script src="{% static 'test_interface/jquery-3.3.1.min.js' %}"></script>
+    <style>
+        .center {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'test_interface/logo.png' %}" width="10%" class="center">
+    <h2>Single-cell Trajectory Reconstruction Exploration And Mapping</h2>
+
+
+    <div class="row">
+       <div class="six columns">
+          <h3 id="buffer1">Step 1: Input Files</h3>
+       </div>
+    </div>
+    <div class="row">
+       <div class="six columns" style="border-style: solid; border-width: 2px; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 10px 10px 3.8em;">
+          <div class="row">
+             <div class="six columns">
+                <h3 id="buffer5">Personal Files</h3>
+                <div>
+                   <form id="required-files-upload-file" method="post">
+                      <div>
+                         <label>
+                            <!-- react-text: 55 --> <!-- /react-text --><!-- react-text: 56 -->Data Matrix<!-- /react-text -->
+                         </label>
+                         <input type="file" name="Data Matrix">
+                      </div>
+                      <div>
+                         <label>
+                            <!-- react-text: 516 --> <!-- /react-text --><!-- react-text: 517 -->Cell Labels<!-- /react-text -->
+                         </label>
+                         <input type="file" name="Cell Labels">
+                      </div>
+                      <div>
+                         <label>
+                            <!-- react-text: 521 --> <!-- /react-text --><!-- react-text: 522 -->Cell Label Colors<!-- /react-text -->
+                         </label>
+                         <input type="file" name="Cell Label Colors">
+                      </div>
+                      <button id="required-files-upload-file-btn" type="button">
+                         <!-- react-text: 59 --> <!-- /react-text --><!-- react-text: 60 -->Upload<!-- /react-text -->
+                      </button>
+                   </form>
+                </div>
+                <label id="max-cells" style="font-weight: bold;">IMPORTANT: Maximum of 2500 Cells</label><br><br><label id="matrix-update" style="font-weight: bold;">Data Matrix: No Upload (Required)</label><label id="cl-update" style="font-weight: bold;">Cell Labels File: No Upload (Optional)</label><label id="clc-update" style="font-weight: bold;">Cell Label Colors File: No Upload (Optional)</label>
+             </div>
+             <div class="six columns">
+                <h3 id="buffer5">Example Files</h3>
+                <button id="load_example_data">Load Example Data</button><br><br><br><br><br><br><br><br><br><br>
+                <h4 id="ready-to-compute">Ready for Step 2: No</h4>
+             </div>
+          </div>
+       </div>
+       <div class="six columns" style="border-style: solid; border-width: 2px; border-color: rgb(220, 220, 220); border-radius: 10px; border-spacing: 15px; padding: 10px;">
+          <h3 id="buffer2" style="display: block;">Basic Parameters</h3>
+          <div class="row">
+             <div class="six columns">
+                <label style="font-weight: bold; padding-right: 10px;">Perform Log2 Transformation</label>
+                <div id="log2">
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 89 -->Yes<!-- /react-text -->
+                   </label>
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 92 -->No<!-- /react-text -->
+                   </label>
+                </div>
+                <label style="font-weight: bold; padding-right: 10px;">Normalize Data on Library Size</label>
+                <div id="norm">
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 97 -->Yes<!-- /react-text -->
+                   </label>
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 100 -->No<!-- /react-text -->
+                   </label>
+                </div>
+                <label style="font-weight: bold; padding-right: 10px;">ATAC-seq Data</label>
+                <div id="atac">
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 105 -->Yes<!-- /react-text -->
+                   </label>
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 108 -->No<!-- /react-text -->
+                   </label>
+                </div>
+                <label style="font-weight: bold; padding-right: 10px;">Feature Selection</label>
+                <div id="select">
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 113 -->LOESS<!-- /react-text -->
+                   </label>
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 116 -->PCA<!-- /react-text -->
+                   </label>
+                   <label class="" style="display: inline-block;">
+                      <input type="radio" class="" value="on"><!-- react-text: 119 -->All<!-- /react-text -->
+                   </label>
+                </div>
+             </div>
+             <div class="six columns"><label style="font-weight: bold; padding-right: 10px;">LOESS Fraction</label><input value="0.1" id="loess_frac"><label style="font-weight: bold; padding-right: 10px;">LLE Neighbours</label><input value="0.1" id="lle-nbs"><label style="font-weight: bold; padding-right: 10px;">LLE Components</label><input value="3" id="lle-dr"></div>
+          </div>
+          <hr>
+          <div>
+             <h3>Advanced Parameters</h3>
+             <button id="advanced-params-button" style="margin-bottom: 0.5cm;">(+) Show</button>
+             <div id="advanced-params-container" style="display: none;">
+                <div class="row">
+                   <div class="three columns">
+                      <label style="font-weight: bold; padding-right: 10px;">Number of PCs</label><input value="15" id="pca_n_PC"><label style="font-weight: bold; padding-right: 10px;">Keep First PC</label>
+                      <div id="pca_first_PC">
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 140 -->Yes<!-- /react-text -->
+                         </label>
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 143 -->No<!-- /react-text -->
+                         </label>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">Clustering Method</label>
+                      <div id="clustering">
+                         <label class="">
+                            <input type="radio" class="" value="on"><!-- react-text: 148 -->affinity propagation<!-- /react-text -->
+                         </label>
+                         <label class="">
+                            <input type="radio" class="" value="on"><!-- react-text: 151 -->k-means<!-- /react-text -->
+                         </label>
+                         <label class="">
+                            <input type="radio" class="" value="on"><!-- react-text: 154 -->spectral clustering<!-- /react-text -->
+                         </label>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">Number of Clusters</label><input value="10" id="n_clusters"><label style="font-weight: bold; padding-right: 10px;">Damping Factor</label><input value="0.75" id="damping">
+                   </div>
+                   <div class="three columns">
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Nodes</label><input value="50" id="EPG_n_nodes"><label style="font-weight: bold; padding-right: 10px;">EPG Lambda</label><input value="0.02" id="EPG_lambda"><label style="font-weight: bold; padding-right: 10px;">EPG Mu</label><input value="0.1" id="EPG_mu"><label style="font-weight: bold; padding-right: 10px;">EPG Trimming Radius</label><input value="1000000" id="EPG_trimmingradius"><label style="font-weight: bold; padding-right: 10px;">EPG Alpha</label><input value="0.02" id="EPG_alpha"><label style="font-weight: bold; padding-right: 10px;">Disable EPG Finetune</label>
+                      <div id="disable_EPG_optimize">
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 174 -->Yes<!-- /react-text -->
+                         </label>
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 177 -->No<!-- /react-text -->
+                         </label>
+                      </div>
+                   </div>
+                   <div class="three columns">
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Collapse</label>
+                      <div id="EPG_collapse">
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 183 -->Yes<!-- /react-text -->
+                         </label>
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 186 -->No<!-- /react-text -->
+                         </label>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Collapse Mode</label>
+                      <div id="EPG_collapse_mode">
+                         <div class="Select has-value is-clearable is-searchable Select--single">
+                            <div class="Select-control">
+                               <span class="Select-multi-value-wrapper" id="react-select-2--value">
+                                  <div class="Select-value"><span class="Select-value-label" role="option" aria-selected="true" id="react-select-2--value-item">Point Number</span></div>
+                                  <div class="Select-input" style="display: inline-block;">
+                                     <input id="EPG_collapse_mode" aria-activedescendant="react-select-2--value" aria-expanded="false" aria-haspopup="false" aria-owns="" role="combobox" value="" style="box-sizing: content-box; width: 5px;">
+                                     <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 15px; font-family: &quot;Open Sans&quot;, HelveticaNeue, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
+                                  </div>
+                               </span>
+                               <span aria-label="Clear value" class="Select-clear-zone" title="Clear value"><span class="Select-clear">×</span></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span>
+                            </div>
+                         </div>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Collapse Parameter</label><input value="5" id="EPG_collapse_par">
+                   </div>
+                   <div class="three columns">
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Shift</label>
+                      <div id="EPG_shift">
+                         <div class="Select has-value is-clearable is-searchable Select--single">
+                            <div class="Select-control">
+                               <span class="Select-multi-value-wrapper" id="react-select-3--value">
+                                  <div class="Select-value"><span class="Select-value-label" role="option" aria-selected="true" id="react-select-3--value-item">No</span></div>
+                                  <div class="Select-input" style="display: inline-block;">
+                                     <input id="EPG_shift" aria-activedescendant="react-select-3--value" aria-expanded="false" aria-haspopup="false" aria-owns="" role="combobox" value="" style="box-sizing: content-box; width: 5px;">
+                                     <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 15px; font-family: &quot;Open Sans&quot;, HelveticaNeue, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
+                                  </div>
+                               </span>
+                               <span aria-label="Clear value" class="Select-clear-zone" title="Clear value"><span class="Select-clear">×</span></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span>
+                            </div>
+                         </div>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Shift Mode</label>
+                      <div id="EPG_shift_mode">
+                         <label class="">
+                            <input type="radio" class="" value="on"><!-- react-text: 222 -->Node Density<!-- /react-text -->
+                         </label>
+                         <label class="">
+                            <input type="radio" class="" value="on"><!-- react-text: 225 -->Node Points<!-- /react-text -->
+                         </label>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Shift DR</label><input value="0.05" id="EPG_shift_DR"><label style="font-weight: bold; padding-right: 10px;">EPG Max Shift</label><input value="5" id="EPG_shift_maxshift"><label style="font-weight: bold; padding-right: 10px;">Disable EPG Extend</label>
+                      <div id="disable_EPG_ext">
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 234 -->Yes<!-- /react-text -->
+                         </label>
+                         <label class="" style="display: inline-block;">
+                            <input type="radio" class="" value="on"><!-- react-text: 237 -->No<!-- /react-text -->
+                         </label>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Extend Mode</label>
+                      <div id="EPG_ext_mode">
+                         <div class="Select has-value is-clearable is-searchable Select--single">
+                            <div class="Select-control">
+                               <span class="Select-multi-value-wrapper" id="react-select-4--value">
+                                  <div class="Select-value"><span class="Select-value-label" role="option" aria-selected="true" id="react-select-4--value-item">Quant Dists</span></div>
+                                  <div class="Select-input" style="display: inline-block;">
+                                     <input id="EPG_ext_mode" aria-activedescendant="react-select-4--value" aria-expanded="false" aria-haspopup="false" aria-owns="" role="combobox" value="" style="box-sizing: content-box; width: 5px;">
+                                     <div style="position: absolute; top: 0px; left: 0px; visibility: hidden; height: 0px; overflow: scroll; white-space: pre; font-size: 15px; font-family: &quot;Open Sans&quot;, HelveticaNeue, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-weight: 400; font-style: normal; letter-spacing: normal; text-transform: none;"></div>
+                                  </div>
+                               </span>
+                               <span aria-label="Clear value" class="Select-clear-zone" title="Clear value"><span class="Select-clear">×</span></span><span class="Select-arrow-zone"><span class="Select-arrow"></span></span>
+                            </div>
+                         </div>
+                      </div>
+                      <label style="font-weight: bold; padding-right: 10px;">EPG Extend Parameter</label><input value="0.5" id="EPG_ext_par">
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+</body>
+</html>
