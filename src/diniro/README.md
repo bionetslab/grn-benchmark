@@ -120,7 +120,6 @@ FunctionTwo.copula(data_folder_all)
 ```
 
 ## DiNiro parameters
-
 - `Significance cutoff` : We use a permutation test to calculate the p-value for every gene-gene interaction found in the results. Here you can specify the cut-off value to reject the null hypothesis, Default = 0.05.
 - `Species selection` : We use transcription factors (TFs) when searching for gene regulation. In case you have not uploaded your own TFs of interest, species-specific transcription factor files are used (Here you can specify which file to use).
 - `Number of subsamples` : Number of subsamples to derive from each sample in order to generate multiple gene regulatory networks (for denoising purpose), Default = 4
@@ -129,6 +128,8 @@ FunctionTwo.copula(data_folder_all)
 - `Max module size` : The maximum number of genes in a module in order to include it in the results.
 - `Occurrence threshold (%)` : To reduce noise, gene regulatory networks are computed multiple times and gene interactions are filtered based on an occurrence threshold (in percentage), Default = 70%.
 - `Min module size` : The minimum number of genes in a module in order to include it in the results.
+-  `Number of Representative Cells per Cluster`.
+- `Correlation Cutoff`: to Specify the minimum threshold for co-expression strength to include an edge in the network.
 
 
 ## Input file format specification:
