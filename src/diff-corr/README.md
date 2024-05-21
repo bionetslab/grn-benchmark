@@ -82,19 +82,29 @@ Please follow the steps following to make sure of a smooth installation process.
    ```sh
    cd /grn-benchmark/src/diff-corr/scripts/
    ```
-3. Build Docker container
-    ```sh
-   docker build -t diffcorr .
-   ```
-4. Run the docker image
-    ```sh
-   docker run --rm -it diffcorr bash
-   ``` 
-5. Execute the installion file
+
+#### Installation 
+1. Rscript - Execute the installation script
    ```sh
    Rscript installation.R
    ```
-6. Run the command to execute the tool for exemplary datasets (No parameters required)
+2. Conda
+   ```sh
+   conda env create -f environment.yaml
+   ```
+   ```sh
+   conda activate diffcorr_project
+   ```
+3. Docker
+   ```sh
+   docker build -t diffcorr .
+   ```
+    ```sh
+   docker run --rm -it diffcorr bash
+   ``` 
+
+#### Execution 
+1. Run the command to execute the tool for exemplary datasets (No parameters required)
    > _Preferably keep the datasets files in the scripts/ folder_
 
    Execute DiffCorr on the Golub dataset which contains ALL and AML conditions
@@ -109,7 +119,7 @@ Please follow the steps following to make sure of a smooth installation process.
     ```js
    Rscript script_macro_cd8.R
    ```
-6. Run the following command to execute the tool for Arbitrary Datasets
+2. Run the following command to execute the tool for Arbitrary Datasets
     ```js
    Rscript script_arbitrary.R --<input.file.1.path> --<input.file.2.path> --<output.path>
    ```
