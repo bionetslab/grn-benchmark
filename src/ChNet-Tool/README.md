@@ -13,7 +13,7 @@ Download and install the software below
 ## Installation Instructions
 Clone and navigate to the project (ChNet) root directory.
    ```bash
-   git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/ChNet-tool
+   git clone git@github.com:bionetslab/grn-benchmark.git && cd grn-benchmark/src/ChNet-Tool
    ```
 You can run the project in two ways.
 - Docker
