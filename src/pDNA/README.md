@@ -67,7 +67,8 @@ It also asks the user to choose a value for a parameter lambda
     - First column is named **Gene** and contains the gene names
     - Each entry is a normalized gene expression value
 
-- `--output_path` or `-o`: String that contains the path to the output folder. Has to exist at time of execution.
+- Output
+ Delta_hat**: [Details or path to file containing Delta_hat matrix]
 
 ## Output file format specification:
 The script will output a file named network.tsv containing the significant gene interactions.
