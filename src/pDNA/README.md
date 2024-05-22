@@ -55,11 +55,14 @@ for the refrence datsetets which were applied to the tool the value of lambda af
 ## Input file format specification:
 The script prompts the user to input the paths for two directories, which contain the genetic data files.
 It also asks the user to choose a value for a parameter lambda
-- `--input_1` or `-a`: Path to tab-separated file that contains the gene expression dataframe for condition 1:
+- Input 1
+- Prompt**: Please put the first directory:
+  - Input**: /path/to/first/directory
     - Rows correspond to gene names and columns to cells 
     - First column is named **Gene** and contains the gene names
     - Each entry is a normalized gene expression value
-- `--input_2` or `-b`: Path to tab-separated file that contains the gene expression dataframe for condition 2:
+- Prompt**: Please put the second directory:
+  - Input2: /path/to/second/directory
     - Rows correspond to gene names and columns to cells 
     - First column is named **Gene** and contains the gene names
     - Each entry is a normalized gene expression value
