@@ -31,10 +31,25 @@ cd src/pDNA-tool
 ```
 
 
-## Examplery Execution Instructions:
+## Instructions:
 
+1. Open MATLAB.
+2. Navigate to the directory containing pDNAtool.m.
+3. Run the script by typing pDNAtool in the MATLAB command window.
+4. Follow the prompts to input the directories for the two data files and the lambda value.
+Example 
+```
+>> pDNAtool
+Please put the first directory: path_to_first_file.tsv
+Please put the second directory: path_to_second_file.tsv
+Please choose your lambda: 0.45
+
+
+```
 
 ## Relevant Parameters:
+Lambda : You can experiment with different lambda values to see how it affects the sparsity and structure of the differential network.
+for the refrence datsetets which were applied to the tool the value of lambda after many times was estimated to 0.45
 
 
 ## Input file format specification:
@@ -49,11 +64,19 @@ cd src/pDNA-tool
 - `--output_path` or `-o`: String that contains the path to the output folder. Has to exist at time of execution.
 
 ## Output file format specification:
-Tab-separated output file `network.tsv` stored at `--output_path` containing the following columns:
+The script will output a file named network.tsv containing the significant gene interactions.
 - `target`: Targeted genes
 - `regulator`: Regulatory genes
 - `condition`: Condition that the edge belongs to
 - `weight`: Weight of the edge
+
+It will also display a heatmap of the weighted differential network sorted by node degrees.
+
+## Troubleshooting
+- Ensure the input file paths are correct and the files are in TSV format.
+- Ensure Sigma_compute and pDNA functions are accessible in the MATLAB path.
+- adjust the lambda value accordingly.
+
 
 
 
