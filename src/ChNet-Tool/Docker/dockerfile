@@ -1,0 +1,46 @@
+# Use the Rocker version 4.3.3 image that includes R and common packages
+FROM rocker/verse:4.3.3
+# FROM bioconductor/bioconductor_docker:RELEASE_3_17
+
+WORKDIR /usr/src/app
+
+# necessary system libraries
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libcurl4-gnutls-dev \
+        libssl-dev \
+        libxml2-dev \
+        libcairo2-dev \
+        libxt-dev \
+        libpq-dev \
+        zlib1g-dev \
+        libgsl-dev \
+        git \
+    && rm -rf /var/lib/apt/lists/*
+
+
+RUN R -e "install.packages('glmnet', dependencies = TRUE)"
+RUN R -e "install.packages('ggplot2', dependencies = TRUE)"
+RUN R -e "install.packages('corrplot', dependencies = TRUE)"
+RUN R -e "install.packages('pheatmap', dependencies = TRUE)"
+RUN R -e "install.packages('RColorBrewer', dependencies = TRUE)"
+RUN R -e "install.packages('data.table', dependencies = TRUE)"
+RUN R -e "install.packages('igraph', dependencies = TRUE)"
+RUN R -e "install.packages('mvtnorm', dependencies = TRUE)"
+RUN R -e "install.packages('reshape2', dependencies = TRUE)"
+RUN R -e "install.packages('gridExtra', dependencies = TRUE)"
+RUN R -e "install.packages('plotly', dependencies = TRUE)"
+RUN R -e "install.packages('optparse', dependencies = TRUE)"
+RUN R -e "install.packages('BiocManager')" \
+    && R -e "BiocManager::install(c('XVector', 'Biostrings', 'KEGGREST', 'ComplexHeatmap', 'circlize', 'AnnotationDbi', 'GO.db', 'WGCNA', 'clusterProfiler', 'org.Hs.eg.db'))"
+
+# Install chNet package from GitHub
+RUN R -e "install.packages('devtools', dependencies = TRUE)" \
+    && R -e "devtools::install_github('Zhangxf-ccnu/chNet', subdir='pkg')"
+    
+
+COPY . /usr/src/app/
+RUN chmod -R 666 /usr/src/app/
+COPY output /usr/src/app/output
+
+CMD ["R"]
