@@ -1,0 +1,24 @@
+
+
+##  Input
+- Prompt**: Please put the first directory:
+  - Input**: /path/to/first/directory
+- Prompt**: Please put the second directory:
+  - Input**: /path/to/second/directory
+- Prompt**: Please choose your lambda:
+  - Input**: 0.45
+## Data Processing
+- Extracting gene names from**: datafile1.tsv
+  - Gene Names**: [Gene1, Gene2, Gene3, ...]
+- Extracting gene names from**: datafile2.tsv
+  - Gene Names**: [Gene1, Gene2, Gene3, ...]
+- Converting data tables to arrays**
+  
+- Creating structure OV**
+
+## Dependencies
+- MATLAB Version**: R2024a
+
+## Output
+- Delta_hat**: [Details or path to file containing Delta_hat matrix]
+- V_hat**: [Details or path to file containing V_hat matrix]
